@@ -1,5 +1,5 @@
 import HeaderLinks from "@/components/HeaderLinks/HeaderLinks";
-import { ChevronDownIcon, Mail,  Phone, Search } from "lucide-react";
+import { ChevronDownIcon, Mail, Phone, Search } from "lucide-react";
 import MainButton from "../MainButton";
 import Image from "next/image";
 
@@ -11,6 +11,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 
 const menuItems = [
     {
+        label: "تسوق حسب الفئات",
+        items: ["حقائب جلدية", "أحذية جلدية", "حزام جلدي"],
+    },
+    {
         label: "منتجات الجلود الطبيعية",
         items: ["حقائب جلدية", "أحذية جلدية", "حزام جلدي"],
     },
@@ -21,10 +25,6 @@ const menuItems = [
     {
         label: "الديكورات الجلدية",
         items: ["إطارات صور", "وسائد جلدية", "سجادة جلدية"],
-    },
-    {
-        label: "أدوات السفرة",
-        items: ["حقيبة سفر", "محفظة سفر", "غطاء جواز السفر"],
     },
     {
         label: "ازياء السهرة",
@@ -73,32 +73,27 @@ export default function Header() {
                                 dir="rtl"
                             />
                         </div>
-
                         {/* Menu Items */}
                         <div className="flex items-center justify-between text-sm text-primary">
-
-                            <div className="flex justify-between items-center gap-2">
-                            {menuItems.map((item) => (
-                                <DropdownMenu key={item.label}>
-                                    <DropdownMenuTrigger asChild>
-                                        <button className="flex items-center gap-1 whitespace-nowrap hover:text-foreground transition-colors">
+                            <div className="flex justify-between items-center gap-5">
+                                {menuItems.map((item) => (
+                                    <DropdownMenu key={item.label}>
+                                        <DropdownMenuTrigger className="flex items-center gap-1 whitespace-nowrap hover:text-foreground transition-colors cursor-pointer">
                                             {item.label}
                                             <ChevronDownIcon className="size-3.5 shrink-0" />
-                                        </button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuGroup>
-                                            {item.items.map((subItem) => (
-                                                <DropdownMenuItem key={subItem}>
-                                                    {subItem}
-                                                </DropdownMenuItem>
-                                            ))}
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            ))}
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end">
+                                            <DropdownMenuGroup>
+                                                {item.items.map((subItem) => (
+                                                    <DropdownMenuItem key={subItem}>
+                                                        {subItem}
+                                                    </DropdownMenuItem>
+                                                ))}
+                                            </DropdownMenuGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                ))}
                             </div>
-
                         </div>
 
                     </div>

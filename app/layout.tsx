@@ -26,7 +26,8 @@ export default function RootLayout({
     >
       <body className={` ${dinNextArabic.variable}`}>
         <Header />
-        {children}</body>
+        {children}
+      </body>
     </html>
   );
 }

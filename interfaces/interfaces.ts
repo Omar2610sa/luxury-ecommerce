@@ -1,13 +1,31 @@
-export interface ShopCardProps {
+
+
+export interface Slider {
+    name: string
+    desc: string
     image: string
+}
+export interface secondSlider {
+    id: number
     title: string
-    subtitle: string
-    oldPrice: number
-    newPrice: number
-    discount: number
-    rating: number
-    reviewCount: number
-    isTrending?: boolean
-    isBestSeller?: boolean
-    isAvailable?: boolean
+    gender: string
+    sub_categories: [
+        {
+            id: number
+            title: string
+            image: string
+        }
+    ]
+    image: string
+}
+
+export interface HomeData {
+    sliders: Slider[];
+    secondSlider: secondSlider[];
+}
+
+export interface HomeResponse {
+    status: boolean;
+    message: string;
+    data: HomeData;
 }

@@ -74,7 +74,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: rgba(131, 97, 68, 1);
+  --primary: #836144;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: rgba(238, 231, 222, 1);
   --secondary-foreground: oklch(0.205 0 0);
@@ -149,4 +149,11 @@
     @apply bg-background text-foreground;
   }
 
+}
+
+@layer utilities {
+  
+  .animate-pulse-scale {
+    animation: pulse-scale 2s ease-in-out infinite;
+  }
 }

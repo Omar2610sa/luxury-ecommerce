@@ -3,13 +3,14 @@ import { Button } from '../ui/button'
 
 type SecondButton = {
     text: string
-    icon: React.ElementType
+    icon?: React.ElementType
+    variant?: "default" | "secondary"
 }
 
-export default function SecondButton({ text, icon: Icon }: SecondButton) {
+export default function SecondButton({ text, icon: Icon, variant }: SecondButton) {
     return (
-        <Button className="bg-second rounded-none w-fit py-6 px-16 gap-4 text-xl flex items-center">
-            <Icon className="size-6" />
+        <Button variant={variant} className="rounded-none w-fit py-6 px-12 gap-4 text-2xl flex items-center">
+            {Icon && <Icon className="size-6" />}
             {text}
         </Button>
     )
