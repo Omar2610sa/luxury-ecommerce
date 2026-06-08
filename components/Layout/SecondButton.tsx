@@ -14,4 +14,5 @@ export default function SecondButton({ text, icon: Icon, variant }: SecondButton
             {text}
         </Button>
     )
+    
 }

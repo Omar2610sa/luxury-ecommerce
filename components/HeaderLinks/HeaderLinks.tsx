@@ -14,7 +14,9 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Image from "next/image"
 
+import logo from "@/assets/icons/Flags.png"
 
 export default function HeaderLinks() {
     return (
@@ -40,7 +42,7 @@ export default function HeaderLinks() {
                         <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
                             <ChevronDownIcon className="size-3.5" />
                             العربية
-                            <Flag className="size-3" />
+                            <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="start">
                             <DropdownMenuGroup>

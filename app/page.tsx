@@ -1,4 +1,8 @@
+import Banner from "@/components/Banner/Banner";
+import ShopCard from "@/components/ShopCard/ShopCard";
+import ForYouSection from "@/sections/ForYou/ForYou";
 import Hero from "@/sections/Hero/Hero";
+import NewEditions from "@/sections/NewEditions/NewEditions";
 import SecondSlider from "@/sections/SecondSlider/SecondSlider";
 import { MoveLeft } from "lucide-react";
 import { Metadata } from "next";
@@ -10,11 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const { data: homeData } = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/client/home?type=  deals`).then(res => res.json())
+  const { data: home_website } = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/client/home_website`).then(res => res.json())
   return (
-    <div className="">
-      <Hero slider={homeData?.slider ?? []} />
-      <SecondSlider secondSlider={homeData?.main_categories ?? []} />
+    <div>
+      <Hero slider={home_website?.slider ?? []} />
+      <SecondSlider secondSlider={home_website?.main_categories ?? []} />
+      <NewEditions products={home_website?.best_seller ?? []} />
+      <Banner />
+      <ForYouSection products={home_website?.for_you ?? []} />
     </div>
   );
 }
