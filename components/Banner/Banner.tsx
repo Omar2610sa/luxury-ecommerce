@@ -1,8 +1,7 @@
 import Image from "next/image";
-import banner from "@/assets/banner.png"
 
 
-export default function Banner() {
+export default function Banner({banner} : {banner : string}) {
     return (
         <div className="relative container h-[600px] rounded-2xl">
             <Image

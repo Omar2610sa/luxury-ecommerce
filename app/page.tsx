@@ -6,6 +6,8 @@ import NewEditions from "@/sections/NewEditions/NewEditions";
 import SecondSlider from "@/sections/SecondSlider/SecondSlider";
 import { MoveLeft } from "lucide-react";
 import { Metadata } from "next";
+import banner from "@/assets/banner.png"
+import banner2 from "@/assets/banner2.png"
 
 export const metadata: Metadata = {
   title: "الفخامة للجلود و الأزياء",
@@ -20,8 +22,9 @@ export default async function Home() {
       <Hero slider={home_website?.slider ?? []} />
       <SecondSlider secondSlider={home_website?.main_categories ?? []} />
       <NewEditions products={home_website?.best_seller ?? []} />
-      <Banner />
+      <Banner banner={banner.src} />
       <ForYouSection products={home_website?.for_you ?? []} />
+      <Banner banner={banner2.src} />
     </div>
   );
 }

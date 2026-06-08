@@ -3,6 +3,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import localFont from "next/font/local";
 import Header from "@/components/Layout/Header/Header";
+import Footer from "@/components/Layout/Footer/Footer";
 
 export const dinNextArabic = localFont({
   src: [
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={` ${dinNextArabic.variable}`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
