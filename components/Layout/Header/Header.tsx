@@ -6,6 +6,7 @@ import Image from "next/image";
 import logo from "@/assets/image 44 (2) (1) 2 (1).png"
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 
 
@@ -52,14 +53,14 @@ export default function Header() {
             </div>
 
             {/* Second Nav */}
-            <nav className="grid grid-cols-[2fr_0.5fr] items-start justify-between gap-15  py-6 px-4  " dir="rtl">
+            <nav className="grid grid-cols-[2fr_0.5fr] items-start justify-between gap-15  py-6 px-4  " >
 
                 <div className="flex justify-between items-center gap-12">
 
                     {/* Logo */}
-                    <div className="shrink-0">
+                    <Link href="/" className="shrink-0">
                         <Image src={logo} className="size-22 object-cover" alt="logo" />
-                    </div>
+                    </Link>
 
                     {/* Search + Menu Items */}
                     <div className="flex flex-col gap-6 flex-1">
@@ -70,7 +71,7 @@ export default function Header() {
                             <Input
                                 placeholder="البحث عن منتج"
                                 className="pr-9 text-right"
-                                dir="rtl"
+                                
                             />
                         </div>
                         {/* Menu Items */}
@@ -85,7 +86,7 @@ export default function Header() {
                                         <DropdownMenuContent align="end">
                                             <DropdownMenuGroup>
                                                 {item.items.map((subItem) => (
-                                                    <DropdownMenuItem key={subItem}>
+                                                    <DropdownMenuItem key={subItem} className="justify-end ">
                                                         {subItem}
                                                     </DropdownMenuItem>
                                                 ))}

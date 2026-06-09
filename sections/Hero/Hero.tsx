@@ -8,17 +8,18 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import Link from "next/link";
 
 export default function Hero({ slider }: { slider: Slider[] }) {
     return (
         <div className="">
             <Carousel >
                 <CarouselContent >
-                    {slider.map((slide, index) => (
+                    {slider.map((slider, index) => (
                         <CarouselItem key={index} className=" relative z-40 w-full md:h-150vh h-[calc(100vh-92px)] overflow-hidden ">
                             {/* Background image per slide */}
                             <Image
-                                src={slide.image}
+                                src={slider.image}
                                 className="absolute top-0 left-0 w-full h-full object-cover z-30"
                                 fill
                                 alt=""
@@ -31,13 +32,15 @@ export default function Hero({ slider }: { slider: Slider[] }) {
                                     <div className="space-y-6">
 
                                         <h1 className="font-bold text-[40px] md:text-7xl leading-[1.4]">
-                                            {slide.name}
+                                            {slider.name}
                                         </h1>
                                         <p className="text-3xl leading-relaxed">
-                                            {slide.desc}
+                                            {slider.desc}
                                         </p>
                                     </div>
-                                    <SecondButton variant="secondary" text="تسوق الآن" />
+                                    <Link href={`/slider/${slider.id}`} >
+                                        <SecondButton variant="secondary" text="تسوق الآن" />
+                                    </Link>
                                 </div>
                             </div>
                         </CarouselItem>

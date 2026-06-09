@@ -1,6 +1,7 @@
 
 
 export interface Slider {
+    id: number
     name: string
     desc: string
     image: string
@@ -17,6 +18,7 @@ export interface secondSlider {
         }
     ]
     image: string
+    main_category_id: number
 }
 
 export interface HomeData {
@@ -85,4 +87,6 @@ export interface ForYou {
         media: string
         alt: string | null
     }
+    in_stock: boolean
+    discount_offer: number
 }

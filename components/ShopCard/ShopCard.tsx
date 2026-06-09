@@ -13,7 +13,7 @@ import { Heart, PoundSterling, SaudiRiyal, ShoppingCart, Star, ZapIcon } from "l
 import Image from "next/image"
 
 
-export default function ShopCard({ product  }: { product: ForYou }) {
+export default function ShopCard({ product }: { product: ForYou }) {
 
     return (
         <Card className="relative h-full max-w-xs rounded-none bg-gray-50/50 border-b  p-0 group hover:cursor-pointer overflow-hidden">
@@ -58,8 +58,11 @@ export default function ShopCard({ product  }: { product: ForYou }) {
                             <Badge className="bg-yellow-200/40 text-[#9F6913] text-md py-3 px-4 rounded-none">الأكثر شيوعاً</Badge>
                         )
                     }
-
-                    <Badge variant={"destructive"} className=" text-md py-3 px-4 rounded-none">غير متوفر</Badge>
+                    {
+                        product.in_stock && (
+                            <Badge variant={"destructive"} className=" text-md py-3 px-4 rounded-none">غير متوفر</Badge>
+                        )
+                    }
                 </div>
                 <CardTitle className="text-lg font-bold text-right leading-snug line-clamp-2">
                     {product.title}
@@ -70,9 +73,7 @@ export default function ShopCard({ product  }: { product: ForYou }) {
                 {/* Price */}
                 <div className="flex justify-between items-start">
 
-                    <span className="text-green-400 ml-4">
-                        -20 %
-                    </span>
+
 
                     <div className="flex text-right items-center justify-end gap-1">
                         {product.offer_price > 0 && (
@@ -84,7 +85,13 @@ export default function ShopCard({ product  }: { product: ForYou }) {
                             {product.offer_price > 0 ? product.offer_price : product.detail.price} {product.detail.currency}
                         </span>
                     </div>
-
+                    {
+                        product.discount_offer > 0 && (
+                            <div className="text-green-400 ml-4">
+                                -{product.discount_offer} %
+                            </div>
+                        )
+                    }
                 </div>
 
             </CardHeader>

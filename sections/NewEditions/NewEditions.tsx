@@ -5,7 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import SecondButton from "@/components/Layout/SecondButton";
-import { MoveLeft } from "lucide-react";
+import {  MoveLeft } from "lucide-react";
+import Link from "next/link";
 
 export default function NewEditions({ products }: { products: ForYou[] }) {
     return (
@@ -34,7 +35,9 @@ export default function NewEditions({ products }: { products: ForYou[] }) {
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product.id} >
+                            <Link href={`/product/${product.id}`}>
                             <ShopCard product={product} />
+                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>

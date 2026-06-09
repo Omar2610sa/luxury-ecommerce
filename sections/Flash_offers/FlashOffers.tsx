@@ -64,7 +64,7 @@ export default function FlashOffers() {
 
             <div className="relative z-10  px-5">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4" dir="rtl">
+                <div className="flex items-center justify-between mb-4" >
                     {/* Flash Sale Badge */}
                     <div className=" flex items-center gap-5 text-white font-bold text-xl">
                         <Image src={flash} alt="flash" className="size-10 object-fill" />
@@ -89,7 +89,6 @@ export default function FlashOffers() {
                         <Link
                             href="/flash-offers"
                             className="text-lg font-semibold text-white hover:underline"
-                            dir="rtl"
                         >
                             عرض الكل ‹
                         </Link>
@@ -117,7 +116,7 @@ export default function FlashOffers() {
                                 <p className="text-white mb-1.5">
                                     {product.name}
                                 </p>
-                                <p className="font-bold text-white text-xl flex justify-end items-center">
+                                <p className="font-bold text-white text-xl flex items-center">
                                     <span className="text-xs font-bold mr-2">جنيه</span>
                                     {product.price}{" "}
                                 </p>

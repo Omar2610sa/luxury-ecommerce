@@ -1,16 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
 
 
-export default function Banner({banner} : {banner : string}) {
+export default function Banner({ banner }: { banner: { image: string, id: number } }) {
     return (
-        <div className="relative container h-[600px] rounded-2xl">
-            <Image
-                src={banner}
-                alt="Banner"
-                fill
-                className="absolute object-contain rounded-2xl z-20"
-            />
+        <Link href={`/slider/${banner?.id}`}>
+            <div className="relative container h-[400px] my-6  rounded-2xl">
+                <Image
+                    src={banner?.image || ''}
+                    alt="Banner"
+                    fill
+                    className="absolute object-contain  rounded-2xl z-20"
+                />
 
-        </div>
+            </div>
+        </Link>
     )
 }

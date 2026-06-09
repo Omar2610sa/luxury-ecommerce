@@ -1,4 +1,3 @@
-import MainButton from "@/components/Layout/MainButton";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import localFont from "next/font/local";
@@ -25,7 +24,7 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", dinNextArabic.variable)}
     >
-      <body className={` ${dinNextArabic.variable}`}>
+      <body className={` ${dinNextArabic.variable}`} dir="rtl">
         <Header />
         {children}
         <Footer />

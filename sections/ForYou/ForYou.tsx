@@ -2,6 +2,7 @@ import SecondButton from "@/components/Layout/SecondButton";
 import ShopCard from "@/components/ShopCard/ShopCard";
 import type { ForYou } from "@/interfaces/interfaces";
 import { MoveLeft } from "lucide-react";
+import Link from "next/link";
 
 export default function ForYouSection({ products }: { products: ForYou[] }) {
     return (
@@ -16,7 +17,9 @@ export default function ForYouSection({ products }: { products: ForYou[] }) {
                 {
                     products.map((product, index) => {
                         return (
-                            <ShopCard key={index} product={product} />
+                            <Link href={`/product/${product.id}`} key={index}>
+                            <ShopCard product={product} />
+                            </Link>
                         )
                     })
                 }
