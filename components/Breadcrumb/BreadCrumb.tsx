@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
-export function BreadCrumb({ secondLink, thirdLink }: { secondLink: string; thirdLink: string }) {
+export function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thirdLink?: string }) {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -20,21 +20,25 @@ export function BreadCrumb({ secondLink, thirdLink }: { secondLink: string; thir
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
+        {
+          secondLink && (
+            <>
+              <BreadcrumbSeparator className="text-xl">
+                /
+              </BreadcrumbSeparator>
 
-        <BreadcrumbSeparator className="text-xl">
-          /
-        </BreadcrumbSeparator>
-
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link
-              className="text-lg"
-              href={`/categories/${secondLink}`}
-            >
-              {secondLink}
-            </Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link
+                    className="text-lg"
+                    href={`/categories/${secondLink}`}
+                  >
+                    {secondLink}
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </>
+          )}
 
         <BreadcrumbSeparator className="text-xl">
           /

@@ -7,6 +7,7 @@ import logo from "@/assets/image 44 (2) (1) 2 (1).png"
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { LoginDialog } from "@/sections/Auth/LoginDialog";
 
 
 
@@ -102,7 +103,7 @@ export default function Header() {
 
                 {/* Buttons */}
                 <div className="flex gap-3 items-center shrink-0">
-                    <MainButton text="تسجيل دخول" />
+                    <LoginDialog />    
                     <MainButton text="انشاء حساب جديد" />
                 </div>
 

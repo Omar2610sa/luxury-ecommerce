@@ -114,3 +114,30 @@ export interface ActiveFilter {
 export interface CategoryFilterProps {
     subCategories: SubCategory[]
 }
+
+
+export interface ProductDetail {
+    id: number;
+    price: number;
+    currency: string;
+
+    color: {
+        id: number;
+        title: string;
+        hex: string;
+    };
+
+    size: {
+        id: number;
+        title: string;
+    };
+}
+
+export interface Product {
+    id: number;
+    title: string;
+    main_image: {
+        media: string
+    }
+    details: ProductDetail[];
+} 
