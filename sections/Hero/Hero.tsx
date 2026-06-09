@@ -11,18 +11,20 @@ import {
 import Link from "next/link";
 
 export default function Hero({ slider }: { slider: Slider[] }) {
+    console.log(slider[1]?.image)
     return (
         <div className="">
-            <Carousel >
+            <Carousel dir="ltr">
                 <CarouselContent >
                     {slider.map((slider, index) => (
                         <CarouselItem key={index} className=" relative z-40 w-full md:h-150vh h-[calc(100vh-92px)] overflow-hidden ">
                             {/* Background image per slide */}
                             <Image
                                 src={slider.image}
-                                className="absolute top-0 left-0 w-full h-full object-cover z-30"
+                                className={`absolute top-0 left-0 w-full h-full object-cover z-30 ${slider.image ? "" : "bg-red-500"}`}
                                 fill
                                 alt=""
+                                dir="rtl"
                             />
                             <div className="absolute inset-0 bg-black/30 z-30" />
 

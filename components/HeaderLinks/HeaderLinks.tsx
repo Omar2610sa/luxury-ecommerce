@@ -22,20 +22,6 @@ export default function HeaderLinks() {
     return (
         <Breadcrumb>
             <BreadcrumbList>
-                <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">الدعم الفني</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>|</BreadcrumbSeparator>
-
-                <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">الأسئلة الشائعة</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>|</BreadcrumbSeparator>
-
-                <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">سياسة الإسترجاع والخصوصية</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator>|</BreadcrumbSeparator>
 
                 <BreadcrumbItem>
                     <DropdownMenu>
@@ -51,6 +37,21 @@ export default function HeaderLinks() {
                             </DropdownMenuGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
+                </BreadcrumbItem>
+
+                <BreadcrumbSeparator>|</BreadcrumbSeparator>
+
+                <BreadcrumbItem>
+                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">الأسئلة الشائعة</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator>|</BreadcrumbSeparator>
+
+                <BreadcrumbItem>
+                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">سياسة الإسترجاع والخصوصية</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator>|</BreadcrumbSeparator>
+                <BreadcrumbItem>
+                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">الدعم الفني</BreadcrumbLink>
                 </BreadcrumbItem>
             </BreadcrumbList>
         </Breadcrumb>

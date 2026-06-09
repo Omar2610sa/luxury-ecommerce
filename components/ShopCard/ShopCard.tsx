@@ -27,9 +27,9 @@ export default function ShopCard({ product }: { product: ForYou }) {
 
             {/* Wishlist */}
             <CardAction className="absolute z-30 top-3 right-3">
-                <button className="bg-white rounded-full p-1.5 shadow">
+                <Button variant="outline" className="bg-white rounded-full p-1.5 shadow">
                     <Heart className="size-6 text-gray-400" />
-                </button>
+                </Button>
             </CardAction>
 
             {/* Product Image */}

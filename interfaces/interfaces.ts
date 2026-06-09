@@ -90,3 +90,27 @@ export interface ForYou {
     in_stock: boolean
     discount_offer: number
 }
+
+// في interfaces.ts
+export interface SubSubCategory {
+    id: number
+    title: string
+    image: string
+}
+
+export interface SubCategory {
+    id: number
+    title: string
+    image: string
+    sub_sub_categories: SubSubCategory[]
+}
+
+export interface ActiveFilter {
+    key: string;
+    value: string;
+    label: string;
+}
+
+export interface CategoryFilterProps {
+    subCategories: SubCategory[]
+}

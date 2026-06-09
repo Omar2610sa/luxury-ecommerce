@@ -38,7 +38,6 @@ export default function Header() {
         <header className="flex flex-col border-b ">
             {/* Top Nav */}
             <div className="bg-secondary flex justify-between items-center py-4 px-10">
-                <HeaderLinks />
                 {/* Phone & Email */}
                 <div className="flex items-center gap-8 text-sm">
                     <div className="flex items-center gap-2">
@@ -50,6 +49,7 @@ export default function Header() {
                         <Phone className="size-4" />
                     </div>
                 </div>
+                <HeaderLinks />
             </div>
 
             {/* Second Nav */}
@@ -83,10 +83,10 @@ export default function Header() {
                                             {item.label}
                                             <ChevronDownIcon className="size-3.5 shrink-0" />
                                         </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
+                                        <DropdownMenuContent >
                                             <DropdownMenuGroup>
                                                 {item.items.map((subItem) => (
-                                                    <DropdownMenuItem key={subItem} className="justify-end ">
+                                                    <DropdownMenuItem key={subItem} >
                                                         {subItem}
                                                     </DropdownMenuItem>
                                                 ))}
