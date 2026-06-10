@@ -10,3 +10,16 @@ type searchParams  = {
     brand_id?: string
   }
 }
+
+type Detail = {
+    id: number
+    color: {
+        id: number
+        title: string
+        hex: string
+    }
+}
+
+type Props = {
+    details: Detail[]
+}

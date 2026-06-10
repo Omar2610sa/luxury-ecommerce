@@ -82,8 +82,8 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
             >
                 <CarouselContent className="ml-0">
                     {allImages.map((image, index) => (
-                        <CarouselItem key={image.id} className="h-[500px] pl-0">
-                            <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                        <CarouselItem key={image.id} className="h-[650px]  pl-0">
+                            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-200">
                                 {!loadedImages[index] && (
                                     <div className="absolute inset-0 animate-pulse  bg-gray-200" />
                                 )}
@@ -92,7 +92,7 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
                                     alt={image.alt ?? ''}
                                     fill
                                     className={cn(
-                                        'object-contain transition-opacity  duration-300',
+                                        'object-cover transition-opacity  duration-300',
                                         loadedImages[index] ? 'opacity-100' : 'opacity-0'
                                     )}
                                     onLoad={() => handleImageLoad(index)}
@@ -105,7 +105,7 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
                                             className={cn(
                                                 'w-2 h-2 rounded-full transition-all duration-200',
                                                 activeIndex === i
-                                                    ? 'bg-white scale-125'
+                                                    ? 'bg-black scale-125'
                                                     : 'bg-white/50 hover:bg-white/75'
                                             )}
                                         />
@@ -122,9 +122,9 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
                 setApi={setThumbApi}
                 opts={{ align: 'start', dragFree: true }}
                 orientation="vertical"
-                className="h-[500px] w-[80px]"
+                className="h-[700px] w-[80px]"
             >
-                <CarouselContent className="-mt-2 h-[500px]">
+                <CarouselContent className="-mt-2 h-[750px]">
                     {allImages.map((image, index) => (
                         <CarouselItem
                             key={image.id}
@@ -133,7 +133,7 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
                         >
                             <div
                                 className={cn(
-                                    'relative w-[80px] h-[100px] rounded-xl overflow-hidden border-2 transition-all duration-200 bg-gray-100',
+                                    'relative w-[80px] h-[128px] rounded-xl overflow-hidden border-2 transition-all duration-200 bg-gray-100',
                                     activeIndex === index
                                         ? 'border-primary opacity-100'
                                         : 'border-transparent opacity-50 hover:opacity-75'

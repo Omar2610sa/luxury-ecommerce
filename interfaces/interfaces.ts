@@ -131,18 +131,26 @@ export interface ProductDetail {
         id: number;
         title: string;
     };
-    images : []
-
+    images: []
+quantity : number
 }
 
 export interface Product {
     id: number;
     title: string;
+    short_desc: string
+    long_desc: string
     main_image: {
         media: string
     }
-    images : {
-        media : string
+    images: {
+        media: string
     }
     details: ProductDetail[];
+    brand: {
+        title: string
+        image: {
+            media: string
+        }
+    }
 } 
