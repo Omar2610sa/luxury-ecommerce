@@ -131,6 +131,8 @@ export interface ProductDetail {
         id: number;
         title: string;
     };
+    images : []
+
 }
 
 export interface Product {
@@ -138,6 +140,9 @@ export interface Product {
     title: string;
     main_image: {
         media: string
+    }
+    images : {
+        media : string
     }
     details: ProductDetail[];
 } 

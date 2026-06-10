@@ -2,6 +2,7 @@ import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
 import { Product } from "@/interfaces/interfaces";
 import Star from "@/assets/icons/star.png";
 import Image from "next/image";
+import ProductImageCarousel from "@/components/ProductSwiper/ProductSwiper";
 
 type Props = {
     params: Promise<{
@@ -27,15 +28,11 @@ export default async function Page({ params }: Props) {
             <BreadCrumb thirdLink={product.title} />
 
             <div className="grid grid-cols-2 gap-5 items-start">
-                <div className=" h-[400px] flex justify-between gap-2 relative">
-                    <div>
-                    <Image src={product.main_image.media} fill alt="" className="w-full absolute object-contain flex" />
-                    </div>
-                    <div className="flex flex-col ">
 
-                    </div>
-                </div>
-
+                    <ProductImageCarousel
+                        mainImage={product.main_image}
+                        images={product.details[0]?.images ?? []}
+                    />
                 <div className="w-full flex flex-col gap-8">
                     <h2 className="text-4xl font-semibold leading-tight">
                         {product.title}
