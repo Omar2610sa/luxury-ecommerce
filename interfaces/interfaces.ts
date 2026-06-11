@@ -132,7 +132,7 @@ export interface ProductDetail {
         title: string;
     };
     images: []
-quantity : number
+    quantity: number
 }
 
 export interface Product {
@@ -153,5 +153,5 @@ export interface Product {
             media: string
         }
     }
-    recommended : []
+    recommended: []
 } 

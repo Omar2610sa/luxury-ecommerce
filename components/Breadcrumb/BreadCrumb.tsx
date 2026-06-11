@@ -14,10 +14,8 @@ export function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thi
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link className="text-lg" href="/">
+          <BreadcrumbLink className="text-lg" href="/">
               الرئيسية
-            </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         {
@@ -28,13 +26,8 @@ export function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thi
               </BreadcrumbSeparator>
 
               <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link
-                    className="text-lg"
-                    href={`/categories/${secondLink}`}
-                  >
+                <BreadcrumbLink href={`/categories/${secondLink}`} className="text-lg">
                     {secondLink}
-                  </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </>

@@ -24,3 +24,25 @@ type Props = {
     details: Detail[]
 }
 
+
+type Country = {
+    id: number
+    name: string
+    flag: string
+    phone_code: string
+}
+
+type Profile = {
+    name: string
+    email: string
+    phone: string
+    phone_code: string
+    country_id: string
+    date_of_birth: string
+    gender: string
+}
+
+type PropsProfile = {
+    profile: Profile
+    token: string
+}

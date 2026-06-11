@@ -11,7 +11,7 @@ type Props = {
 function SuccessAlertComponent({ title }: Props) {
     return (
         <Dialog open={true}>
-            <DialogContent className="sm:max-w-sm flex flex-col items-center gap-6 py-10 animate-accordion-up">
+            <DialogContent className="sm:max-w-sm flex flex-col items-center gap-6 py-10 animate-success-alert">
                 <Image
                     src={SuccessIcon}
                     alt="success"
