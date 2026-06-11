@@ -35,9 +35,8 @@ export default function NewEditions({ products }: { products: ForYou[] }) {
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product.id} >
-                            <Link href={`/product/${product.id}`}>
                             <ShopCard product={product} />
-                            </Link>
+                           
                         </SwiperSlide>
                     ))}
                 </Swiper>

@@ -119,9 +119,9 @@ export default async function Header() {
                     token && (
                         <div className="flex gap-3 items-center shrink-0">
                             {/* Fav */}
-                            <Button className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
+                            <Link href="/favourite" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
                                 <Heart className="size-4 text-primary" />
-                            </Button>
+                            </Link>
                             {/* notifation */}
                             <Link href="/profile" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
                                 <User2Icon className="size-4 text-primary" />

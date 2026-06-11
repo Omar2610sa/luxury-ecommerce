@@ -11,12 +11,14 @@ import {
 import { ForYou } from "@/interfaces/interfaces"
 import { Heart, PoundSterling, SaudiRiyal, ShoppingCart, Star, ZapIcon } from "lucide-react"
 import Image from "next/image"
+import FavButton from "../FavHeart/FavHeart"
+import Link from "next/link"
 
 
 export default function ShopCard({ product }: { product: ForYou }) {
 
     return (
-        <Card className="relative h-full max-w-xs rounded-none bg-gray-50/50 border-b  p-0 group hover:cursor-pointer overflow-hidden">
+        <Card className="relative h-full max-w-xs rounded-none bg-gray-50/50 border-b  p-0 group  overflow-hidden">
 
             {/* Discount Badge */}
             {product.offer_price > 0 && (
@@ -26,11 +28,7 @@ export default function ShopCard({ product }: { product: ForYou }) {
             )}
 
             {/* Wishlist */}
-            <CardAction className="absolute z-30 top-3 right-3">
-                <Button variant="outline" className="bg-white rounded-full p-1.5 shadow">
-                    <Heart className="size-6 text-gray-400" />
-                </Button>
-            </CardAction>
+            <FavButton productId={product.id} isFav={product.is_fave} />
 
             {/* Product Image */}
             <div className="relative">
@@ -50,72 +48,73 @@ export default function ShopCard({ product }: { product: ForYou }) {
                     )}
                 </div>
             </div>
+            <Link href={`/product/${product.id}`}>
+                <CardHeader className="gap-3 px-4  ">
+                    <div className="flex justify-between  pb-2">
+                        {
+                            product.is_trendy && (
+                                <Badge className="bg-yellow-200/40 text-[#9F6913] text-md py-3 px-4 rounded-none">الأكثر شيوعاً</Badge>
+                            )
+                        }
+                        {
+                            product.in_stock && (
+                                <Badge variant={"destructive"} className=" text-md py-3 px-4 rounded-none">غير متوفر</Badge>
+                            )
+                        }
+                    </div>
+                    <CardTitle className="text-lg font-bold text-right leading-snug line-clamp-2">
+                        {product.title}
+                    </CardTitle>
+                    <CardDescription className="text-xs font-thin text-right line-clamp-1">
+                        {product.short_desc}
+                    </CardDescription>
+                    {/* Price */}
+                    <div className="flex justify-between items-start">
 
-            <CardHeader className="gap-3 px-4  ">
-                <div className="flex justify-between  pb-2">
-                    {
-                        product.is_trendy && (
-                            <Badge className="bg-yellow-200/40 text-[#9F6913] text-md py-3 px-4 rounded-none">الأكثر شيوعاً</Badge>
-                        )
-                    }
-                    {
-                        product.in_stock && (
-                            <Badge variant={"destructive"} className=" text-md py-3 px-4 rounded-none">غير متوفر</Badge>
-                        )
-                    }
-                </div>
-                <CardTitle className="text-lg font-bold text-right leading-snug line-clamp-2">
-                    {product.title}
-                </CardTitle>
-                <CardDescription className="text-xs font-thin text-right line-clamp-1">
-                    {product.short_desc}
-                </CardDescription>
-                {/* Price */}
-                <div className="flex justify-between items-start">
 
 
-
-                    <div className="flex text-right items-center justify-end gap-1">
-                        {product.offer_price > 0 && (
-                            <span className="text-xs line-through text-muted-foreground">
-                                {product.detail.price} {product.detail.currency}
+                        <div className="flex text-right items-center justify-end gap-1">
+                            {product.offer_price > 0 && (
+                                <span className="text-xs line-through text-muted-foreground">
+                                    {product.detail.price} {product.detail.currency}
+                                </span>
+                            )}
+                            <span className="font-bold ">
+                                {product.offer_price > 0 ? product.offer_price : product.detail.price} {product.detail.currency}
                             </span>
-                        )}
-                        <span className="font-bold ">
-                            {product.offer_price > 0 ? product.offer_price : product.detail.price} {product.detail.currency}
-                        </span>
-                    </div>
-                    {
-                        product.discount_offer > 0 && (
-                            <div className="text-green-400 ml-4">
-                                -{product.discount_offer} %
-                            </div>
-                        )
-                    }
-                </div>
-
-            </CardHeader>
-
-            <CardFooter className="flex items-center justify-between px-4 pb-3">
-                <div className="flex flex-col items-start gap-0.5">
-                    {/* Stars */}
-                    <div className="flex items-center gap-0.5">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                            <Star
-                                key={i}
-                                className={`size-5 ${i < Math.round(product.detail.rate_avg) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                            />
-                        ))}
-                        <span className="text-lg text-muted-foreground ml-1">({product.detail.sold})</span>
+                        </div>
+                        {
+                            product.discount_offer > 0 && (
+                                <div className="text-green-400 ml-4">
+                                    -{product.discount_offer} %
+                                </div>
+                            )
+                        }
                     </div>
 
-                </div>
+                </CardHeader>
 
-                {/* Cart Button */}
-                <Button size="icon" className="rounded-full bg-yellow-200/40 w-10 h-10 text-[#9F6913] ">
-                    <ShoppingCart className="size-5" />
-                </Button>
-            </CardFooter>
+                <CardFooter className="flex items-center justify-between px-4 pb-3">
+                    <div className="flex flex-col items-start gap-0.5">
+                        {/* Stars */}
+                        <div className="flex items-center gap-0.5">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                                <Star
+                                    key={i}
+                                    className={`size-5 ${i < Math.round(product.detail.rate_avg) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                                />
+                            ))}
+                            <span className="text-lg text-muted-foreground ml-1">({product.detail.sold})</span>
+                        </div>
+
+                    </div>
+
+                    {/* Cart Button */}
+                    <Button size="icon" className="rounded-full bg-yellow-200/40 w-10 h-10 text-[#9F6913] ">
+                        <ShoppingCart className="size-5" />
+                    </Button>
+                </CardFooter>
+            </Link>
 
         </Card>
     )

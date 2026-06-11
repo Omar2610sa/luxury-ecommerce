@@ -32,7 +32,9 @@ export function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thi
               </BreadcrumbItem>
             </>
           )}
-
+        {
+          thirdLink && (
+            <>
         <BreadcrumbSeparator className="text-xl">
           /
         </BreadcrumbSeparator>
@@ -42,6 +44,8 @@ export function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thi
             {thirdLink}
           </BreadcrumbPage>
         </BreadcrumbItem>
+        </>
+          )}
       </BreadcrumbList>
     </Breadcrumb>
   )
