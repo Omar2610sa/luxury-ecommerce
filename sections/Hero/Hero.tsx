@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 
 export default function Hero({ slider }: { slider: Slider[] }) {
-    console.log(slider[1]?.image)
     return (
         <div className="">
             <Carousel dir="ltr">

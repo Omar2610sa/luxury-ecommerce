@@ -3,6 +3,7 @@ import { Product } from "@/interfaces/interfaces";
 import Image from "next/image";
 import ProductImageCarousel from "@/components/ProductSwiper/ProductSwiper";
 import ProductInfo from "@/sections/Product/ProductInfo";
+import ForYouSection from "@/sections/ForYou/ForYou";
 
 type Props = {
     params: Promise<{
@@ -27,6 +28,8 @@ export default async function Page({ params }: Props) {
         <div className="container flex flex-col gap-10">
             <BreadCrumb thirdLink={product.title} />
             <ProductInfo product={product} />
+            <ForYouSection title="موصى به لك" products={product?.recommended ?? []} />
+
         </div>
     );
 }

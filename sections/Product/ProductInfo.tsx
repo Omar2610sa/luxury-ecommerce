@@ -22,7 +22,7 @@ export default function ProductInfo({ product }: { product: Product }) {
                 images={product.details[0]?.images ?? []}
             />
             <div className="w-full flex flex-col gap-8">
-                <h2 className="text-4xl font-semibold leading-tight">
+                <h2 className="text-3xl font-semibold leading-tight">
                     {product.title}
                 </h2>
 

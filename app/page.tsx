@@ -23,7 +23,7 @@ export default async function Home() {
       <NewEditions products={home_website?.best_seller ?? []} />
       <FlashOffers />
       <Banner banner={home_website?.middle_slider ?? ''} />
-      <ForYouSection products={home_website?.for_you ?? []} />
+      <ForYouSection title="اختارنا لك" products={home_website?.for_you ?? []} />
       <Banner banner={home_website?.footer_slider ?? ''} />
     </div>
   );

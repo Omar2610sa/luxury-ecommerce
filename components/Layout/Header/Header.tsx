@@ -1,5 +1,5 @@
 import HeaderLinks from "@/components/HeaderLinks/HeaderLinks";
-import { ChevronDownIcon, Mail, Phone, Search } from "lucide-react";
+import { Bell, ChevronDownIcon, Heart, Mail, Phone, Search, ShoppingBasketIcon, User2Icon } from "lucide-react";
 import MainButton from "../MainButton";
 import Image from "next/image";
 
@@ -8,7 +8,11 @@ import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { LoginDialog } from "@/sections/Auth/LoginDialog";
-
+import { cookies } from "next/headers";
+import { Button } from "@/components/ui/button";
+import flag from "@/assets/icons/saudia.png"
+import flag2 from "@/assets/icons/english(3-5).svg"
+import { SignUp } from "@/sections/Auth/SignUp";
 
 
 const menuItems = [
@@ -34,7 +38,8 @@ const menuItems = [
     },
 ]
 
-export default function Header() {
+export default async function Header() {
+    const token = (await cookies()).get('token_luxary')?.value ?? null
     return (
         <header className="flex flex-col border-b ">
             {/* Top Nav */}
@@ -54,7 +59,7 @@ export default function Header() {
             </div>
 
             {/* Second Nav */}
-            <nav className="grid grid-cols-[2fr_0.5fr] items-start justify-between gap-15  py-6 px-4  " >
+            <nav className="grid grid-cols-[3fr_1fr] items-start justify-between gap-15  py-6 px-4  " >
 
                 <div className="flex justify-between items-center gap-12">
 
@@ -72,7 +77,7 @@ export default function Header() {
                             <Input
                                 placeholder="البحث عن منتج"
                                 className="pr-9 text-right"
-                                
+
                             />
                         </div>
                         {/* Menu Items */}
@@ -101,12 +106,52 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* Buttons */}
-                <div className="flex gap-3 items-center shrink-0">
-                    <LoginDialog />    
-                    <MainButton text="انشاء حساب جديد" />
-                </div>
+                {
+                    !token && (
 
+                        <div className="flex gap-3 items-center shrink-0">
+                            <LoginDialog />
+                            <SignUp />
+                        </div>
+                    )
+                }
+                {
+                    token && (
+                        <div className="flex gap-3 items-center shrink-0">
+                            {/* Fav */}
+                            <Button className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
+                                <Heart className="size-4 text-primary" />
+                            </Button>
+                            {/* notifation */}
+                            <Link href="/profile" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
+                                <User2Icon className="size-4 text-primary" />
+                            </Link>
+                            {/* notifation */}
+                            <Button className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
+                                <ShoppingBasketIcon className="size-4 text-primary" />
+                            </Button>
+                            {/* Language */}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
+                                    <Image src={flag} alt="flag" className="size-7 ml-2 object-contain rounded-xs" />
+                                    العربية
+                                    <ChevronDownIcon className="size-3.5" />
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="start">
+                                    <DropdownMenuGroup>
+                                        <DropdownMenuItem>
+                                    <Image src={flag} alt="flag" className="size-7 ml-2 object-contain rounded-xs" />
+                                            العربية</DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                    <Image src={flag2} alt="flag" className="size-7 ml-2 object-contain rounded-xs" />
+                                            
+                                            الإنجليزية</DropdownMenuItem>
+                                    </DropdownMenuGroup>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </div>
+                    )
+                }
             </nav>
         </header>
     )

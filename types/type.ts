@@ -23,3 +23,4 @@ type Detail = {
 type Props = {
     details: Detail[]
 }
+

@@ -26,14 +26,18 @@ export default function HeaderLinks() {
                 <BreadcrumbItem>
                     <DropdownMenu>
                         <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
-                            <ChevronDownIcon className="size-3.5" />
-                            العربية
                             <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
+                            العربية
+                            <ChevronDownIcon className="size-3.5" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="start">
                             <DropdownMenuGroup>
-                                <DropdownMenuItem>العربية</DropdownMenuItem>
-                                <DropdownMenuItem>الإنجليزية</DropdownMenuItem>
+                                <DropdownMenuItem>
+                            <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
+                                    العربية</DropdownMenuItem>
+                                <DropdownMenuItem>
+                            <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
+                                    الإنجليزية</DropdownMenuItem>
                             </DropdownMenuGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
