@@ -32,6 +32,11 @@ export interface ProductData {
     recommended : []
     also_may_like : []
 }
+export interface CartData {
+    title : string
+    product : Product[]
+
+}
 
 
 

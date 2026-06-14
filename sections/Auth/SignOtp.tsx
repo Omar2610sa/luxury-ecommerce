@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Field } from "@/components/ui/field"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
+import { useRouter } from "next/navigation"
 
 type Props = {
     open: boolean
@@ -41,7 +42,7 @@ export function OtpDialog({ open, onOpenChange }: Props) {
     const [otp, setOtp] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
-
+    const router = useRouter()
     const handleSubmit = async () => {
         if (otp.length < 4) {
             setError("أدخل كود التحقق كامل")
@@ -75,7 +76,7 @@ export function OtpDialog({ open, onOpenChange }: Props) {
                 document.cookie = `token_luxary=${token}; path=/`
                 onOpenChange(false)
                 SuccessAlert("تم التحقق من رقم الهاتف بنجاح")
-                setTimeout(() => window.location.reload(), 2000)
+                setTimeout(() => router.refresh(), 2000)
             } else {
                 setError(response.message ?? "كود التحقق غير صحيح")
             }

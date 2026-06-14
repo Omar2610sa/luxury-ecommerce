@@ -41,11 +41,11 @@ const menuItems = [
 export default async function Header() {
     const token = (await cookies()).get('token_luxary')?.value ?? null
     return (
-        <header className="flex flex-col border-b ">
+        <header className="hidden md:flex flex-col border-b ">
             {/* Top Nav */}
             <div className="bg-secondary flex justify-between items-center py-4 px-10">
                 {/* Phone & Email */}
-                <div className="flex items-center gap-8 text-sm">
+                <div className="flex flex-col md:flex-row items-center gap-8 text-sm">
                     <div className="flex items-center gap-2">
                         admin@gmail.com
                         <Mail className="size-4" />
@@ -127,9 +127,9 @@ export default async function Header() {
                                 <User2Icon className="size-4 text-primary" />
                             </Link>
                             {/* notifation */}
-                            <Button className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
+                            <Link href="/cart" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
                                 <ShoppingBasketIcon className="size-4 text-primary" />
-                            </Button>
+                            </Link>
                             {/* Language */}
                             <DropdownMenu>
                                 <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">

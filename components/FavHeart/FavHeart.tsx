@@ -46,7 +46,7 @@ export default function FavButton({ productId, isFav }: Props) {
     return (
         <CardAction
             onClick={makeFav}
-            className="absolute z-30 top-3 right-3">
+            className="">
             <Button
                 variant="outline"
                 className="bg-white rounded-full p-1.5 shadow"

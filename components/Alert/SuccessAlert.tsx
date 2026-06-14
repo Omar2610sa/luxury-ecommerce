@@ -35,6 +35,5 @@ export const SuccessAlert = (title: string) => {
     setTimeout(() => {
         root.unmount()
         document.body.removeChild(container)
-        window.location.reload()
     }, 3000)
 }

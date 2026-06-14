@@ -56,7 +56,7 @@ export function LoginDialog() {
                 const body = isEmail(values.identifier)
                     ? {
                         credential: values.identifier, password: values.password, type: "ios",
-                        device_token: "125487986562323157"
+                        device_token: guestToken
                     }
                     : {
                         credential: values.identifier, password: values.password, type: "ios",

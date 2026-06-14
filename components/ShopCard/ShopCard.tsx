@@ -28,7 +28,10 @@ export default function ShopCard({ product }: { product: ForYou }) {
             )}
 
             {/* Wishlist */}
+            <div className="absolute z-30 top-3 right-3">
+
             <FavButton productId={product.id} isFav={product.is_fave} />
+            </div>
 
             {/* Product Image */}
             <div className="relative">
