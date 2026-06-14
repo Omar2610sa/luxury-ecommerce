@@ -17,6 +17,10 @@ import * as Yup from "yup"
 import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
+import Cookies from "js-cookie"
+
+
+
 
 const loginSchema = Yup.object({
     identifier: Yup.string()
@@ -38,12 +42,9 @@ export function LoginDialog() {
     const [successOpen, setSuccessOpen] = useState(false)
 
     const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-    const getGuestToken = () => {
-        return document.cookie
-            .split('; ')
-            .find(row => row.startsWith('guest_token='))
-            ?.split('=')[1] ?? ''
-    }
+    const getCookie = (name: string) => Cookies.get(name)
+    const guestToken = getCookie("guest_token")
+
     const formik = useFormik({
         initialValues: {
             identifier: "",
@@ -59,14 +60,15 @@ export function LoginDialog() {
                     }
                     : {
                         credential: values.identifier, password: values.password, type: "ios",
-                        device_token: "125487986562323157",
+                        device_token: guestToken,
                     }
-
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_API_BASE}/api/client/login`,
                     {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
                         body: JSON.stringify(body),
                     }
                 ).then((res) => res.json())
@@ -77,9 +79,9 @@ export function LoginDialog() {
                     setOpen(false)
                     setSuccessOpen(true)
                     setOpen(false)
-                    setInterval(()=>{
+                    setInterval(() => {
                         window.location.reload()
-                    },4000)
+                    }, 4000)
                     SuccessAlert("تم تسجيل الدخول إلى حسابك بنجاح")
                 }
             } catch (error) {

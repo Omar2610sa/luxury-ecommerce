@@ -1,14 +1,14 @@
-type searchParams  = {
-  searchParams: {
-    main_category_id?: string
-    sub_category_id?: string
-    sub_sub_category_id?: string
-    price_from?: string
-    price_to?: string
-    color_id?: string
-    type?: string
-    brand_id?: string
-  }
+type searchParams = {
+    searchParams: {
+        main_category_id?: string
+        sub_category_id?: string
+        sub_sub_category_id?: string
+        price_from?: string
+        price_to?: string
+        color_id?: string
+        type?: string
+        brand_id?: string
+    }
 }
 
 type Detail = {
@@ -45,4 +45,14 @@ type Profile = {
 type PropsProfile = {
     profile: Profile
     token: string
+}
+
+
+type Method = "GET" | "POST" | "PUT" | "DELETE"
+
+type Options = {
+    method?: Method
+    body?: Record<string, unknown>
+    headers?: Record<string, string>
+    next?: NextFetchRequestConfig
 }

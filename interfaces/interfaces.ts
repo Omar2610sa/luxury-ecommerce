@@ -24,7 +24,16 @@ export interface secondSlider {
 export interface HomeData {
     sliders: Slider[];
     secondSlider: secondSlider[];
+    
 }
+export interface ProductData {
+    title : string
+    product : Product[]
+    recommended : []
+    also_may_like : []
+}
+
+
 
 export interface HomeResponse {
     status: boolean;
@@ -133,6 +142,7 @@ export interface ProductDetail {
     };
     images: []
     quantity: number
+    reviews: []
 }
 
 export interface Product {
@@ -154,4 +164,5 @@ export interface Product {
         }
     }
     recommended: []
+
 } 

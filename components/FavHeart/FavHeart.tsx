@@ -14,18 +14,24 @@ export default function FavButton({ productId, isFav }: Props) {
     const [fav, setFav] = useState(isFav)
     const [loading, setLoading] = useState(false)
 
+    const getCookie = (name: string) => Cookies.get(name)
 
-    const token = Cookies.get("token_luxary")
     const makeFav = async () => {
         if (loading) return
         setLoading(true)
+
+        const token = getCookie("token_luxary")
+        const guestToken = getCookie("guest_token")
         try {
             await fetch(
                 `${process.env.NEXT_PUBLIC_API_BASE}/api/client/make_fave/${productId}`,
                 {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        ...(token
+                            ? { Authorization: `Bearer ${token}` }
+                            : { "Guest-Token": guestToken }
+                        ),
                     },
                 }
             )
@@ -38,9 +44,10 @@ export default function FavButton({ productId, isFav }: Props) {
     }
 
     return (
-        <CardAction className="absolute z-30 top-3 right-3">
+        <CardAction
+            onClick={makeFav}
+            className="absolute z-30 top-3 right-3">
             <Button
-                onClick={makeFav}
                 variant="outline"
                 className="bg-white rounded-full p-1.5 shadow"
                 disabled={loading}

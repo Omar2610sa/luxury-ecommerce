@@ -1,19 +1,12 @@
 import NoFav from "@/components/NoFav/NoFav";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { Link } from "lucide-react";
-import { cookies } from "next/headers";
+import { HomeData } from "@/interfaces/interfaces";
+import { useApi } from "@/services/useApi";
 
 export default async function page() {
-    const token = (await cookies()).get("token_luxary")?.value
 
-    let fave = null
-    if (token) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/client/get_fave_products`, {
-            headers: { Authorization: `Bearer ${token}` }
-        }).then(res => res.json())
-        fave = res.data
-    }
-    console.log(fave)
+    const { data: fave } = await useApi<HomeData>("get_fave_products")
+
     return (
         <div className="container flex flex-col gap-8">
             <div className="flex items-center gap-3 text-2xl">

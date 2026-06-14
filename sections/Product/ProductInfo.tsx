@@ -3,13 +3,17 @@ import { Product } from "@/interfaces/interfaces";
 import Image from "next/image";
 import Star from "@/assets/icons/star.png";
 import Link from "next/link";
-import { ChevronLeftIcon, Heart, ShoppingCartIcon } from "lucide-react";
+import { CarIcon, ChevronLeftIcon, Heart, ShoppingCartIcon, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ColorSelector from "@/components/ColorSelector/ColorSelector";
 import { CardAction } from "@/components/ui/card";
 import SecondButton from "@/components/Layout/SecondButton";
 import icon from "@/assets/icons/Encapsulated Group.png"
+import Copouns from "@/components/Copouns/Copouns";
+import ShopCard from "@/components/ShopCard/ShopCard";
+import ShippingInfo from "@/components/ShippingInfo/ShippingInfo";
+import NoInfo from "@/components/NoInfo/NoInfo";
 
 
 export default function ProductInfo({ product }: { product: Product }) {
@@ -148,18 +152,84 @@ export default function ProductInfo({ product }: { product: Product }) {
                         </div>
 
                         {/* Add shop And is_Fav */}
-                        <div className="flex justify-center  items-center gap-4">
+                        <div className="flex justify-center  items-center gap-6">
                             {/* Wishlist */}
-                                <Button variant="outline" className="bg-white rounded-full p-1.5  shadow">
-                                    <Heart className="size-6 text-gray-400" />
-                                </Button>
-                                <Button variant="outline" className="bg-white rounded-full p-1.5  shadow">
-                                    <Image src={icon} alt="icon" className="size-6 text-gray-400" />
-                                </Button>
+                            <Button variant="outline" className="bg-white rounded-full p-1.5  shadow">
+                                <Heart className="size-6 text-gray-400" />
+                            </Button>
+                            <Button variant="outline" className="bg-white rounded-full p-1.5  shadow">
+                                <Image src={icon} alt="icon" className="size-6 text-gray-400" />
+                            </Button>
                             <SecondButton text="أضف إلى السلة" icon={ShoppingCartIcon} />
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className=" w-full flex flex-col gap-8 ">
+                <div className="py-4 px-5 bg-gray-100">
+                    <div className="flex items-center gap-3">
+                        <p className="text-xl font-medium underline">ملاحظات</p>
+                        <div className="flex items-center justify-between gap-1">
+                            <Image
+                                src={Star}
+                                alt="Star"
+                                className={`size-5 object-cover mt-1 fill-yellow-400 text-yellow-400`}
+                            />
+                            <span className="text-xl font-medium">
+                                4.8
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {/* Notes */}
+                <div className="flex flex-col gap-6">
+                    {
+                        product?.details?.reviews && (
+
+                            product?.details?.reviews.map(() => {
+
+                                <div className="p-6 border border-gray-100 flex justify-between items-start">
+                                    <div className="flex flex-col gap-4">
+                                        <h3 className="text-2xl font-bold">خالد نور</h3>
+                                        <p className="text-lg font-medium">اللون: ازرق / اسود</p>
+                                        <p className="text-lg font-medium">المنتج ممتاز جدا ، ويستحق طلبه مرة أخرى.</p>
+                                    </div>
+                                    {/* Stars */}
+                                    <div className="flex items-center gap-0.5">
+                                        {Array.from({ length: 5 }).map((_, i) => (
+                                            <StarIcon
+                                                key={i}
+                                                className={`size-5 ${i < Math.round(product.details.rate_avg) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            })
+                        )
+                    }
+                    {
+                        !product?.details?.reviews && (
+                            <NoInfo title="لا يوجد اراء حاليا" />
+                        )
+                    }
+                </div>
+            </div>
+            <div className="w-full flex flex-col gap-8">
+                <ShippingInfo />
+                <div className="flex flex-col gap-10">
+                    <h3 className="text-2xl font-bold">مطابقة الخيارات</h3>
+
+                    <div className="grid md:grid-cols-2  gap-3 ">
+                        {
+                            product?.complete_outfit.map((prod, index) => {
+                                return (
+                                    <ShopCard product={prod} key={index} />
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )

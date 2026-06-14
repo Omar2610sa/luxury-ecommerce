@@ -15,9 +15,9 @@ export default async function page({ params }: Props) {
         `${process.env.NEXT_PUBLIC_API_BASE}/api/client/get_categories`
     ).then(res => res.json())
     const category = categories?.find((cat: { id: number }) => cat.id === Number(id))
-    
 
-    
+
+
     const { data: products } = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE}/api/client/product?main_category_id=${category?.id}`
     ).then(res => res.json())
@@ -34,21 +34,21 @@ export default async function page({ params }: Props) {
                     products.length > 0 && (
 
                         <div className="grid  lg:grid-cols-3 xl:grid-cols-3 gap-6 ">
-                    {
-                        products.map((cat, index) => {
-                            return (
-                                <Link href={`/product/${cat.id}`} key={index}>
-                                    <ShopCard product={cat} />
-                                </Link>
-                            )
-                        })
-                    }
-                </div>
-                )}
+                            {
+                                products.map((cat, index) => {
+                                    return (
+                                        <Link href={`/product/${cat.id}`} key={index}>
+                                            <ShopCard product={cat} />
+                                        </Link>
+                                    )
+                                })
+                            }
+                        </div>
+                    )}
 
                 {
                     products.length <= 0 && (
-                        <NoInfo />
+                        <NoInfo title="لا يوجد بيانات حاليا" decs="لا يوجد منتاجات حاليا" />
                     )
                 }
             </div>

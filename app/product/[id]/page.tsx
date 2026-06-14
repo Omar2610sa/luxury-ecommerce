@@ -1,9 +1,10 @@
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
-import { Product } from "@/interfaces/interfaces";
+import { Product, ProductData } from "@/interfaces/interfaces";
 import Image from "next/image";
 import ProductImageCarousel from "@/components/ProductSwiper/ProductSwiper";
 import ProductInfo from "@/sections/Product/ProductInfo";
 import ForYouSection from "@/sections/ForYou/ForYou";
+import { useApi } from "@/services/useApi";
 
 type Props = {
     params: Promise<{
@@ -16,19 +17,16 @@ type Props = {
 export default async function Page({ params }: Props) {
     const { id } = await params;
 
-    const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/client/web_product/${id}`
-    );
+    const { data: product } = await useApi<ProductData>(`web_product/${id}`)
 
-    const result: { data: Product } = await response.json();
 
-    const product = result.data;
 
     return (
         <div className="container flex flex-col gap-10">
             <BreadCrumb thirdLink={product.title} />
             <ProductInfo product={product} />
             <ForYouSection title="موصى به لك" products={product?.recommended ?? []} />
+            <ForYouSection title="اختارنا لك" products={product?.also_may_like ?? []} />
 
         </div>
     );
