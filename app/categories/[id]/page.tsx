@@ -2,6 +2,8 @@ import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb"
 import CategoryFilter from "@/components/Filter/Filter"
 import NoInfo from "@/components/NoInfo/NoInfo"
 import ShopCard from "@/components/ShopCard/ShopCard"
+import { Product } from "@/interfaces/interfaces"
+import { serverApi } from "@/services/serverApi"
 import Link from "next/link"
 
 type Props = {
@@ -18,9 +20,7 @@ export default async function page({ params }: Props) {
 
 
 
-    const { data: products } = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE}/api/client/product?main_category_id=${category?.id}`
-    ).then(res => res.json())
+    const { data: products } = await serverApi<{ data: Product[] }>(`product?main_category_id=${category?.id}`)
 
 
     return (
@@ -37,9 +37,7 @@ export default async function page({ params }: Props) {
                             {
                                 products.map((cat, index) => {
                                     return (
-                                        <Link href={`/product/${cat.id}`} key={index}>
-                                            <ShopCard product={cat} />
-                                        </Link>
+                                        <ShopCard product={cat as any} key={index} />
                                     )
                                 })
                             }
