@@ -24,17 +24,17 @@ export interface secondSlider {
 export interface HomeData {
     sliders: Slider[];
     secondSlider: secondSlider[];
-    
+
 }
 export interface ProductData {
-    title : string
-    product : Product[]
-    recommended : []
-    also_may_like : []
+    title: string
+    product: Product[]
+    recommended: []
+    also_may_like: []
 }
 export interface CartData {
-    title : string
-    product : Product[]
+    title: string
+    CartDetails: Cart[]
 
 }
 
@@ -170,4 +170,21 @@ export interface Product {
     }
     recommended: []
 
-} 
+}
+
+
+export interface Cart {
+    items: [
+        {
+            id: number
+            title: string
+            color: string
+            price: number
+            images: {
+                media: string
+            }
+            product_cart_id: number
+            quantity: number
+        }
+    ]
+}

@@ -27,7 +27,7 @@ export default function AddToCartButton({ productId }: Props) {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
-                        "Accept": "application/json", // ✅ ده اللي يحل المشكلة
+                        "Accept": "application/json", 
                     },
                     body: JSON.stringify({
                         product_detail_id: productId,

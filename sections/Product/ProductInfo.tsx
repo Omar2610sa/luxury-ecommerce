@@ -163,7 +163,7 @@ export default function ProductInfo({ product }: { product: Product }) {
                                     <Image src={icon} alt="icon" className="size-6 text-gray-400" />
                                 </Button>
                                 </div>
-                                <AddToCartButton productId={product.id} />
+                                <AddToCartButton productId={detail.id} />
                             </div>
                         </div>
                     ))}

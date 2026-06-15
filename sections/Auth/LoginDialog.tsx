@@ -18,6 +18,7 @@ import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import Cookies from "js-cookie"
+import { useRouter } from "next/navigation"
 
 
 
@@ -44,6 +45,7 @@ export function LoginDialog() {
     const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     const getCookie = (name: string) => Cookies.get(name)
     const guestToken = getCookie("guest_token")
+    const router = useRouter()
 
     const formik = useFormik({
         initialValues: {
@@ -59,7 +61,7 @@ export function LoginDialog() {
                         device_token: guestToken
                     }
                     : {
-                        credential: values.identifier, password: values.password, type: "ios",
+                        crdential: values.identifier, password: values.password, type: "ios",
                         device_token: guestToken,
                     }
                 const response = await fetch(
@@ -79,9 +81,7 @@ export function LoginDialog() {
                     setOpen(false)
                     setSuccessOpen(true)
                     setOpen(false)
-                    setInterval(() => {
-                        window.location.reload()
-                    }, 4000)
+                router.refresh()
                     SuccessAlert("تم تسجيل الدخول إلى حسابك بنجاح")
                 }
             } catch (error) {
