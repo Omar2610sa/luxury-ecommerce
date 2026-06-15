@@ -1,11 +1,11 @@
 import NoFav from "@/components/NoFav/NoFav";
 import ShopCard from "@/components/ShopCard/ShopCard";
 import { HomeData } from "@/interfaces/interfaces";
-import { useApi } from "@/services/useApi";
+import { serverApi } from "@/services/serverApi";
 
 export default async function page() {
 
-    const { data: fave } = await useApi<HomeData>("get_fave_products")
+    const { data: fave } = await serverApi<HomeData>("get_fave_products")
 
     return (
         <div className="container flex flex-col gap-8">

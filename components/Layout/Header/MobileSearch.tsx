@@ -13,12 +13,11 @@ import { Button } from "@/components/ui/button"
 export default function MobileSearch() {
     return (
         <Popover>
-            <PopoverTrigger>
-                <Button
-                    className="flex justify-center items-center size-9 rounded-full bg-primary/30 cursor-pointer"
-                >
-                    <Search className="size-4  text-primary" />
-                </Button>
+            <PopoverTrigger  className="flex justify-center items-center size-9 rounded-full bg-primary/30 cursor-pointer"
+            >
+
+                <Search className="size-4  text-primary" />
+
             </PopoverTrigger>
 
             <PopoverContent className="w-full">

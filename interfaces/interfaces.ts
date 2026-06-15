@@ -185,6 +185,7 @@ export interface Cart {
             price: number
             images: {
                 media: string
+                alt: string
             }
             product_cart_id: number
             quantity: number

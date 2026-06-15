@@ -1,16 +1,10 @@
 "use client"
 // import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
-// import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { PackagePlusIcon, ChevronLeft, HeartPlusIcon, WalletIcon, Globe, LogOut } from "lucide-react";
+import { PackagePlusIcon, ChevronLeft, HeartPlusIcon, WalletIcon, Globe, LogOut, ShoppingCart } from "lucide-react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/useAuthStore";
+import Link from "next/link";
 
 const links = [
     {
@@ -21,8 +15,14 @@ const links = [
 
     {
         header: "المفضلة",
-        href: "/my-order",
+        href: "/favoutie",
         icons: HeartPlusIcon
+
+    },
+    {
+        header: "عربة التسوق",
+        href: "/cart",
+        icons: ShoppingCart
 
     },
     {
@@ -56,7 +56,7 @@ const router = useRouter();
                 {
                     links.map((ele, index) => {
                         return (
-                            <div key={index} className="flex my-8 justify-between items-center">
+                            <Link href={`/profile${ele.href}`} key={index} className="flex my-8 justify-between items-center">
                                 <div className="flex items-center gap-2">
                                     <div className="flex justify-center items-center rounded-full size-7 p-0.5 bg-white">
                                         <ele.icons className="size-5" />
@@ -66,7 +66,7 @@ const router = useRouter();
                                     </span>
                                 </div>
                                 <ChevronLeft className="text-black/70" />
-                            </div>
+                            </Link>
                         )
                     })}
 
@@ -76,7 +76,7 @@ const router = useRouter();
                 </div>
                 <div className="bg-white p-1">
 
-                    <div className="flex py-5 justify-between items-center  ">
+                    <Link href="/profile" className="flex py-5 justify-between items-center  ">
                         <div className="flex items-center gap-2">
                             <div className="flex justify-center items-center rounded-full size-7 p-0.5 bg-white">
                                 <Globe className="size-5" />
@@ -86,7 +86,7 @@ const router = useRouter();
                             </span>
                         </div>
                         <ChevronLeft className="text-black/70" />
-                    </div>
+                    </Link>
                     <hr />
                     <div className="flex  justify-between items-center cursor-pointer py-5" onClick={handleLogout}>
                         <div className="flex items-center gap-2">

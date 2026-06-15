@@ -87,8 +87,8 @@ export default async function Header() {
                             <div className="flex items-center justify-between text-sm text-primary">
                                 <div className="flex justify-between items-center gap-5">
                                     {menuItems.map((item) => (
-                                        <DropdownMenu key={item.label}>
-                                            <DropdownMenuTrigger className="flex items-center gap-1 whitespace-nowrap hover:text-foreground transition-colors cursor-pointer">
+                                        <DropdownMenu  key={item.label}>
+                                            <DropdownMenuTrigger  className="flex items-center gap-1 whitespace-nowrap hover:text-foreground transition-colors cursor-pointer">
                                                 {item.label}
                                                 <ChevronDownIcon className="size-3.5 shrink-0" />
                                             </DropdownMenuTrigger>

@@ -5,6 +5,7 @@ import SecondButton from "@/components/Layout/SecondButton";
 import { EditIcon } from "lucide-react";
 import ProfileForm from "@/sections/ProfileForm/ProfileForm";
 import { useAuthStore } from "@/store/useAuthStore";
+import Link from "next/link";
 
 export default function EditProfile() {
     const user = useAuthStore((state) => state.user)
@@ -31,10 +32,12 @@ export default function EditProfile() {
                             <p className="text-lg text-gray-500">+{user?.phone_code}{user?.phone}</p>
                         </div>
                     </div>
-                    <SecondButton text="تغيير كلمة السر" icon={EditIcon} />
+                    <Link href="/profile/change-password">
+                        <SecondButton text="تغيير كلمة السر" icon={EditIcon} />
+                    </Link>
                 </div>
                 {/* Form */}
-                <ProfileForm profile={user}  />
+                <ProfileForm profile={user} />
             </CardContent>
         </Card>
     )

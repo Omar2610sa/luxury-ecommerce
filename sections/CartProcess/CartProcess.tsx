@@ -19,8 +19,8 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                     <p>
                         {
                             cart?.items
-                                .reduce((sum, ele) => sum + ele.total, 0)
-                        } {cart?.items[0]?.currency}
+                                .reduce((sum, ele) => sum + ele.total, 0) ?? 0
+                        } {cart?.items[0]?.currency ?? "جنية مصري"}
                     </p>
                 </div>
             </div>
@@ -32,7 +32,7 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                     cart?.items[0].express_shipping_price <= 0 ? <p className="text-green-500">مجانا</p> : <p>
                         {
                             cart?.items
-                                .reduce((sum, ele) => sum + ele.express_shipping_price, 0)
+                                .reduce((sum, ele) => sum + ele.express_shipping_price, 0) ?? 0
                         } {cart?.items[0]?.currency}
                     </p>
 
@@ -43,7 +43,7 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                     خصم الكوبون
                 </p>
                 <p className="text-green-500">
-                    {cart?.items[0].offer_price}
+                    {cart?.items[0].offer_price ?? 0}
                 </p>
 
             </div>
@@ -57,7 +57,7 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                 <p className="">
                     {
                         cart?.items
-                            .reduce((sum, ele) => sum + ele.total, 0)
+                            .reduce((sum, ele) => sum + ele.total, 0)?? 0
                     } {cart?.items[0]?.currency}
                 </p>
 

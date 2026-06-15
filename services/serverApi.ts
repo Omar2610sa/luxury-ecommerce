@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid"
 
 
 
-export async function useApi<T = unknown>(
+export async function serverApi<T = unknown>(
     endpoint: string,
     options: Options = {}
 ): Promise<T> {

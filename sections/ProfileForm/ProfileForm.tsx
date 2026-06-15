@@ -114,7 +114,7 @@ console.log(formik.initialValues)
                                 formik.setFieldValue("phone_code", country?.phone_code ?? "")
                             }}
                         >
-                            <SelectTrigger className="border border-primary">
+                            <SelectTrigger>
                                 <SelectValue placeholder="اختر الدولة">
                                     {selectedCountry && (
                                         <span className="flex items-center gap-2">

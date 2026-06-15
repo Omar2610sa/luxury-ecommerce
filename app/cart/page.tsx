@@ -1,23 +1,13 @@
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb"
-import SecondButton from "@/components/Layout/SecondButton"
 import { CartData } from "@/interfaces/interfaces"
 import CartDetails from "@/sections/CartDetails/CartDetails"
 import CartProcess from "@/sections/CartProcess/CartProcess"
-import ForYouSection from "@/sections/ForYou/ForYou"
-import { useApi } from "@/services/useApi"
-import { LucideArrowLeft, } from "lucide-react"
-import { cookies } from "next/headers"
-import Image from "next/image"
+import { serverApi } from "@/services/serverApi"
 
 
 
 export default async function page() {
-    const token = (await cookies()).get("token_luxary")?.value
-    const { data: cart } = await useApi<CartData>("cart", {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        }
-    })
+    const { data: cart } = await serverApi<CartData>("cart")
 
     return (
         <div className="container flex flex-col gap-8"  >

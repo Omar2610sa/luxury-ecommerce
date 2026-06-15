@@ -7,7 +7,7 @@ export default function NoInfo({ title, decs }: { title: string, decs?: string }
             <div>
                 <CircleOffIcon className="size-40 text-primary" />
             </div>
-            <div>
+            <div className="text-center">
                 <p className="text-xl">{title}</p>
                 <p className="text-md text-gray-500">{decs}</p>
             </div>

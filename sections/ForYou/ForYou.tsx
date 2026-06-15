@@ -17,9 +17,7 @@ export default function ForYouSection({ products, title }: { products: ForYou[];
                 {
                     products.map((product, index) => {
                         return (
-                            <Link href={`/product/${product.id}`} key={index}>
-                            <ShopCard product={product} />
-                            </Link>
+                            <ShopCard product={product} key={index} />
                         )
                     })
                 }

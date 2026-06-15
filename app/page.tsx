@@ -5,7 +5,7 @@ import NewEditions from "@/sections/NewEditions/NewEditions";
 import SecondSlider from "@/sections/SecondSlider/SecondSlider";
 import { Metadata } from "next";
 import FlashOffers from "@/sections/Flash_offers/FlashOffers";
-import { useApi } from "@/services/useApi";
+import { serverApi } from "@/services/serverApi";
 import { HomeData } from "@/interfaces/interfaces";
 export const metadata: Metadata = {
   title: "الفخامة للجلود و الأزياء",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const { data: home_website } = await useApi<HomeData>("home_website", { next: { cache: "cache", } });
+  const { data: home_website } = await serverApi<HomeData>("home_website", { next: { cache: "cache", } });
   return (
     <div>
       <Hero slider={home_website?.slider ?? []} />
