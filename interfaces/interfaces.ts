@@ -37,7 +37,7 @@ export interface ProductData {
 }
 export interface CartData {
     title: string
-    CartDetails: Cart[]
+    data: Cart
 
 }
 
