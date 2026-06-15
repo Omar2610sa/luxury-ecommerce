@@ -1,21 +1,22 @@
-'use client'
-import { useState } from "react"
-import Cookies from "js-cookie"
-import { Button } from "@/components/ui/button"
-import { ShoppingBasket } from "lucide-react"
-import { SuccessAlert } from "@/components/Alert/SuccessAlert"
+"use client"
+
 import { useApiClient } from "@/services/useApiClient"
+import { SuccessAlert } from "../Alert/SuccessAlert"
+import { useState } from "react"
+import { Button } from "../ui/button"
+import { ShoppingCart } from "lucide-react"
 
-    type Props = {
-        productId: number
-    }
+type Props = {
+    productId: number
+}
 
-export default function AddToCartButton({ productId }: Props) {
+export default function AddShopCard({ productId }: Props) {
     const [loading, setLoading] = useState(false)
 
     const addCart = async () => {
         if (loading) return
         setLoading(true)
+
         try {
             const response = await useApiClient<{ data?: { product_detail_id: number, quantity: number } }>("cart", {
                 method: "POST",
@@ -36,13 +37,12 @@ export default function AddToCartButton({ productId }: Props) {
         }
     }
     return (
-        <Button
-            className="rounded-none w-fit py-6 px-10 gap-4 text-2xl flex items-center cursor-pointer"
+        <Button size="icon"
+            className="rounded-full bg-yellow-200/40 w-10 h-10 text-[#9F6913] "
             onClick={addCart}
             disabled={loading}
         >
-            {loading ? "جاري الإضافة..." : "اضف الى السلة"}
-            <ShoppingBasket className="size-6" />
+            <ShoppingCart className="size-5" />
         </Button>
     )
 }

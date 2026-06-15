@@ -10,6 +10,7 @@ import { Slider } from "@/components/ui/slider";
 import { PackagePlusIcon, ChevronLeft, HeartPlusIcon, WalletIcon, Globe, LogOut } from "lucide-react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const links = [
     {
@@ -40,8 +41,9 @@ const router = useRouter();
         router.push("/")
         router.refresh()
     };
+
     return (
-        <Card className="p-4 rounded-lg bg-[rgba(246,247,252,1)] sticky top-40">
+        <Card className="p-4 rounded-lg bg-[rgba(246,247,252,1)] ">
             <CardContent className="p-0 space-y-4">
 
                 {/* Header */}

@@ -14,6 +14,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
+import { useApiClient } from "@/services/useApiClient"
 
 
 
@@ -33,9 +34,9 @@ const profileSchema = Yup.object({
     gender: Yup.string().required("النوع مطلوب"),
 })
 
-export default function ProfileForm({ profile, token }: PropsProfile) {
+export default function ProfileForm({ profile }: PropsProfile) {
     const [countries, setCountries] = useState<Country[]>([])
-
+console.log(profile)
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/general/countries`)
             .then(res => res.json())
@@ -55,18 +56,12 @@ export default function ProfileForm({ profile, token }: PropsProfile) {
         validationSchema: profileSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_BASE}/api/client/profile_edit`,
-                    {
-                        method: "Put",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${token}`,
-                        },
-                        body: JSON.stringify(values),
+                const response = await useApiClient<{ data?: PropsProfile }>("profile_edit", {
+                    method: "POST",
+                    body: {
+                        values,
                     }
-                ).then(res => res.json())
-
+                })
                 if (response.data) {
                     SuccessAlert("تم تعديل البيانات بنجاح")
                 }
@@ -107,7 +102,7 @@ export default function ProfileForm({ profile, token }: PropsProfile) {
                     <Field>
                         <Label>الدولة</Label>
                         <Select
-                            defaultValue={ profile?.country?.name}
+                            defaultValue={profile?.country?.name}
                             onValueChange={(value) => {
                                 const country = countries.find(c => c.id.toString() === value)
                                 formik.setFieldValue("country_id", value)
@@ -193,8 +188,8 @@ export default function ProfileForm({ profile, token }: PropsProfile) {
                                         <SelectItem key={country.id} value={country.flag}>
                                             <span className="flex items-center gap-2">
                                                 <img
-                                                width={20}
-                                                height={20}
+                                                    width={20}
+                                                    height={20}
                                                     src={country.flag}
                                                     alt={country.name}
                                                     className="w-5 h-4 object-cover rounded-sm"

@@ -18,6 +18,7 @@ export default async function page() {
             Authorization: `Bearer ${token}`,
         }
     })
+
     return (
         <div className="container flex flex-col gap-8"  >
             <BreadCrumb thirdLink="السلة" />

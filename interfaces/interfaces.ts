@@ -185,6 +185,10 @@ export interface Cart {
             }
             product_cart_id: number
             quantity: number
+            total: number
+            offer_price: number
+            express_shipping_price: number
+            currency: string
         }
     ]
 }

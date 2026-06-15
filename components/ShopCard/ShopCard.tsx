@@ -2,17 +2,17 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
     Card,
-    CardAction,
     CardFooter,
     CardHeader,
     CardTitle,
     CardDescription,
 } from "@/components/ui/card"
 import { ForYou } from "@/interfaces/interfaces"
-import { Heart, PoundSterling, SaudiRiyal, ShoppingCart, Star, ZapIcon } from "lucide-react"
+import { ShoppingCart, Star, ZapIcon } from "lucide-react"
 import Image from "next/image"
 import FavButton from "../FavHeart/FavHeart"
 import Link from "next/link"
+import AddShopCard from "../AddToCartButton/AddShopCard"
 
 
 export default function ShopCard({ product }: { product: ForYou }) {
@@ -30,7 +30,7 @@ export default function ShopCard({ product }: { product: ForYou }) {
             {/* Wishlist */}
             <div className="absolute z-30 top-3 right-3">
 
-            <FavButton productId={product.id} isFav={product.is_fave} />
+                <FavButton productId={product.id} isFav={product.is_fave} />
             </div>
 
             {/* Product Image */}
@@ -96,28 +96,26 @@ export default function ShopCard({ product }: { product: ForYou }) {
                     </div>
 
                 </CardHeader>
+            </Link>
 
-                <CardFooter className="flex items-center justify-between px-4 pb-3">
-                    <div className="flex flex-col items-start gap-0.5">
-                        {/* Stars */}
-                        <div className="flex items-center gap-0.5">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <Star
-                                    key={i}
-                                    className={`size-5 ${i < Math.round(product.detail.rate_avg) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                                />
-                            ))}
-                            <span className="text-lg text-muted-foreground ml-1">({product.detail.sold})</span>
-                        </div>
-
+            <CardFooter className="flex items-center justify-between px-4 pb-3">
+                <div className="flex flex-col items-start gap-0.5">
+                    {/* Stars */}
+                    <div className="flex items-center gap-0.5">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                            <Star
+                                key={i}
+                                className={`size-5 ${i < Math.round(product.detail.rate_avg) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                            />
+                        ))}
+                        <span className="text-lg text-muted-foreground ml-1">({product.detail.sold})</span>
                     </div>
 
-                    {/* Cart Button */}
-                    <Button size="icon" className="rounded-full bg-yellow-200/40 w-10 h-10 text-[#9F6913] ">
-                        <ShoppingCart className="size-5" />
-                    </Button>
-                </CardFooter>
-            </Link>
+                </div>
+
+                {/* Cart Button */}
+                <AddShopCard productId={product?.detail?.id} />
+            </CardFooter>
 
         </Card>
     )

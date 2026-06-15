@@ -19,6 +19,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
+import { useAuthStore } from "@/store/useAuthStore"
 
 
 
@@ -46,6 +47,10 @@ export function LoginDialog() {
     const getCookie = (name: string) => Cookies.get(name)
     const guestToken = getCookie("guest_token")
     const router = useRouter()
+
+
+    const setUser = useAuthStore((state) => state.setUser)
+
 
     const formik = useFormik({
         initialValues: {
@@ -81,7 +86,8 @@ export function LoginDialog() {
                     setOpen(false)
                     setSuccessOpen(true)
                     setOpen(false)
-                router.refresh()
+                    router.refresh()
+                    setUser(response.data)
                     SuccessAlert("تم تسجيل الدخول إلى حسابك بنجاح")
                 }
             } catch (error) {
