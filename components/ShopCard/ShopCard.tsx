@@ -18,7 +18,7 @@ import AddShopCard from "../AddToCartButton/AddShopCard"
 export default function ShopCard({ product }: { product: ForYou }) {
 
     return (
-        <Card className="relative h-full max-w-xs rounded-none bg-gray-50/50 border-b  p-0 group  overflow-hidden">
+        <Card className="relative h-full max-w-sm md:max-w-xs rounded-none bg-gray-50/50 border-b  p-0 group  overflow-hidden">
 
             {/* Discount Badge */}
             {product.offer_price > 0 && (

@@ -1,10 +1,10 @@
 "use client"
 
-import { useApiClient } from "@/services/useApiClient"
 import { SuccessAlert } from "../Alert/SuccessAlert"
 import { useState } from "react"
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
+import { apiClient } from "@/services/useApiClient"
 
 type Props = {
     productId: number
@@ -18,7 +18,7 @@ export default function AddShopCard({ productId }: Props) {
         setLoading(true)
 
         try {
-            const response = await useApiClient<{ data?: { product_detail_id: number, quantity: number } }>("cart", {
+            const response = await apiClient<{ data?: { product_detail_id: number, quantity: number } }>("cart", {
                 method: "POST",
                 body: {
                     product_detail_id: productId,

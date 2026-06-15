@@ -20,6 +20,7 @@ import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
 import { useAuthStore } from "@/store/useAuthStore"
+import { apiClient } from "@/services/useApiClient"
 
 
 
@@ -60,28 +61,16 @@ export function LoginDialog() {
         validationSchema: loginSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const body = isEmail(values.identifier)
-                    ? {
+                const response = await apiClient<{ data?: Profile & { token?: string } }>("login", {
+                    method: "POST",
+                    body: {
                         credential: values.identifier, password: values.password, type: "ios",
-                        device_token: guestToken
-                    }
-                    : {
-                        crdential: values.identifier, password: values.password, type: "ios",
                         device_token: guestToken,
                     }
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_BASE}/api/client/login`,
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(body),
-                    }
-                ).then((res) => res.json())
+                })
 
                 const token = response.data?.token
-                if (token) {
+                if (token && response.data) {
                     document.cookie = `token_luxary=${token}; path=/`
                     setOpen(false)
                     setSuccessOpen(true)
@@ -100,7 +89,7 @@ export function LoginDialog() {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger>
+            <DialogTrigger className="">
                 <MainButton text="تسجيل دخول" />
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">

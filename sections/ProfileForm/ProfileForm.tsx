@@ -14,7 +14,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
-import { useApiClient } from "@/services/useApiClient"
+import { apiClient } from "@/services/useApiClient"
 
 
 
@@ -36,7 +36,6 @@ const profileSchema = Yup.object({
 
 export default function ProfileForm({ profile }: PropsProfile) {
     const [countries, setCountries] = useState<Country[]>([])
-console.log(profile)
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/general/countries`)
             .then(res => res.json())
@@ -49,17 +48,23 @@ console.log(profile)
             email: profile?.email ?? "",
             phone: profile?.phone ?? "",
             phone_code: profile?.phone_code ?? "",
-            country_id: profile?.country_id ?? "",
+            country_id: profile?.country?.id ?? "",
             date_of_birth: profile?.date_of_birth ?? "",
             gender: profile?.gender ?? "",
         },
         validationSchema: profileSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await useApiClient<{ data?: PropsProfile }>("profile_edit", {
-                    method: "POST",
+                const response = await apiClient<{ data?: PropsProfile }>("profile_edit", {
+                    method: "PUT",
                     body: {
-                        values,
+                        name: formik.initialValues.name,
+                        email: formik.initialValues.email,
+                        phone: formik.initialValues.phone,
+                        country_id: formik.initialValues.country_id,
+                        phone_code: formik.initialValues.phone_code,
+                        date_of_birth: formik.initialValues.date_of_birth,
+                        gender: formik.initialValues.gender,
                     }
                 })
                 if (response.data) {
@@ -72,7 +77,7 @@ console.log(profile)
             }
         },
     })
-
+console.log(formik.initialValues)
     const selectedCountry = countries.find(
         c => c.id.toString() === formik.values.country_id
     )
@@ -80,7 +85,7 @@ console.log(profile)
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldGroup>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
 
                     {/* Full Name */}
                     <Field>
@@ -109,7 +114,7 @@ console.log(profile)
                                 formik.setFieldValue("phone_code", country?.phone_code ?? "")
                             }}
                         >
-                            <SelectTrigger>
+                            <SelectTrigger className="border border-primary">
                                 <SelectValue placeholder="اختر الدولة">
                                     {selectedCountry && (
                                         <span className="flex items-center gap-2">
@@ -171,7 +176,7 @@ console.log(profile)
                     {/* Phone with country code */}
                     <Field>
                         <Label htmlFor="phone">رقم الهاتف</Label>
-                        <div className="flex border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
+                        <div className="flex border border-primary border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
                             <Select
                                 defaultValue={
                                     countries.find(c => c.phone_code === formik.values.phone_code)?.flag
@@ -229,7 +234,7 @@ console.log(profile)
                             defaultValue={formik.values.gender}
                             onValueChange={(value) => formik.setFieldValue("gender", value)}
                         >
-                            <SelectTrigger>
+                            <SelectTrigger className="border border-primary">
                                 <SelectValue placeholder="اختر النوع" />
                             </SelectTrigger>
                             <SelectContent>
@@ -247,7 +252,7 @@ console.log(profile)
 
             <Button
                 type="submit"
-                className="rounded-none w-fit my-3 py-3 px-4 gap-4 text-lg flex items-center cursor-pointer"
+                className="rounded-none mx-auto w-fit my-5 md:my-3 py-3 px-4 gap-4 text-lg flex items-center cursor-pointer"
                 disabled={formik.isSubmitting}
             >
                 {formik.isSubmitting ? "جاري الحفظ..." : "Edit Profile"}

@@ -22,7 +22,7 @@ function ensureGuestTokenClient(): string {
     return guestToken
 }
 
-export async function useApiClient<T = unknown>(
+export async function apiClient<T = unknown>(
     endpoint: string,
     options: Options = {}
 ): Promise<T> {
@@ -47,6 +47,7 @@ export async function useApiClient<T = unknown>(
         `${process.env.NEXT_PUBLIC_API_BASE}/api/client/${endpoint}`,
         {
             method,
+            cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",

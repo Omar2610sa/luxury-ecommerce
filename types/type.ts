@@ -37,7 +37,7 @@ type Profile = {
     email: string
     phone: string
     phone_code: string
-    country_id: string
+    country_id: number
     date_of_birth: string
     gender: string
 }

@@ -4,7 +4,7 @@ import Cookies from "js-cookie"
 import { Button } from "@/components/ui/button"
 import { ShoppingBasket } from "lucide-react"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
-import { useApiClient } from "@/services/useApiClient"
+import { apiClient } from "@/services/useApiClient"
 
     type Props = {
         productId: number
@@ -17,7 +17,7 @@ export default function AddToCartButton({ productId }: Props) {
         if (loading) return
         setLoading(true)
         try {
-            const response = await useApiClient<{ data?: { product_detail_id: number, quantity: number } }>("cart", {
+            const response = await apiClient<{ data?: { product_detail_id: number, quantity: number } }>("cart", {
                 method: "POST",
                 body: {
                     product_detail_id: productId,

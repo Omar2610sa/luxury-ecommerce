@@ -13,7 +13,7 @@ export default function ForYouSection({ products, title }: { products: ForYou[];
             </h2>
             {/* Cards */}
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 ">
+            <div className="grid mx- md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 ">
                 {
                     products.map((product, index) => {
                         return (

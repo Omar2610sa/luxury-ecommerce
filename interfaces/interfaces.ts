@@ -17,6 +17,9 @@ export interface secondSlider {
             image: string
         }
     ]
+    country: {
+        name: string
+    }
     image: string
     main_category_id: number
 }

@@ -48,8 +48,8 @@ export default function Hero({ slider }: { slider: Slider[] }) {
                     ))}
                 </CarouselContent>
 
-                <CarouselPrevious size="lg" className="absolute top-1/2 left-12 size-12 -translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
-                <CarouselNext className="absolute top-1/2 right-12 size-12 -translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
+                <CarouselPrevious size="lg" className="absolute top-1/2 left-6 md:left-12 size-12 -translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
+                <CarouselNext className="absolute top-1/2 right-6 md:right-12 size-12 -translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
             </Carousel>
         </div>
     )

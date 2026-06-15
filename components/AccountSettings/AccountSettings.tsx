@@ -43,7 +43,7 @@ const router = useRouter();
     };
 
     return (
-        <Card className="p-4 rounded-lg bg-[rgba(246,247,252,1)] ">
+        <Card className="p-4 rounded-lg bg-[rgba(246,247,252,1)] order-2 md:order-1">
             <CardContent className="p-0 space-y-4">
 
                 {/* Header */}
