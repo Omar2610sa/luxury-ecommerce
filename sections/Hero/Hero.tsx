@@ -1,3 +1,4 @@
+"use client"
 import SecondButton from "@/components/Layout/SecondButton";
 import { Slider } from "@/interfaces/interfaces";
 import Image from "next/image";
@@ -9,14 +10,18 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Link from "next/link";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Hero({ slider }: { slider: Slider[] }) {
     return (
         <div className="">
-            <Carousel dir="ltr">
+            <Carousel dir="ltr" opts={{ loop: true }} plugins={[Autoplay({
+                delay: 3000,
+                stopOnFocusIn: true
+            })]}>
                 <CarouselContent >
                     {slider.map((slider, index) => (
-                        <CarouselItem key={index} className=" relative z-40 w-full md:h-150vh h-[calc(100vh-92px)] overflow-hidden ">
+                        <CarouselItem key={index} className=" relative z-40 w-full md:h-150vh h-[calc(85vh-92px)] overflow-hidden ">
                             {/* Background image per slide */}
                             <Image
                                 src={slider.image}
@@ -48,8 +53,8 @@ export default function Hero({ slider }: { slider: Slider[] }) {
                     ))}
                 </CarouselContent>
 
-                <CarouselPrevious size="lg" className="absolute top-1/2 left-6 md:left-12 size-12 -translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
-                <CarouselNext className="absolute top-1/2 right-6 md:right-12 size-12 -translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
+                <CarouselPrevious size="lg" className="absolute top-1/2 left-6 md:left-12 size-12 -translate-y-1/6 md:-translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
+                <CarouselNext className="absolute top-1/2 right-6 md:right-12 size-12 -translate-y-1/6 md:-translate-y-1/2 z-50 bg-white/20 text-white border-white/60" />
             </Carousel>
         </div>
     )

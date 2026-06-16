@@ -83,7 +83,7 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
             {/* Main Image */}
             <Carousel
                 setApi={setMainApi}
-                opts={{ loop: true, direction: dir }}
+                opts={{ loop: true, direction: dir ,}}
                 className="flex-1  h-full"
             >
                 <CarouselContent className="ml-0">

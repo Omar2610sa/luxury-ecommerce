@@ -22,7 +22,9 @@ type Props = {
 
 export default function MobileTopHeader({ isLoggedIn }: Props) {
     return (
-        <header className="md:hidden flex flex-col border-b bg-white sticky top-0 z-[300]">
+        <header className="md:hidden flex flex-col border-b bg-white [&_nav]:translate-y-0 [&_nav]:!py-3 [&_nav_.sub2]:!top-[108px] [&_.sub]:hidden [&_nav]:fixed lg:[&_nav]:!py-3 [&_nav]:bg-white [&_nav]:shadow top-0 w-full transition-all  ">
+            <nav className="absolute start-0 [&_.sub2]:!top-[140px]  top-0 z-[1000] transition-all duration-300 w-full py-3 lg:py-6 end-0">
+
             <div className="flex items-center justify-between px-4 py-3 gap-3">
                 {/* Logo */}
                 <Link href="/" className="shrink-0">
@@ -57,7 +59,7 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
                         )
 
                         }
-                        <MobileSearch />
+                        {/* <MobileSearch /> */}
 
                         {/* Language */}
                         <DropdownMenu>
@@ -82,9 +84,7 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
 
                 </div>
             </div>
-
-
-
+            </nav>
         </header>
     )
 }

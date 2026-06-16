@@ -64,7 +64,7 @@ export default function FlashOffers() {
 
             <div className="relative z-10  px-5">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4" >
+                <div className="flex flex-col gap-2.5 md:flex-row md:items-center justify-between mb-4" >
                     {/* Flash Sale Badge */}
                     <div className=" flex items-center gap-5 text-white font-bold text-xl">
                         <Image src={flash} alt="flash" className="size-10 object-fill" />
@@ -72,33 +72,40 @@ export default function FlashOffers() {
                     </div>
 
                     {/* Countdown */}
-                    <div className="flex items-center gap-4 text-lg font-semibold text-white">
-                        <span>ينتهي ب</span>
-                        <div className="bg-black size-10  flex items-center justify-center p-1 rounded text-xl font-bold  text-center">
-                            {pad(hours)}
+                    <div className="flex flex-col gap-2.5 md:flex-row md:items-center gap-4 text-lg font-semibold text-white">
+                        <div className="flex justify-between">
+                            <span>ينتهي ب</span>
+                            <div className="flex gap-2">
+
+                                <div className="bg-black size-10  flex items-center justify-center p-1 rounded text-xl font-bold  text-center">
+                                    {pad(hours)}
+                                </div>
+                                <span>:</span>
+                                <div className="bg-black size-10  flex items-center justify-center p-1 rounded text-xl font-bold  text-center">
+                                    {pad(minutes)}
+                                </div>
+                                <span>:</span>
+                                <div className="bg-black size-10  flex items-center justify-center p-1 rounded text-xl font-bold  text-center">
+                                    {pad(seconds)}
+                                </div>
+                            </div>
+
                         </div>
-                        <span>:</span>
-                        <div className="bg-black size-10  flex items-center justify-center p-1 rounded text-xl font-bold  text-center">
-                            {pad(minutes)}
-                        </div>
-                        <span>:</span>
-                        <div className="bg-black size-10  flex items-center justify-center p-1 rounded text-xl font-bold  text-center">
-                            {pad(seconds)}
-                        </div>
+
                         {/* View All */}
-                        <Link
+                        {/* <Link
                             href="/flash-offers"
                             className="text-lg font-semibold text-white hover:underline"
                         >
                             عرض الكل ‹
-                        </Link>
+                        </Link> */}
                     </div>
 
 
                 </div>
 
                 {/* Products Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" >
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" >
                     {flashOffers.map((product) => (
                         <div
                             key={product.id}
