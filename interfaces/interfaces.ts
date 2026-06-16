@@ -208,10 +208,10 @@ export interface Cart {
             title: string
             color: string
             price: number
-            images: {
+            images: [{
                 media: string
                 alt: string
-            }
+            }]
             product_cart_id: number
             quantity: number
             total: number
