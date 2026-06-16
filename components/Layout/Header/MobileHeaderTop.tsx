@@ -1,8 +1,7 @@
 // components/Layout/Header/MobileTopHeader.tsx
 import Image from "next/image"
 import Link from "next/link"
-import { Bell, ChevronDownIcon, Search } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { ChevronDownIcon, Heart, ShoppingBasketIcon } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -15,6 +14,7 @@ import flag from "@/assets/icons/saudia.png"
 import flag2 from "@/assets/icons/english(3-5).svg"
 import MobileSearch from "./MobileSearch"
 import { LoginDialog } from "@/sections/Auth/LoginDialog"
+import { SignUp } from "@/sections/Auth/SignUp"
 
 type Props = {
     isLoggedIn: boolean
@@ -33,20 +33,31 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
                     <div className="flex items-center gap-3 shrink-0">
                         {/* Notifications */}
                         {isLoggedIn && (
-                            <Link
-                                href="/notifications"
-                                className="flex justify-center items-center size-9 rounded-full bg-primary/30"
-                            >
-                                <Bell className="size-4 text-primary" />
-                            </Link>
+                            <>
+                                <Link
+                                    href="/favourite"
+                                    className="flex justify-center items-center size-9 rounded-full bg-primary/30"
+                                >
+                                    <Heart className="size-4 text-primary" />
+                                </Link>
+                                <Link
+                                    href="/cart"
+                                    className="flex justify-center items-center size-9 rounded-full bg-primary/30"
+                                >
+                                    <ShoppingBasketIcon className="size-4 text-primary" />
+                                </Link>
+                            </>
                         )}
                         {!isLoggedIn && (
-                            <LoginDialog />
+                            <>
+                                <LoginDialog />
+                                <SignUp />
+                            </>
 
                         )
 
                         }
-                    <MobileSearch />
+                        <MobileSearch />
 
                         {/* Language */}
                         <DropdownMenu>
