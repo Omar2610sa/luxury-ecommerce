@@ -30,10 +30,16 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
     const [activeIndex, setActiveIndex] = React.useState(0)
     const [loadedImages, setLoadedImages] = React.useState<Record<number, boolean>>({})
     const [dir, setDir] = React.useState<'ltr' | 'rtl'>('ltr')
+    const [isMobile, setIsMobile] = React.useState(false)
 
     React.useEffect(() => {
         const htmlDir = (document.documentElement.dir || document.body.dir || 'ltr') as 'ltr' | 'rtl'
         setDir(htmlDir)
+
+        const check = () => setIsMobile(window.innerWidth < 768)
+        check()
+        window.addEventListener('resize', check)
+        return () => window.removeEventListener('resize', check)
     }, [])
 
     const allImages = React.useMemo(
@@ -72,13 +78,13 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
     }
 
     return (
-        <div className={cn('flex gap-3 w-full h-full', dir === 'rtl' ? 'flex-row-reverse' : 'flex-row')}>
+        <div className={cn('flex   gap-3 w-full h-full', dir === 'rtl' ? 'flex-col md:flex-row-reverse' : 'flex-col md:flex-row')}>
 
             {/* Main Image */}
             <Carousel
                 setApi={setMainApi}
                 opts={{ loop: true, direction: dir }}
-                className="flex-1 h-full"
+                className="flex-1  h-full"
             >
                 <CarouselContent className="ml-0">
                     {allImages.map((image, index) => (
@@ -121,10 +127,10 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
             <Carousel
                 setApi={setThumbApi}
                 opts={{ align: 'start', dragFree: true }}
-                orientation="vertical"
-                className="h-[700px] w-[80px]"
+                orientation={isMobile ? 'horizontal' : 'vertical'}
+                className={`${isMobile ? "w-full flex justify-center" : "w-[80px] h-[700px] "}`}
             >
-                <CarouselContent className="-mt-2 h-[750px]">
+                <CarouselContent className="-mt-2 h-40 md:h-[750px]">
                     {allImages.map((image, index) => (
                         <CarouselItem
                             key={image.id}

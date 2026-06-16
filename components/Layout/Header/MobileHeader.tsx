@@ -46,7 +46,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
 
     return (
         <nav className="fixed sub bottom-0 end-0 start-0 w-full bg-white z-[10000000] drop-shadow-2xl md:hidden block">
-            <div className="py-3 px-4">
+            <div className="py-2 px-3">
                 <div className="mini-links w-full flex items-center justify-around py-2">
                     {links.map((ele, index) => {
                         const isActive = pathname === ele.href
