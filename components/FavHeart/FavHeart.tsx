@@ -4,6 +4,7 @@ import { Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CardAction } from "@/components/ui/card"
 import Cookies from "js-cookie"
+import { apiClient } from "@/services/useApiClient"
 
 type Props = {
     productId: number
@@ -20,21 +21,11 @@ export default function FavButton({ productId, isFav }: Props) {
         if (loading) return
         setLoading(true)
 
-        const token = getCookie("token_luxary")
-        const guestToken = getCookie("guest_token")
         try {
-            await fetch(
-                `${process.env.NEXT_PUBLIC_API_BASE}/api/client/make_fave/${productId}`,
-                {
-                    method: "GET",
-                    headers: {
-                        ...(token
-                            ? { Authorization: `Bearer ${token}` }
-                            : { "Guest-Token": guestToken }
-                        ),
-                    },
-                }
-            )
+            await apiClient<unknown>(`make_fave/${productId}`, {
+                method: "GET",
+
+            })
             setFav(prev => !prev)
         } catch (error) {
             console.error("Fav error:", error)
