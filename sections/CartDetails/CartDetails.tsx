@@ -102,7 +102,7 @@ export default function CartDetails({ cart }: { cart: Cart }) {
 
                     <div className="flex flex-col gap-4">
                         {cart?.items?.map((ele, index) => (
-                            <div key={index} className="p-5 border border-[#E1E1E1] flex justify-between items-center gap-6">
+                            <div key={index} className="p-5 border border-[#E1E1E1] flex flex-col md:flex-row justify-between items-center gap-6">
                                 <CheckCircle2Icon className="size-8 hidden md:block" />
                                         <Image
                                             src={ele?.images[0]?.media}
@@ -111,7 +111,7 @@ export default function CartDetails({ cart }: { cart: Cart }) {
                                             height={80}
                                             className="object-contain"
                                         />
-                                        <div className="flex flex-col gap-3">
+                                        <div className="flex flex-col items-center md:items-start gap-3">
                                             <h3 className="font-medium">{ele?.title}</h3>
                                             <p className="text-[#797979]">اللون: {ele?.color}</p>
                                             <p className="text-xl font-bold">{ele?.price} {ele?.currency} </p>
