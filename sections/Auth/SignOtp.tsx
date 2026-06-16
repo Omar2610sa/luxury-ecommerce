@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -17,24 +17,11 @@ type Props = {
     open: boolean
     onOpenChange: (open: boolean) => void
 }
-
-const getPhone = () => {
+const getCookie = (name: string) => {
+    if (typeof window === 'undefined') return ''
     return document.cookie
         .split('; ')
-        .find(row => row.startsWith('user_phone='))
-        ?.split('=')[1] ?? ''
-}
-const getPhoneCode = () => {
-    return document.cookie
-        .split('; ')
-        .find(row => row.startsWith('user_phone_code='))
-        ?.split('=')[1] ?? ''
-}
-
-const getToken = () => {
-    return document.cookie
-        .split('; ')
-        .find(row => row.startsWith('token_luxary='))
+        .find(row => row.startsWith(`${name}=`))
         ?.split('=')[1] ?? ''
 }
 
@@ -43,6 +30,14 @@ export function OtpDialog({ open, onOpenChange }: Props) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const router = useRouter()
+    const [phone] = useState(() => getCookie('user_phone'))
+    const [phoneCode] = useState(() => getCookie('user_phone_code'))
+    const [token] = useState(() => getCookie('token_luxary'))
+
+
+
+
+
     const handleSubmit = async () => {
         if (otp.length < 4) {
             setError("أدخل كود التحقق كامل")
@@ -59,12 +54,12 @@ export function OtpDialog({ open, onOpenChange }: Props) {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${getToken()}`,
+                        "Authorization": `Bearer ${token}`,
                     },
                     body: JSON.stringify({
-                        phone: getPhone(),
-                        phone_code: getPhoneCode(),
-                        code:otp,
+                        phone: phone,
+                        phone_code: phoneCode,
+                        code: otp,
                         device_token: 125487986562323157,
                         type: "ios",
                     }),
@@ -94,7 +89,7 @@ export function OtpDialog({ open, onOpenChange }: Props) {
                 <DialogHeader>
                     <DialogTitle className="text-lg">تحقق من رقم الهاتف</DialogTitle>
                     <p className="text-sm text-gray-500">
-                        تم إرسال كود التحقق على رقم {getPhone()}
+                        تم إرسال كود التحقق على رقم {phone}
                     </p>
                 </DialogHeader>
 

@@ -1,16 +1,15 @@
 import ProductImageCarousel from "@/components/ProductSwiper/ProductSwiper";
-import { CartData, Product } from "@/interfaces/interfaces";
+import { Product } from "@/interfaces/interfaces";
 import Image from "next/image";
 import Star from "@/assets/icons/star.png";
 import Link from "next/link";
-import {  ChevronLeftIcon, StarIcon } from "lucide-react";
+import {  ChevronLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ColorSelector from "@/components/ColorSelector/ColorSelector";
 import icon from "@/assets/icons/Encapsulated Group.png"
 import ShopCard from "@/components/ShopCard/ShopCard";
 import ShippingInfo from "@/components/ShippingInfo/ShippingInfo";
-import NoInfo from "@/components/NoInfo/NoInfo";
 
 import FavButton from "@/components/FavHeart/FavHeart";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
@@ -212,7 +211,6 @@ export default async function ProductInfo({ product }: { product: Product }) {
 }
 
 
-                   
                     // {
                         
                     //     review.map((ele, index) => {
