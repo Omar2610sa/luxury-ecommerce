@@ -1,11 +1,11 @@
 "use client"
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { ForYou } from "@/interfaces/interfaces";
+import { ForYou, Product } from "@/interfaces/interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import SecondButton from "@/components/Layout/SecondButton";
-import {  MoveLeft } from "lucide-react";
+import { MoveLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function NewEditions({ products }: { products: ForYou[] }) {
@@ -27,25 +27,25 @@ export default function NewEditions({ products }: { products: ForYou[] }) {
                     allowTouchMove={true}
                     className="!overflow-visible"
                     breakpoints={{
-                        0:    { slidesPerView: 1.2 },
-                        640:  { slidesPerView: 2.2 },
+                        0: { slidesPerView: 1.2 },
+                        640: { slidesPerView: 2.2 },
                         1024: { slidesPerView: 3.2 },
                         1280: { slidesPerView: 4.2 },
                     }}
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product.id} >
-                            <ShopCard product={product} />
-                           
+                            <ShopCard product={product as unknown as Product} />
+
                         </SwiperSlide>
                     ))}
                 </Swiper>
             </div>
 
-                {/* Btn */}
-                <div className="mx-auto">
+            {/* Btn */}
+            <div className="mx-auto">
                 <SecondButton text="عرض الكل" icon={MoveLeft} />
-                </div>
+            </div>
         </section>
     )
 }
