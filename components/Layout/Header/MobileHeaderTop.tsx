@@ -1,7 +1,7 @@
 // components/Layout/Header/MobileTopHeader.tsx
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDownIcon, Heart, ShoppingBasketIcon } from "lucide-react"
+import { ChevronDownIcon,  } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,7 +12,6 @@ import {
 import logo from "@/assets/image 44 (2) (1) 2 (1).png"
 import flag from "@/assets/icons/saudia.png"
 import flag2 from "@/assets/icons/english(3-5).svg"
-import MobileSearch from "./MobileSearch"
 import { LoginDialog } from "@/sections/Auth/LoginDialog"
 import { SignUp } from "@/sections/Auth/SignUp"
 import FavouriteIcon from "@/components/FavoriteLink/FavLink"

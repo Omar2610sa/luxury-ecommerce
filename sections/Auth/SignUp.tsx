@@ -23,8 +23,10 @@ import { useFormik } from "formik"
 import * as Yup from "yup"
 import { useState, useEffect } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
-import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { OtpDialog } from "./SignOtp"
+import { ErrorAlert } from "@/components/Alert/ErrorAlert"
+import Cookies from "js-cookie"
+
 
 type Country = {
     id: number
@@ -95,39 +97,35 @@ export function SignUp() {
         },
         validationSchema: signUpSchema,
         onSubmit: async (values, { setSubmitting }) => {
-            try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_API_BASE}/api/client/register`,
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            name: values.name,
-                            email: values.email,
-                            phone_code: `${selectedPhoneCode}`,
-                            phone: `${values.phone}`,
-                            country_id: values.country_id,
-                            city_id: values.city_id,
-                            date_of_birth: "2020-05-01",
-                            gender: values.gender,
-                            password: values.password,
-                            type: "ios",
-                            device_token: getGuestToken(),
-                        }),
-                    }
-                ).then(res => res.json())
-
-                if (response) {
-                    setOpen(false)
-                    document.cookie = `user_phone=${values.phone}; path=/`
-                    document.cookie = `user_phone_code=${selectedPhoneCode}; path=/`
-                    setOpen(false)
-                    setOtpOpen(true)
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_BASE}/api/client/register`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: values.name,
+                        email: values.email,
+                        phone_code: `${selectedPhoneCode}`,
+                        phone: `${values.phone}`,
+                        country_id: values.country_id,
+                        city_id: values.city_id,
+                        date_of_birth: "2020-05-01",
+                        gender: values.gender,
+                        password: values.password,
+                        type: "ios",
+                        device_token: getGuestToken(),
+                    }),
                 }
-            } catch (error) {
-                console.error("Register error:", error)
-            } finally {
-                setSubmitting(false)
+            ).then(res => res.json())
+
+            if (response?.status === "success") {
+                Cookies.set("user_phone", values.phone)
+                Cookies.set("user_phone_code", selectedPhoneCode)
+                setOpen(false)
+                setOtpOpen(true)
+            } else {
+                // هنا بييجي الـ error من الـ API
+                ErrorAlert(response?.message ?? "حدثت مشكلة")
             }
         },
     })
@@ -138,7 +136,7 @@ export function SignUp() {
                 <DialogTrigger>
                     <MainButton text="انشاء حساب جديد" />
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-auto max-h-[90vh]">
+                <DialogContent className="sm:max-w-md scrollbar-thumb-primary overflow-y-scroll max-h-[60vh]">
                     <form onSubmit={formik.handleSubmit}>
                         <DialogHeader className="mb-3">
                             <DialogTitle className="text-lg">قم بإنشاء حسابك</DialogTitle>

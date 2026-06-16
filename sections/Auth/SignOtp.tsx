@@ -58,7 +58,7 @@ export function OtpDialog({ open, onOpenChange }: Props) {
                     },
                     body: JSON.stringify({
                         phone: phone,
-                        phone_code: phoneCode,
+                        phone_code: phoneCode.toString(),
                         code: otp,
                         device_token: 125487986562323157,
                         type: "ios",

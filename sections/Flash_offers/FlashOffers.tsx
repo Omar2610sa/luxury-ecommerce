@@ -1,15 +1,13 @@
-// components/FlashOffers.tsx
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import pattern from "@/assets/pattern.png";
 import flash from "@/assets/sssss3 1.png"
 import dress from "@/assets/3ccc473ff409e493f8e367ad49d7bf0e34517e28.jpg"
 
 
-const COUNTDOWN_SECONDS = 30 * 60; // 30 دقيقة
+const COUNTDOWN_SECONDS = 30 * 60;
 
 export default function FlashOffers() {
     const [timeLeft, setTimeLeft] = useState(COUNTDOWN_SECONDS);
@@ -100,8 +98,6 @@ export default function FlashOffers() {
                             عرض الكل ‹
                         </Link> */}
                     </div>
-
-
                 </div>
 
                 {/* Products Grid */}
