@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { apiClient } from "@/services/useApiClient"
+import Image from "next/image"
 
 
 
@@ -34,7 +35,7 @@ const profileSchema = Yup.object({
     gender: Yup.string().required("النوع مطلوب"),
 })
 
-export default function ProfileForm({ profile }: PropsProfile) {
+export default function ProfileForm({ profile }: {profile : Profile}) {
     const [countries, setCountries] = useState<Country[]>([])
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/general/countries`)
@@ -55,7 +56,7 @@ export default function ProfileForm({ profile }: PropsProfile) {
         validationSchema: profileSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await apiClient<{ data?: PropsProfile }>("profile_edit", {
+                const response = await apiClient<{ data?: Profile }>("profile_edit", {
                     method: "PUT",
                     body: {
                         name: formik.initialValues.name,
@@ -192,7 +193,7 @@ console.log(formik.initialValues)
                                     {countries.map(country => (
                                         <SelectItem key={country.id} value={country.flag}>
                                             <span className="flex items-center gap-2">
-                                                <img
+                                                <Image
                                                     width={20}
                                                     height={20}
                                                     src={country.flag}

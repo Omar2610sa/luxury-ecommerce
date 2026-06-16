@@ -21,7 +21,7 @@ export default function EditProfile() {
                 <div className="flex flex-col md:flex-row gap-3 justify-between items-center">
                     <div className="flex flex-col md:flex-row items-center gap-3">
                         <Image
-                            src={user?.image}
+                            src={user?.image || ""}
                             width={120}
                             height={120}
                             alt="User Profile"
@@ -37,7 +37,7 @@ export default function EditProfile() {
                     </Link>
                 </div>
                 {/* Form */}
-                <ProfileForm profile={user} />
+                {user && <ProfileForm profile={user} />}
             </CardContent>
         </Card>
     )

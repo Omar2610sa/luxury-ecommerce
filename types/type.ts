@@ -37,10 +37,11 @@ type Profile = {
     email: string
     phone: string
     phone_code: string
-    country:{
-        id:string;
-        name:string
+    country: {
+        id: string;
+        name: string
     }
+    image: string
     country_id: number
     date_of_birth: string
     gender: string
