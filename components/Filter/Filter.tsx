@@ -174,7 +174,7 @@ export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
                         </div>
                         <Slider
                             value={priceRange}
-                            onValueChange={setPriceRange}
+                            // onValueChange={setPriceRange}
                             min={0}
                             max={200000}
                             step={1000}
