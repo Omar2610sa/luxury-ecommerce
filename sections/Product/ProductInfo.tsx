@@ -3,7 +3,7 @@ import { Product } from "@/interfaces/interfaces";
 import Image from "next/image";
 import Star from "@/assets/icons/star.png";
 import Link from "next/link";
-import {  ChevronLeftIcon } from "lucide-react";
+import { ChevronLeftIcon, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ColorSelector from "@/components/ColorSelector/ColorSelector";
@@ -13,15 +13,16 @@ import ShippingInfo from "@/components/ShippingInfo/ShippingInfo";
 
 import FavButton from "@/components/FavHeart/FavHeart";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
+import NoInfo from "@/components/NoInfo/NoInfo";
 
 
 export default async function ProductInfo({ product }: { product: Product }) {
     // const { data: review } = await serverApi<CartData>(`product/${product.id}/review`)
-    // const reviews = review ?? []
-    // const hasReviews = reviews.length > 0
+    const reviews = product.details[0].reviews ?? []
+    const hasReviews = reviews.length > 0
+    const description = product.details[0]?? []
     // console.log(review)
     return (
-
         <div className="grid md:grid-cols-2 gap-5 items-start">
 
             <ProductImageCarousel
@@ -55,7 +56,7 @@ export default async function ProductInfo({ product }: { product: Product }) {
                                     className={`size-5 object-cover mt-1 fill-yellow-400 text-yellow-400`}
                                 />
                                 <span className="text-xl font-medium">
-                                    4.8
+                                    {detail.rate_avg}
                                 </span>
                             </div>
                         </div>
@@ -68,19 +69,39 @@ export default async function ProductInfo({ product }: { product: Product }) {
                                     product.short_desc
                                 }
                             </p>
-                            {
-                                detail.quantity <= 10 && (
-
+                            {detail.quantity === 0 ? (
+                                <div className="flex justify-between items-center my-3 bg-red-200/80 py-2 px-4">
+                                    <p className="font-medium">
+                                        <span className="font-semibold text-red-800 ml-3.5">
+                                            شعار
+                                        </span>
+                                        <span className="font-semibold text-red-800 ml-3.5">
+                                            نفذت الكمية
+                                        </span>
+                                    </p>
+                                </div>
+                            ) : detail.quantity <= 10 && (
+                                <div className="flex justify-between items-center my-3 bg-red-100/80 py-2 px-4">
+                                    <p className="font-medium">
+                                        <span className="font-semibold text-red-800 ml-3.5">
+                                            شعار
+                                        </span>
+                                        متبقي عدد {detail.quantity} من الكمية
+                                    </p>
+                                </div>
+                            )}
+                            {/* {
+                                detail.quantity = 0 && (
                                     <div className="flex justify-between items-center my-3 bg-red-100/80 py-2 px-4">
                                         <p className="font-medium ">
                                             <span className="font-semibold text-red-800 ml-3.5">
                                                 شعار
                                             </span>
-                                            متبقي عدد {detail.quantity} من الكمية
+                                            تم نفاذ الكميه حاليا
                                         </p>
                                     </div>
                                 )
-                            }
+                            } */}
                             <div className="flex justify-between items-center bg-gray-100 py-2 px-4">
                                 <p className="font-medium text-xl">
                                     العلامة التجارية: {product.brand.title}
@@ -180,13 +201,58 @@ export default async function ProductInfo({ product }: { product: Product }) {
                                 className={`size-5 object-cover mt-1 fill-yellow-400 text-yellow-400`}
                             />
                             <span className="text-xl font-medium">
-                                4.8
+                                {product?.details[0]?.rate_avg}
                             </span>
                         </div>
                     </div>
                 </div>
                 {/* Notes */}
                 <div className="flex flex-col gap-6">
+
+                    {
+                        hasReviews ? (
+
+                            product?.details.map((ele, index) => {
+                                return (
+
+                                    <div key={index}>
+
+                                        {
+                                            ele.reviews.map((ele, index) => {
+                                                return (
+
+                                                    <div key={index} className="p-6 border-2 border-gray-100 flex justify-between items-start">
+                                                        <div className="flex flex-col gap-4">
+                                                            <h3 className="text-2xl font-bold">{ele?.user_name}</h3>
+                                                            <p className="text-lg font-medium">اللون : {ele?.color}</p>
+                                                            <p className="text-lg font-medium">الحجم :  {ele?.size}</p>
+                                                            <p className="text-lg font-medium">{ele?.review}</p>
+                                                            {
+                                                                ele?.image?.media && (
+                                                                    <Image src={ele?.image?.media} alt="alt" width={80} height={80} />
+                                                                )
+                                                            }
+                                                        </div>
+                                                        {/* Stars */}
+                                                        <div className="flex items-center gap-0.5">
+                                                            {Array.from({ length: 5 }).map((_, i) => (
+                                                                <StarIcon
+                                                                    key={i}
+                                                                    className={`size-5 ${i < Math.round(ele?.rate) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+
+                                    </div>
+                                )
+                            })
+                        ) : <NoInfo title="لا يوجد مراجعات حاليا" />
+
+                    }
 
                 </div>
             </div>
@@ -211,35 +277,3 @@ export default async function ProductInfo({ product }: { product: Product }) {
 }
 
 
-                    // {
-                        
-                    //     review.map((ele, index) => {
-                    //         return (
-
-                    //             <div key={index} className="p-6 border-2 border-gray-100 flex justify-between items-start">
-                    //                 <div className="flex flex-col gap-4">
-                    //                     <h3 className="text-2xl font-bold">{ele?.user_name}</h3>
-                    //                     <p className="text-lg font-medium">اللون : {ele?.color}</p>
-                    //                     <p className="text-lg font-medium">الحجم :  {ele?.size}</p>
-                    //                     <p className="text-lg font-medium">{ele?.review}</p>
-                    //                     {
-                    //                         ele?.image?.media && (
-                    //                             <Image src={ele?.image?.media} alt="alt" width={80} height={80} />
-                    //                         )
-                    //                     }
-                    //                 </div>
-                    //                 {/* Stars */}
-                    //                 <div className="flex items-center gap-0.5">
-                    //                     {Array.from({ length: 5 }).map((_, i) => (
-                    //                         <StarIcon
-                    //                             key={i}
-                    //                             className={`size-5 ${i < Math.round(ele?.rate) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                    //                         />
-                    //                     ))}
-                    //                 </div>
-                    //             </div>
-                    //         )
-                    //     })
-
-                    // }
-                    

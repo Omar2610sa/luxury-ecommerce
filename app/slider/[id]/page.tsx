@@ -10,7 +10,7 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-    const { id } = params
+    const { id } = await params
     const { data: slider } = await serverApi<{ data: Slider }>(`slider/${id}`)
 
     // Ensure product_details is treated as an array even if the API returns a single object

@@ -1,3 +1,4 @@
+"use clinet"
 import HeaderLinks from "@/components/HeaderLinks/HeaderLinks";
 import { Bell, ChevronDownIcon, Heart, Mail, Phone, Search, ShoppingBasketIcon, User2Icon } from "lucide-react";
 import MainButton from "../MainButton";
@@ -15,6 +16,8 @@ import flag2 from "@/assets/icons/english(3-5).svg"
 import { SignUp } from "@/sections/Auth/SignUp";
 import MobileHeader from "./MobileHeader";
 import MobileTopHeader from "./MobileHeaderTop";
+import FavouriteIcon from "@/components/FavoriteLink/FavLink";
+import CartLink from "@/components/FavoriteLink/CartLink";
 
 
 const menuItems = [
@@ -87,8 +90,8 @@ export default async function Header() {
                             <div className="flex items-center justify-between text-sm text-primary">
                                 <div className="flex justify-between items-center gap-5">
                                     {menuItems.map((item) => (
-                                        <DropdownMenu  key={item.label}>
-                                            <DropdownMenuTrigger  className="flex items-center gap-1 whitespace-nowrap hover:text-foreground transition-colors cursor-pointer">
+                                        <DropdownMenu key={item.label}>
+                                            <DropdownMenuTrigger className="flex items-center gap-1 whitespace-nowrap hover:text-foreground transition-colors cursor-pointer">
                                                 {item.label}
                                                 <ChevronDownIcon className="size-3.5 shrink-0" />
                                             </DropdownMenuTrigger>
@@ -122,17 +125,13 @@ export default async function Header() {
                         token && (
                             <div className="flex gap-3 items-center shrink-0">
                                 {/* Fav */}
-                                <Link href="/favourite" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
-                                    <Heart className="size-4 text-primary" />
-                                </Link>
+                                <FavouriteIcon />
                                 {/* notifation */}
                                 <Link href="/profile" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
                                     <User2Icon className="size-4 text-primary" />
                                 </Link>
                                 {/* notifation */}
-                                <Link href="/cart" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
-                                    <ShoppingBasketIcon className="size-4 text-primary" />
-                                </Link>
+                                <CartLink />
                                 {/* Language */}
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">

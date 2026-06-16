@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 import { apiClient } from "@/services/useApiClient"
+import { CartCount } from "@/store/useCountCartStore"
 
 type Props = {
     productId: number
@@ -12,6 +13,7 @@ type Props = {
 
 export default function AddShopCard({ productId }: Props) {
     const [loading, setLoading] = useState(false)
+    const { increment } = CartCount()
 
     const addCart = async () => {
         if (loading) return
@@ -28,6 +30,7 @@ export default function AddShopCard({ productId }: Props) {
             })
 
             if (response?.data) {
+                increment()
                 SuccessAlert("تم إضافة المنتج إلى السلة بنجاح")
             }
         } catch (error) {

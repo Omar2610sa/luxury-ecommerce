@@ -7,7 +7,7 @@ import {
     CardDescription,
 } from "@/components/ui/card"
 import { Product } from "@/interfaces/interfaces"
-import {  Star, ZapIcon } from "lucide-react"
+import { Star, ZapIcon } from "lucide-react"
 import Image from "next/image"
 import FavButton from "../FavHeart/FavHeart"
 import Link from "next/link"
@@ -58,7 +58,7 @@ export default function ShopCard({ product }: { product: Product }) {
                             )
                         }
                         {
-                            product.in_stock && (
+                            !product.detail.in_stock && (
                                 <Badge variant={"destructive"} className=" text-md py-3 px-4 rounded-none">غير متوفر</Badge>
                             )
                         }
@@ -106,7 +106,7 @@ export default function ShopCard({ product }: { product: Product }) {
                                 className={`size-5 ${i < Math.round(product.detail.rate_avg) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
                             />
                         ))}
-                        <span className="text-lg text-muted-foreground ml-1">({product.detail.sold})</span>
+                        <span className="text-lg text-muted-foreground ml-1">({product.detail.rate_avg})</span>
                     </div>
 
                 </div>

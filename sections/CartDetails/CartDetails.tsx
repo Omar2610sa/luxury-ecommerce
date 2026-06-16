@@ -8,11 +8,13 @@ import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { useRouter } from "next/navigation"
 import { apiClient } from "@/services/useApiClient"
 import NoInfo from "@/components/NoInfo/NoInfo"
+import { CartCount } from "@/store/useCountCartStore"
 
 
 export default function CartDetails({ cart }: { cart: Cart }) {
     const [loadingId, setLoadingId] = useState<number | null>(null)
     const router = useRouter()
+    const { decrement } = CartCount()
     const deleteItem = async (itemId: number) => {
         if (loadingId) return
         setLoadingId(itemId)
@@ -36,28 +38,28 @@ export default function CartDetails({ cart }: { cart: Cart }) {
     }
     const decreaseQuantity = async (itemId: number, newCount: number) => {
         if (loadingId) return
-            setLoadingId(itemId)
+        setLoadingId(itemId)
         if (newCount < 1) return
 
-            try {
-                const response = await apiClient<{ data?: unknown }>(`update_count`, {
-                    method: "POST",
-                    body: {
-                        cart_product_id: itemId,
-                        count: newCount
-                    }
-                })
-
-                if (response) {
-                    router.refresh()
-                } else {
-                    console.error("Delete failed:", response)
+        try {
+            const response = await apiClient<{ data?: unknown }>(`update_count`, {
+                method: "POST",
+                body: {
+                    cart_product_id: itemId,
+                    count: newCount
                 }
-            } catch (error) {
-                console.error("Delete item error:", error)
-            } finally {
-                setLoadingId(null)
+            })
+
+            if (response) {
+                router.refresh()
+            } else {
+                console.error("Delete failed:", response)
             }
+        } catch (error) {
+            console.error("Delete item error:", error)
+        } finally {
+            setLoadingId(null)
+        }
     }
     const increaceQuantity = async (itemId: number, newCount: number) => {
         if (loadingId) return
@@ -104,18 +106,18 @@ export default function CartDetails({ cart }: { cart: Cart }) {
                         {cart?.items?.map((ele, index) => (
                             <div key={index} className="p-5 border border-[#E1E1E1] flex flex-col md:flex-row justify-between items-center gap-6">
                                 <CheckCircle2Icon className="size-8 hidden md:block" />
-                                        <Image
-                                            src={ele?.images[0]?.media}
-                                            alt={ele?.images[0]?.alt ?? ele?.title}
-                                            width={80}
-                                            height={80}
-                                            className="object-contain"
-                                        />
-                                        <div className="flex flex-col items-center md:items-start gap-3">
-                                            <h3 className="font-medium">{ele?.title}</h3>
-                                            <p className="text-[#797979]">اللون: {ele?.color}</p>
-                                            <p className="text-xl font-bold">{ele?.price} {ele?.currency} </p>
-                                        </div>
+                                <Image
+                                    src={ele?.images[0]?.media}
+                                    alt={ele?.images[0]?.alt ?? ele?.title}
+                                    width={80}
+                                    height={80}
+                                    className="object-contain"
+                                />
+                                <div className="flex flex-col items-center md:items-start gap-3">
+                                    <h3 className="font-medium">{ele?.title}</h3>
+                                    <p className="text-[#797979]">اللون: {ele?.color}</p>
+                                    <p className="text-xl font-bold">{ele?.price} {ele?.currency} </p>
+                                </div>
 
                                 <div className="flex justify-between items-center ">
                                     <div className="flex flex-col md:flex-row items-center gap-5">

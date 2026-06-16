@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Banner({ banner }: { banner: { image: string, id: number } }) {
     return (
         <Link href={`/slider/${banner?.id}`}>
-            <div className="relative container h-[150px] md:h-[400px] my-6  rounded-2xl">
+            <div className="relative container h-[150px] md:h-[450px] my-6  rounded-2xl">
                 <Image
                     src={banner?.image || ''}
                     alt="Banner"

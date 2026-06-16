@@ -177,6 +177,18 @@ export interface ProductDetail {
     price_after_offer: number
     discount_offer: number
     seller: string | null
+    reviews: [{
+        rate: number
+        review: string
+        user_name: string
+        color: string
+        size: string
+        image: {
+            media: string
+            alt: string
+        }
+        id: number
+    }]
 }
 
 export interface Product {

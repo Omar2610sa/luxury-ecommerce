@@ -5,14 +5,15 @@ import { Button } from "@/components/ui/button"
 import { ShoppingBasket } from "lucide-react"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { apiClient } from "@/services/useApiClient"
+import { CartCount } from "@/store/useCountCartStore"
 
-    type Props = {
-        productId: number
-    }
+type Props = {
+    productId: number
+}
 
 export default function AddToCartButton({ productId }: Props) {
     const [loading, setLoading] = useState(false)
-
+    const { increment } = CartCount()
     const addCart = async () => {
         if (loading) return
         setLoading(true)
@@ -27,6 +28,7 @@ export default function AddToCartButton({ productId }: Props) {
             })
 
             if (response?.data) {
+                increment()
                 SuccessAlert("تم إضافة المنتج إلى السلة بنجاح")
             }
         } catch (error) {
