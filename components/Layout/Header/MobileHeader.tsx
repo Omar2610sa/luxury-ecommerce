@@ -60,8 +60,8 @@ export default function MobileHeader({ isLoggedIn }: Props) {
                                     isActive ? "text-primary" : "text-gray-500"
                                 )}
                             >
-                                <ele.icon className="size-5" />
-                                <p className="text-xs sm:text-sm">{ele.name}</p>
+                                <ele.icon className="size-6" />
+                                <p className="text-md sm:text-sm">{ele.name}</p>
                             </Link>
                         )
                     })}

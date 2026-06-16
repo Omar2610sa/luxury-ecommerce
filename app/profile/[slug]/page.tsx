@@ -1,6 +1,6 @@
 import NoInfo from "@/components/NoInfo/NoInfo";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { CartData, HomeData } from "@/interfaces/interfaces";
+import { CartData, HomeData, Product } from "@/interfaces/interfaces";
 import ChangePasswordForm from "@/sections/Auth/ChangePass";
 import CartDetails from "@/sections/CartDetails/CartDetails";
 import { serverApi } from "@/services/serverApi";
@@ -16,7 +16,7 @@ export default async function page({ params }: Props) {
     const { slug } = await params;
 
     if (slug === "my-order") {
-        const { data: order } = await serverApi<CartData>("orders")
+        const { data: order } = await serverApi<{ data: CartData[] }>("orders")
         return (
             <>
                 {
@@ -27,7 +27,7 @@ export default async function page({ params }: Props) {
                                 order?.map((ele, index) => {
                                     return (
                                         <div key={index}>
-                                            <ShopCard product={ele} />
+                                            <ShopCard product={ele as unknown as Product} />
                                         </div>
                                     )
                                 })
@@ -57,7 +57,7 @@ export default async function page({ params }: Props) {
         )
     }
     if (slug === "favoutie") {
-        const { data: fave } = await serverApi<HomeData>("get_fave_products")
+        const { data: fave } = await serverApi<{ data: HomeData[] }>("get_fave_products")
 
         return (
             <>
@@ -69,7 +69,7 @@ export default async function page({ params }: Props) {
                                 fave?.map((ele, index) => {
                                     return (
                                         <div key={index}>
-                                            <ShopCard product={ele} />
+                                            <ShopCard product={ele as unknown as Product} />
                                         </div>
                                     )
                                 })

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const { data: home_website } = await serverApi<HomeData>("home_website", { next: { cache: "cache", } });
+  const { data: home_website } = await serverApi<{ data: HomeData }>("home_website");
   return (
     <div>
       <Hero slider={home_website?.slider ?? []} />

@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
     Card,
     CardFooter,
@@ -7,15 +6,15 @@ import {
     CardTitle,
     CardDescription,
 } from "@/components/ui/card"
-import { ForYou } from "@/interfaces/interfaces"
-import { ShoppingCart, Star, ZapIcon } from "lucide-react"
+import { Product } from "@/interfaces/interfaces"
+import {  Star, ZapIcon } from "lucide-react"
 import Image from "next/image"
 import FavButton from "../FavHeart/FavHeart"
 import Link from "next/link"
 import AddShopCard from "../AddToCartButton/AddShopCard"
 
 
-export default function ShopCard({ product }: { product: ForYou }) {
+export default function ShopCard({ product }: { product: Product }) {
 
     return (
         <Card className="relative h-full max-w-sm md:max-w-xs rounded-none bg-gray-50/50 border-b  p-0 group  overflow-hidden">
@@ -29,7 +28,6 @@ export default function ShopCard({ product }: { product: ForYou }) {
 
             {/* Wishlist */}
             <div className="absolute z-30 top-3 right-3">
-
                 <FavButton productId={product.id} isFav={product.is_fave} />
             </div>
 

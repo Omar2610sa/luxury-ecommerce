@@ -1,6 +1,8 @@
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb"
 import NoInfo from "@/components/NoInfo/NoInfo"
 import ShopCard from "@/components/ShopCard/ShopCard"
+import { Product, Slider } from "@/interfaces/interfaces"
+import { serverApi } from "@/services/serverApi"
 import Link from "next/link"
 
 type Props = {
@@ -8,10 +10,16 @@ type Props = {
 }
 
 export default async function page({ params }: Props) {
-    const { id } = await params
-    const { data: slider } = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/client/slider/${id}`).then(res => res.json())
+    const { id } = params
+    const { data: slider } = await serverApi<{ data: Slider }>(`slider/${id}`)
 
-    const products = slider?.product_details ?? []
+    // Ensure product_details is treated as an array even if the API returns a single object
+    const products = Array.isArray(slider?.product_details)
+        ? slider!.product_details
+        : slider?.product_details
+            ? [slider.product_details]
+            : []
+
     const hasProducts = products.length > 0
 
     return (
@@ -21,19 +29,17 @@ export default async function page({ params }: Props) {
                 hasProducts ? (
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 ">
-                        {
-                            slider?.product_details.map((product, index) => {
-                                return (
-                                    <Link href={`/product/${product.id}`} key={index}>
-                                        <ShopCard product={product} />
-                                    </Link>
-                                )
-                            })
-                        }
+                        {products.map((product, index) => {
+                            return (
+                                <Link href={`/product/${product.id}`} key={index}>
+                                    <ShopCard product={product as unknown as Product} />
+                                </Link>
+                            )
+                        })}
                     </div>
                 )
-                :
-                <NoInfo title="لا يوجد بيانات" />
+                    :
+                    <NoInfo title="لا يوجد بيانات" />
             }
 
         </div>

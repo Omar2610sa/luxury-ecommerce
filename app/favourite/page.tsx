@@ -1,11 +1,11 @@
 import NoFav from "@/components/NoFav/NoFav";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { HomeData } from "@/interfaces/interfaces";
+import { Favorite, Product } from "@/interfaces/interfaces";
 import { serverApi } from "@/services/serverApi";
 
 export default async function page() {
 
-    const { data: fave } = await serverApi<HomeData>("get_fave_products")
+    const { data: fave } = await serverApi<{ data: Favorite[] }>("get_fave_products")
 
     return (
         <div className="container flex flex-col gap-8">
@@ -31,7 +31,7 @@ export default async function page() {
                             fave?.map((ele, index) => {
                                 return (
                                     <div key={index}>
-                                        <ShopCard product={ele} />
+                                        <ShopCard product={ele as unknown as Product} />
                                     </div>
                                 )
                             })

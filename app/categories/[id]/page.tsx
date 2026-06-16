@@ -37,7 +37,7 @@ export default async function page({ params }: Props) {
                             {
                                 products.map((cat, index) => {
                                     return (
-                                        <ShopCard product={cat as any} key={index} />
+                                        <ShopCard product={cat} key={index} />
                                     )
                                 })
                             }

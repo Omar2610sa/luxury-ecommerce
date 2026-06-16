@@ -1,10 +1,9 @@
 import SecondButton from "@/components/Layout/SecondButton";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import type { ForYou } from "@/interfaces/interfaces";
+import type { Product } from "@/interfaces/interfaces";
 import { MoveLeft } from "lucide-react";
-import Link from "next/link";
 
-export default function ForYouSection({ products, title }: { products: ForYou[]; title: string }) {
+export default function ForYouSection({ products, title }: { products: Product[]; title: string }) {
     return (
         <section className="container flex flex-col gap-5 py-10">
             {/* Title */}
@@ -15,9 +14,9 @@ export default function ForYouSection({ products, title }: { products: ForYou[];
 
             <div className="grid mx- md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 ">
                 {
-                    products.map((product, index) => {
+                    products.map((prod, index) => {
                         return (
-                            <ShopCard product={product} key={index} />
+                            <ShopCard product={prod} key={index} />
                         )
                     })
                 }
