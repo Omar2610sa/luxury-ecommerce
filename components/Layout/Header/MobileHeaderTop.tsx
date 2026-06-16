@@ -15,6 +15,8 @@ import flag2 from "@/assets/icons/english(3-5).svg"
 import MobileSearch from "./MobileSearch"
 import { LoginDialog } from "@/sections/Auth/LoginDialog"
 import { SignUp } from "@/sections/Auth/SignUp"
+import FavouriteIcon from "@/components/FavoriteLink/FavLink"
+import CartLink from "@/components/FavoriteLink/CartLink"
 
 type Props = {
     isLoggedIn: boolean
@@ -35,18 +37,9 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
                         {/* Notifications */}
                         {isLoggedIn && (
                             <>
-                                <Link
-                                    href="/favourite"
-                                    className="flex justify-center items-center size-9 rounded-full bg-primary/30"
-                                >
-                                    <Heart className="size-4 text-primary" />
-                                </Link>
-                                <Link
-                                    href="/cart"
-                                    className="flex justify-center items-center size-9 rounded-full bg-primary/30"
-                                >
-                                    <ShoppingBasketIcon className="size-4 text-primary" />
-                                </Link>
+                                <FavouriteIcon />
+                                <CartLink />
+
                             </>
                         )}
                         {!isLoggedIn && (
