@@ -14,7 +14,6 @@ import NoInfo from "@/components/NoInfo/NoInfo";
 
 import FavButton from "@/components/FavHeart/FavHeart";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
-import { serverApi } from "@/services/serverApi";
 
 
 export default async function ProductInfo({ product }: { product: Product }) {

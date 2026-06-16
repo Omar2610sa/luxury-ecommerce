@@ -6,7 +6,6 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import SecondButton from "@/components/Layout/SecondButton";
 import { MoveLeft } from "lucide-react";
-import Link from "next/link";
 
 export default function NewEditions({ products }: { products: ForYou[] }) {
     return (

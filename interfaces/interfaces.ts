@@ -188,6 +188,14 @@ export interface Product {
     best_seller: boolean
     is_new_arrival: boolean
     detail: ProductDetail
+    details: ProductDetail[]
+    brand: {
+        image: {
+            media: string
+        }
+        title: string
+    }
+    complete_outfit: []
     offer_price: number
     is_fave: boolean
     main_image: {
