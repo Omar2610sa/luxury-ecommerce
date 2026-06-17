@@ -5,6 +5,7 @@ type SecondButton = {
     text: string
     icon?: React.ElementType
     variant?: "default" | "secondary"
+    
 }
 
 export default function SecondButton({ text, icon: Icon, variant }: SecondButton) {

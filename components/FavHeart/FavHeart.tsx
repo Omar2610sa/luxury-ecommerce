@@ -6,6 +6,7 @@ import { CardAction } from "@/components/ui/card"
 import Cookies from "js-cookie"
 import { apiClient } from "@/services/useApiClient"
 import { FavouriteStore } from "@/store/useFavouriteStore"
+import { useRouter } from "next/navigation"
 
 type Props = {
     productId: number
@@ -16,8 +17,7 @@ export default function FavButton({ productId, isFav }: Props) {
     const [fav, setFav] = useState(isFav)
     const [loading, setLoading] = useState(false)
     const { increment, decrement } = FavouriteStore()
-    const getCookie = (name: string) => Cookies.get(name)
-
+    const router = useRouter()
     const makeFav = async () => {
         if (loading) return
         setLoading(true)
@@ -30,6 +30,8 @@ export default function FavButton({ productId, isFav }: Props) {
             const newFav = !fav
             setFav(newFav)
             newFav ? increment() : decrement()
+            router.refresh()
+
         } catch (error) {
             console.error("Fav error:", error)
         } finally {

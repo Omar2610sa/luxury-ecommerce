@@ -12,7 +12,6 @@ export default function Banner({ banner }: { banner: { image: string, id: number
                     fill
                     className="absolute object-contain  rounded-2xl z-20"
                 />
-
             </div>
         </Link>
     )

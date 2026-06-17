@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Cart } from "@/interfaces/interfaces"
 import { LucideArrowLeft, } from "lucide-react"
 import Link from "next/link"
-export default function CartProcess({ cart }: { cart: Cart }) {
+export default function OrderProcess() {
     return (
         <div className="flex flex-col gap-5 p-2">
             <h3 className="text-2xl font-bold">
@@ -14,15 +14,12 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                     <p className="flex items-center gap-1">
                         المجموع الفرعي
                         <span>
-                            ({cart?.items.length ?? 0})
+                            (0)
                             منتجات
                         </span>
                     </p>
                     <p>
-                        {
-                            cart?.items
-                                .reduce((sum, ele) => sum + ele.total, 0) ?? 0
-                        } {cart?.items[0]?.currency ?? "جنية مصري"}
+                        0
                     </p>
                 </div>
             </div>
@@ -30,22 +27,14 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                 <p className="flex items-center gap-1">
                     رسوم الشحن
                 </p>
-                {
-                    cart?.items[0].express_shipping_price <= 0 ? <p className="text-green-500">مجانا</p> : <p>
-                        {
-                            cart?.items
-                                .reduce((sum, ele) => sum + ele.express_shipping_price, 0) ?? 0
-                        } {cart?.items[0]?.currency}
-                    </p>
-
-                }
+                0
             </div>
             <div className="flex justify-between items-center">
                 <p className="flex items-center gap-1">
                     خصم الكوبون
                 </p>
                 <p className="text-green-500">
-                    {cart?.items[0].offer_price ?? 0}
+                    0
                 </p>
 
             </div>
@@ -57,16 +46,13 @@ export default function CartProcess({ cart }: { cart: Cart }) {
                     </span>
                 </p>
                 <p className="">
-                    {
-                        cart?.items
-                            .reduce((sum, ele) => sum + ele.total, 0) ?? 0
-                    } {cart?.items[0]?.currency}
+                   0
                 </p>
 
             </div>
             <div className="mx-auto my-5">
 
-                <Button disabled={cart?.items.reduce((sum, ele) => sum + ele.total, 0) === undefined} className="rounded-none w-fit py-6 px-10 gap-4 text-2xl flex items-center cursor-pointer">
+                <Button  className="rounded-none w-fit py-6 px-10 gap-4 text-2xl flex items-center cursor-pointer">
                     <Link href="/CheckOut" className="flex items-center gap-4 ">
                         إتمام الشراء
                         <LucideArrowLeft className="size-6" />
@@ -76,3 +62,5 @@ export default function CartProcess({ cart }: { cart: Cart }) {
         </div>
     )
 }
+
+// disabled={cart?.items.reduce((sum, ele) => sum + ele.total, 0) === undefined}

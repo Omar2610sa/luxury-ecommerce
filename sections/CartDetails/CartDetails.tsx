@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { apiClient } from "@/services/useApiClient"
 import NoInfo from "@/components/NoInfo/NoInfo"
 import { CartCount } from "@/store/useCountCartStore"
+import NoCart from "@/components/NoCart/NoCart"
 
 
 export default function CartDetails({ cart }: { cart: Cart }) {
@@ -90,7 +91,7 @@ export default function CartDetails({ cart }: { cart: Cart }) {
 
 
     return (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-5">
             <div className="flex justify-between items-center">
                 <h3 className="text-2xl font-bold">
                     المنتجات المضافة
@@ -155,7 +156,7 @@ export default function CartDetails({ cart }: { cart: Cart }) {
             }
             {
                 !cart?.items && (
-                    <NoInfo title="لا يوجد منتجات مضافه الى السلة" />
+                    <NoCart title="لا يوجد منتجات مضافه الى السلة" decs="يبدو أنك لم تُضف أي شيء إلى سلة التسوق الخاصة بك حتى الآن." />
                 )
             }
         </div>
