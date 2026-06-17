@@ -250,3 +250,38 @@ export interface Slider {
     product_details: ProductDetail[]
     name: string
 }
+
+
+export interface Address {
+    id: number
+    street_address: string
+    country: {
+        id: number
+        name: string
+        currency: string
+        phone_code: number
+        flag: string
+        max_length: number
+        min_order_total: number
+    }
+    city: {
+        id: number
+        name: string
+    }
+    state: {
+        id: number
+        name: string
+    }
+    first_name: string
+    last_name: string
+    phone_code: string
+    phone: string
+    lat: string
+    lng: string
+    zip_code: string
+    is_default: boolean
+}
+
+export interface AddressData{
+    address : Address[]
+}

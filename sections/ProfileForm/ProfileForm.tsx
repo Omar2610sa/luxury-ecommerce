@@ -177,8 +177,9 @@ console.log(formik.initialValues)
                     {/* Phone with country code */}
                     <Field>
                         <Label htmlFor="phone">رقم الهاتف</Label>
-                        <div className="flex border border-primary border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
+                        <div className="flex  border-primary border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
                             <Select
+                            
                                 defaultValue={
                                     countries.find(c => c.phone_code === formik.values.phone_code)?.flag
                                 }
