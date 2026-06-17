@@ -128,7 +128,7 @@ const ProductImageCarousel = ({ mainImage, images }: Props) => {
                 setApi={setThumbApi}
                 opts={{ align: 'start', dragFree: true }}
                 orientation={isMobile ? 'horizontal' : 'vertical'}
-                className={`${isMobile ? "w-full flex justify-center" : "w-[80px] h-[700px] "}`}
+                className={`${isMobile ? "w-[90%] " : "w-[80px] h-[700px] "}`}
             >
                 <CarouselContent className="-mt-2 h-40 md:h-[750px]">
                     {allImages.map((image, index) => (

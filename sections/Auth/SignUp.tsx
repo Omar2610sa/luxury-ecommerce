@@ -124,7 +124,6 @@ export function SignUp() {
                 setOpen(false)
                 setOtpOpen(true)
             } else {
-                // هنا بييجي الـ error من الـ API
                 ErrorAlert(response?.message ?? "حدثت مشكلة")
             }
         },
@@ -133,10 +132,10 @@ export function SignUp() {
     return (
         <>
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger>
+                <DialogTrigger >
                     <MainButton text="انشاء حساب جديد" />
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md scrollbar-thumb-primary overflow-y-scroll max-h-[60vh]">
+                <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[60vh]">
                     <form onSubmit={formik.handleSubmit}>
                         <DialogHeader className="mb-3">
                             <DialogTitle className="text-lg">قم بإنشاء حسابك</DialogTitle>
