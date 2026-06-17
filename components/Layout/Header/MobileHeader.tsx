@@ -45,7 +45,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
     ]
 
     return (
-        <nav className="fixed sub bottom-0 end-0 start-0 w-full bg-white z-[100] drop-shadow-2xl md:hidden block">
+        <nav className="fixed sub bottom-0 end-0 start-0 w-full border-t bg-white z-[100] drop-shadow-2xl md:hidden block">
             <div className="py-2 px-3">
                 <div className="mini-links w-full flex items-center justify-around py-2">
                     {links.map((ele, index) => {
