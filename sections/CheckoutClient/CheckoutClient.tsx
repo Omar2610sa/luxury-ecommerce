@@ -8,7 +8,7 @@ import PaymentMethods from "@/sections/CheckOut/PaymentMethods"
 import OrderProcess from "@/sections/CheckOut/OrderProcess"
 import CartAddress from "@/sections/CheckOut/CartAddress"
 import OrderDetails from "@/sections/CheckOut/OrderDetails"
-import { AddressData, Cart } from "@/interfaces/interfaces"
+import { Address, Cart } from "@/interfaces/interfaces"
 import ShippingTypes from "../CheckOut/ShippingType"
 
 type PaymentMethod = "online" | "wallet" | "cash"
@@ -16,7 +16,7 @@ type ShippingType = "standard_shipping" | "express_shipping"
 
 type Props = {
     cart: Cart
-    Address: AddressData
+    Address: Address[]
 }
 
 export default function CheckoutClient({ cart, Address }: Props) {
@@ -41,19 +41,20 @@ export default function CheckoutClient({ cart, Address }: Props) {
         }
 
         const form = new FormData()
-        form.append("address_id", addressId)
+        form.append("address_id", addressId.toString())
         form.append("payment_type", paymentMethod)
         form.append("shipping_type", shippingType)
 
 
         cart.items.forEach((item, index) => {
-            form.append(`product_cart_ids[${index}]`, item.product_cart_id)
+            form.append(`product_cart_ids[${index}]`, item.product_cart_id.toString())
         })
 
         try {
             const response = await apiClient<{ status?: string; message?: string }>("orders", {
                 method: "POST",
-                body : form,
+                // apiClient expects a Record<string, unknown> for body; cast FormData accordingly
+                body: form as unknown as Record<string, unknown>,
             })
 
             if (response?.status === "success") {
