@@ -203,8 +203,8 @@ export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
                         </div>
                         <Slider
                             value={priceRange}
-                            onValueChange={handlePriceChange}
-                            onValueCommit={handlePriceCommit}
+                            // onValueChange={handlePriceChange}
+                            // onValueCommit={handlePriceCommit}
                             min={0}
                             max={200000}
                             step={1000}
