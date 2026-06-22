@@ -20,7 +20,7 @@ export default async function page({ params }: Props) {
         return (
                 <div className="container bg-[#F6F7FC]">
                                     <div className="flex items-center justify-between">
-                                        
+
                                     </div>
                     <h3 className="text-lg font-semibold text-primary">طلباتي</h3>
 
@@ -32,7 +32,7 @@ export default async function page({ params }: Props) {
                                 order?.map((ele, index) => {
                                     return (
                                         <div key={index}>
-                                            {ele?.status}
+                                            {/* {ele?.status} */}
                                         </div>
                                     )
                                 })
