@@ -1,7 +1,7 @@
 'use client'
 import { EditIcon, Trash2Icon } from "lucide-react"
 import { AddressDialog } from "../Address/AddressDialog"
-import { AddressData } from "@/interfaces/interfaces"
+import { Address, AddressData } from "@/interfaces/interfaces"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { apiClient } from "@/services/useApiClient"
@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Field, FieldContent, FieldLabel, FieldTitle } from "@/components/ui/field"
 
 type Props = {
-    Address: AddressData
+    Address: Address[]
     onChange: (id: number) => void
     selected: number | null
 }
