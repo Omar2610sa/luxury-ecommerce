@@ -1,5 +1,5 @@
 'use client'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { Dialog,DialogContent, DialogPortal } from '@/components/ui/dialog'
 import Image from 'next/image'
 import { createRoot } from 'react-dom/client'
 import SuccessIcon from '@/assets/icons/mdi_checkbox-marked-circle-outline.png' 
@@ -11,7 +11,7 @@ type Props = {
 function SuccessAlertComponent({ title }: Props) {
     return (
         <Dialog open={true}>
-            <DialogContent className="sm:max-w-sm flex flex-col items-center gap-6 py-10 animate-success-alert">
+            <DialogContent hideCloseButton className="sm:max-w-sm flex flex-col items-center gap-6 py-10 animate-success-alert">
                 <Image
                     src={SuccessIcon}
                     alt="success"
@@ -20,6 +20,7 @@ function SuccessAlertComponent({ title }: Props) {
                     className="object-contain"
                 />
                 <p className="text-center text-2xl font-medium">{title}</p>
+            <DialogPortal className="hidden" />
             </DialogContent>
         </Dialog>
     )
