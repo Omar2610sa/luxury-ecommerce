@@ -2,7 +2,12 @@
 import React, { useState } from "react";
 import GoogleMapReact from 'google-map-react';
 
-const Marker = () => (
+type MarkerProps = {
+    lat: number;
+    lng: number;
+};
+
+const Marker = ({ lat, lng }: MarkerProps) => (
     <div style={{
         position: 'absolute',
         transform: 'translate(-50%, -100%)',
@@ -32,7 +37,7 @@ export default function SimpleMap({ onLocationSelect }: SimpleMapProps) {
     return (
         <div style={{ height: '250px', width: '100%' }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY }}
+                bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || '' }}
                 defaultCenter={defaultProps.center}
                 defaultZoom={defaultProps.zoom}
                 onClick={handleClick}
