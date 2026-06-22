@@ -127,7 +127,8 @@ export function AddressDialog() {
 
     const selectedCountry = countries.find(c => c.id.toString() === (formik.values.country_id))
 
-    const handleCountryChange = async (countryId: string) => {
+    const handleCountryChange = (value: string | null) => {
+        const countryId = value ?? ""
         const country = countries.find(c => c.id.toString() === countryId)
 
         formik.setFieldValue("country_id", countryId)
@@ -137,17 +138,26 @@ export function AddressDialog() {
         setStates([])
         setCities([])
 
-        const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
-        setStates(res?.data ?? [])
+        if (!countryId) return
+
+        ;(async () => {
+            const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
+            setStates(res?.data ?? [])
+        })()
     }
 
-    const handleStateChange = async (stateId: string) => {
+    const handleStateChange = (value: string | null) => {
+        const stateId = value ?? ""
         formik.setFieldValue("state_id", stateId)
         formik.setFieldValue("city_id", "")
         setCities([])
 
-        const res = await apiClientGeneral<{ data?: City[] }>(`get_state_cities/${stateId}`, { method: "GET" })
-        setCities(res?.data ?? [])
+        if (!stateId) return
+
+        ;(async () => {
+            const res = await apiClientGeneral<{ data?: City[] }>(`get_state_cities/${stateId}`, { method: "GET" })
+            setCities(res?.data ?? [])
+        })()
     }
 
     return (
