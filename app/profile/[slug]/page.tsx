@@ -18,7 +18,12 @@ export default async function page({ params }: Props) {
     if (slug === "my-order") {
         const { data: order } = await serverApi<{ data: CartData[] }>("orders")
         return (
-            <>
+                <div className="container bg-[#F6F7FC]">
+                                    <div className="flex items-center justify-between">
+                                        
+                                    </div>
+                    <h3 className="text-lg font-semibold text-primary">طلباتي</h3>
+
                 {
                     order && (
 
@@ -27,7 +32,7 @@ export default async function page({ params }: Props) {
                                 order?.map((ele, index) => {
                                     return (
                                         <div key={index}>
-                                            <ShopCard product={ele as unknown as Product} />
+                                            {ele?.status}
                                         </div>
                                     )
                                 })
@@ -39,7 +44,7 @@ export default async function page({ params }: Props) {
                         <NoInfo title="لا يوجد طلب مسبق" decs="اذهب و تسوق الأن" />
                     )
                 }
-            </>
+            </div>
         )
     }
     if (slug === "cart") {

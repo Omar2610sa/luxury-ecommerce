@@ -43,19 +43,20 @@ export async function apiClient<T = unknown>(
         guestToken = uuidv4()
     }
 
+    const isFormData = body instanceof FormData  // ضيف دي هنا
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE}/api/client/${endpoint}`,
         {
             method,
             cache: "no-store",
             headers: {
-                "Content-Type": "application/json",
+                ...(!isFormData ? { "Content-Type": "application/json" } : {}),
                 "Accept": "application/json",
                 ...(token ? { Authorization: `Bearer ${token}` } : {}),
                 ...(guestToken ? { "Guest-Token": guestToken } : {}),
                 ...headers,
             },
-            ...(body ? { body: JSON.stringify(body) } : {}),
+            ...(body ? { body: isFormData ? body : JSON.stringify(body) } : {}),
         }
     )
 
