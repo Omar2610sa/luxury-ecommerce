@@ -61,3 +61,4 @@ type Options = {
     headers?: Record<string, string>
     next?: NextFetchRequestConfig
 }
+

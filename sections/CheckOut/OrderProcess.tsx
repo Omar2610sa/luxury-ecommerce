@@ -1,9 +1,8 @@
-import SecondButton from "@/components/Layout/SecondButton"
 import { Button } from "@/components/ui/button"
 import { Cart } from "@/interfaces/interfaces"
 import { LucideArrowLeft, } from "lucide-react"
 import Link from "next/link"
-export default function OrderProcess() {
+export default function OrderProcess({ cart }: { cart: Cart }) {
     return (
         <div className="flex flex-col gap-5 p-2">
             <h3 className="text-2xl font-bold">
@@ -14,12 +13,15 @@ export default function OrderProcess() {
                     <p className="flex items-center gap-1">
                         المجموع الفرعي
                         <span>
-                            (0)
+                            ({cart?.items.length ?? 0})
                             منتجات
                         </span>
                     </p>
                     <p>
-                        0
+                        {
+                            cart?.items
+                                .reduce((sum, ele) => sum + ele.total, 0) ?? 0
+                        } {cart?.items[0]?.currency ?? "جنية مصري"}
                     </p>
                 </div>
             </div>
@@ -27,14 +29,22 @@ export default function OrderProcess() {
                 <p className="flex items-center gap-1">
                     رسوم الشحن
                 </p>
-                0
+                {
+                    cart?.items[0].express_shipping_price <= 0 ? <p className="text-green-500">مجانا</p> : <p>
+                        {
+                            cart?.items
+                                .reduce((sum, ele) => sum + ele.express_shipping_price, 0) ?? 0
+                        } {cart?.items[0]?.currency}
+                    </p>
+
+                }
             </div>
             <div className="flex justify-between items-center">
                 <p className="flex items-center gap-1">
                     خصم الكوبون
                 </p>
                 <p className="text-green-500">
-                    0
+                    {cart?.items[0].offer_price ?? 0}
                 </p>
 
             </div>
@@ -46,16 +56,17 @@ export default function OrderProcess() {
                     </span>
                 </p>
                 <p className="">
-                   0
+                    {
+                        cart?.items
+                            .reduce((sum, ele) => sum + ele.total, 0) ?? 0
+                    } {cart?.items[0]?.currency}
                 </p>
-
             </div>
             <div className="mx-auto my-5">
 
-                <Button  className="rounded-none w-fit py-6 px-10 gap-4 text-2xl flex items-center cursor-pointer">
-                    <Link href="/CheckOut" className="flex items-center gap-4 ">
-                        إتمام الشراء
-                        <LucideArrowLeft className="size-6" />
+                <Button className="rounded-none w-fit py-6 px-10 gap-4 text-2xl flex items-center cursor-pointer">
+                    <Link href="" className="flex items-center gap-4 ">
+                        تأكيد الطلب
                     </Link>
                 </Button>
             </div>

@@ -238,6 +238,7 @@ export interface Cart {
             offer_price: number
             express_shipping_price: number
             currency: string
+            size : string
         }
     ]
 }

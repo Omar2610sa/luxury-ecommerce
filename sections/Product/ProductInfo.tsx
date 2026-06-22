@@ -20,7 +20,7 @@ export default async function ProductInfo({ product }: { product: Product }) {
     // const { data: review } = await serverApi<CartData>(`product/${product.id}/review`)
     const reviews = product.details[0].reviews ?? []
     const hasReviews = reviews.length > 0
-    const description = product.details[0]?? []
+    const description = product.details[0] ?? []
     // console.log(review)
     return (
         <div className="grid md:grid-cols-2 gap-5 items-start">
@@ -102,12 +102,17 @@ export default async function ProductInfo({ product }: { product: Product }) {
                                     </div>
                                 )
                             } */}
-                            <div className="flex justify-between items-center bg-gray-100 py-2 px-4">
-                                <p className="font-medium text-xl">
-                                    العلامة التجارية: {product.brand.title}
-                                </p>
-                                <Image src={product.brand.image.media} alt={product.brand.title} width={56} height={56} className="object-contain " />
-                            </div>
+                            {
+                                product.brand && (
+
+                                    <div className="flex justify-between items-center bg-gray-100 py-2 px-4">
+                                        <p className="font-medium text-xl">
+                                            العلامة التجارية: {product.brand.title}
+                                        </p>
+                                        <Image src={product.brand.image.media} alt={product.brand.title} width={56} height={56} className="object-contain " />
+                                    </div>
+                                )
+                            }
                         </div>
 
                         {/* Color & size */}
