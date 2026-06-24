@@ -303,5 +303,26 @@
     "rights": "All rights reserved © Club 2025",
     "privacy": "Privacy Policy",
     "terms": "Terms and Conditions"
+  },
+  "LoginDialog": {
+    "trigger": "Log in",
+    "title": "Sign in to your account",
+    "identifier": {
+      "label": "Email or phone",
+      "placeholder": "Enter your email or phone number"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter password"
+    },
+    "submit": "Log in",
+    "submitting": "Log in...",
+    "validation": {
+      "identifier_required": "Email or phone is required",
+      "identifier_invalid": "Enter a valid email or phone number",
+      "password_min": "Password must be at least 6 characters",
+      "password_required": "Password is required"
+    },
+    "success": "Logged in successfully"
   }
 }

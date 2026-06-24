@@ -4,11 +4,13 @@ import ProductsGridSkeleton from "@/components/ProductsGridSkeleton/ProductsGrid
 import CategoryProducts from "@/sections/CategoryProducts/CategoryProducts";
 import { Suspense } from "react";
 import { getTranslations } from 'next-intl/server';
+import { serverApi } from "@/services/serverApi";
+import { Category } from "@/interfaces/interfaces";
 
 type Props = {
   params: Promise<{
     lang: string;
-    id: number;
+    id: number | undefined;
   }>;
   searchParams: Promise<{
     sub_cat?: string;
@@ -32,9 +34,12 @@ export default async function page({ params, searchParams }: Props) {
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations({ locale: lang, namespace: 'Category' });
 
-  const { data: categories } = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/client/get_categories`
-  ).then((res) => res.json());
+  // const { data: categories } = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_BASE}/api/client/get_categories`
+  // ).then((res) => res.json());
+  const { data: categories } = await serverApi<{ data: Category[] }>(`get_categories`);
+
+  // get_categories
 
   const category = categories?.find((cat: { id: number }) => cat.id === Number(id));
 
@@ -46,12 +51,12 @@ export default async function page({ params, searchParams }: Props) {
       />
       <div className="grid md:grid-cols-[0.4fr_1fr] justify-center gap-5 items-center md:items-start">
         <div className="max-w-2xs">
-          <CategoryFilter subCategories={category?.sub_categories} />
+          <CategoryFilter subCategories={category?.sub_categories ?? []} />
         </div>
         <Suspense fallback={<ProductsGridSkeleton />} key={JSON.stringify(resolvedSearchParams)}>
           <CategoryProducts
             searchParams={resolvedSearchParams}
-            categoryId={category?.id}
+            categoryId={category?.id ?? 0}
           />
         </Suspense>
       </div>

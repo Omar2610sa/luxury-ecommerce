@@ -1,6 +1,8 @@
 "use client"
 import MainButton from "@/components/Layout/MainButton"
 import { Button } from "@/components/ui/button"
+import { useTranslations } from "next-intl"
+
 import {
     Dialog,
     DialogContent,
@@ -25,21 +27,9 @@ import { apiClient } from "@/services/useApiClient"
 
 
 
-const loginSchema = Yup.object({
-    identifier: Yup.string()
-        .required("البريد الإلكتروني أو رقم الهاتف مطلوب")
-        .test("email-or-phone", "أدخل بريد إلكتروني أو رقم هاتف صحيح", (value) => {
-            if (!value) return false
-            const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-            const isPhone = /^[1-9]/.test(value)
-            return isEmail || isPhone
-        }),
-    password: Yup.string()
-        .min(6, "كلمة المرور يجب أن تكون 6 أحرف على الأقل")
-        .required("كلمة المرور مطلوبة"),
-})
 
 export function LoginDialog() {
+    const t = useTranslations('LoginDialog')
     const [showPassword, setShowPassword] = useState(false)
     const [open, setOpen] = useState(false)
     const [successOpen, setSuccessOpen] = useState(false)
@@ -50,6 +40,19 @@ export function LoginDialog() {
     const router = useRouter()
 
 
+    const loginSchema = Yup.object({
+    identifier: Yup.string()
+        .required(t('validation.identifier_required'))
+        .test("email-or-phone", t('validation.identifier_invalid'), (value) => {
+            if (!value) return false
+            const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+            const isPhone = /^[1-9]/.test(value)
+            return isEmail || isPhone
+        }),
+    password: Yup.string()
+        .min(6, t('validation.password_min'))
+        .required(t('validation.password_required')),
+})
     const setUser = useAuthStore((state) => state.setUser)
 
 
@@ -77,7 +80,7 @@ export function LoginDialog() {
                     setOpen(false)
                     router.refresh()
                     setUser(response.data)
-                    SuccessAlert("تم تسجيل الدخول إلى حسابك بنجاح")
+                    SuccessAlert(t('success'))
                 }
             } catch (error) {
                 console.error("Login error:", error)
@@ -90,13 +93,13 @@ export function LoginDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger className="">
-                <MainButton text="تسجيل دخول" />
+                <MainButton text={t('trigger')} />
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <form onSubmit={formik.handleSubmit}>
                     <DialogHeader>
                         <DialogTitle className="text-lg mb-3 ">
-                            قم بتسجيل الدخول الي حسابك
+                            {t('title')}
                         </DialogTitle>
                     </DialogHeader>
 
@@ -104,13 +107,13 @@ export function LoginDialog() {
                         {/* Email or Phone */}
                         <Field>
                             <Label htmlFor="identifier">
-                                البريد الإلكتروني أو رقم الهاتف
+                                {t('identifier.label')}
                             </Label>
                             <Input
                                 id="identifier"
                                 name="identifier"
                                 type="text"
-                                placeholder="أدخل البريد الإلكتروني أو رقم الهاتف"
+                                placeholder={t('identifier.placeholder')}
                                 value={formik.values.identifier}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -130,7 +133,7 @@ export function LoginDialog() {
                                     id="password"
                                     name="password"
                                     type={showPassword ? "text" : "password"}
-                                    placeholder="إدخل كلمة السر"
+                                    placeholder={t('password.placeholder')}
                                     value={formik.values.password}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -162,7 +165,7 @@ export function LoginDialog() {
                             type="submit"
                             disabled={formik.isSubmitting}
                         >
-                            {formik.isSubmitting ? "جاري التسجيل..." : "تسجيل الدخول"}
+                            {formik.isSubmitting ? t('submitting') : t('submit')}
                         </Button>
                     </DialogFooter>
                 </form>

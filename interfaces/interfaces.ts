@@ -238,7 +238,7 @@ export interface Cart {
             offer_price: number
             express_shipping_price: number
             currency: string
-            size : string
+            size: string
         }
     ]
 }
@@ -283,6 +283,18 @@ export interface Address {
     is_default: boolean
 }
 
-export interface AddressData{
-    address : Address[]
+export interface AddressData {
+    address: Address[]
+}
+
+
+export interface Category {
+    id: number;
+    title: string;
+    sub_categories: SubCategory[];
+}
+
+export interface SubCategory {
+    id: number;
+    title: string;
 }
