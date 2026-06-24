@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/services/navigation"
+;
 
 
 export default function Banner({ banner }: { banner: { image: string, id: number } }) {

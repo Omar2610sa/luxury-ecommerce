@@ -9,10 +9,11 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import Link from "next/link";
+import { Link } from "@/services/navigation"
+;
 import Autoplay from "embla-carousel-autoplay";
 
-export default function Hero({ slider }: { slider: Slider[] }) {
+export default function Hero({ slider, shopNowText = "تسوق الآن" }: { slider: Slider[], shopNowText?: string }) {
     return (
         <div className="">
             <Carousel dir="ltr" opts={{ loop: true }} plugins={[Autoplay({
@@ -45,7 +46,7 @@ export default function Hero({ slider }: { slider: Slider[] }) {
                                         </p>
                                     </div>
                                     <Link href={`/slider/${slider.id}`} >
-                                        <SecondButton variant="secondary" text="تسوق الآن" />
+                                        <SecondButton variant="secondary" text={shopNowText} />
                                     </Link>
                                 </div>
                             </div>
@@ -59,3 +60,4 @@ export default function Hero({ slider }: { slider: Slider[] }) {
         </div>
     )
 }
+

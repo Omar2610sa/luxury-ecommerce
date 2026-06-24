@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PackagePlusIcon, ChevronLeft, HeartPlusIcon, WalletIcon, Globe, LogOut, ShoppingCart } from "lucide-react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/services/navigation"
+;
 
 const links = [
     {

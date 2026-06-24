@@ -1,6 +1,7 @@
 // components/Layout/Header/MobileTopHeader.tsx
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@/services/navigation"
+
 import { ChevronDownIcon,  } from "lucide-react"
 import {
     DropdownMenu,

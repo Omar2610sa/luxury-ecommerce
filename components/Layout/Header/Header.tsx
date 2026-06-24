@@ -1,53 +1,64 @@
-"use clinet"
 import HeaderLinks from "@/components/HeaderLinks/HeaderLinks";
-import { Bell, ChevronDownIcon, Heart, Mail, Phone, Search, ShoppingBasketIcon, User2Icon } from "lucide-react";
-import MainButton from "../MainButton";
+import { ChevronDownIcon, Mail, Phone, Search, User2Icon } from "lucide-react";
 import Image from "next/image";
-
 import logo from "@/assets/image 44 (2) (1) 2 (1).png"
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
+import { Link } from "@/services/navigation";
 import { LoginDialog } from "@/sections/Auth/LoginDialog";
 import { cookies } from "next/headers";
-import { Button } from "@/components/ui/button";
-import flag from "@/assets/icons/saudia.png"
-import flag2 from "@/assets/icons/english(3-5).svg"
 import { SignUp } from "@/sections/Auth/SignUp";
 import MobileHeader from "./MobileHeader";
 import MobileTopHeader from "./MobileHeaderTop";
 import FavouriteIcon from "@/components/FavoriteLink/FavLink";
 import CartLink from "@/components/FavoriteLink/CartLink";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { getTranslations } from 'next-intl/server';
 
 
-const menuItems = [
-    {
-        label: "تسوق حسب الفئات",
-        items: ["حقائب جلدية", "أحذية جلدية", "حزام جلدي"],
-    },
-    {
-        label: "منتجات الجلود الطبيعية",
-        items: ["حقائب جلدية", "أحذية جلدية", "حزام جلدي"],
-    },
-    {
-        label: "ملابس وأزياء الجلود الطبيعية",
-        items: ["جاكيت جلدي", "بنطلون جلدي", "تنورة جلدية"],
-    },
-    {
-        label: "الديكورات الجلدية",
-        items: ["إطارات صور", "وسائد جلدية", "سجادة جلدية"],
-    },
-    {
-        label: "ازياء السهرة",
-        items: ["فستان سهرة", "بدلة رسمية", "إكسسوارات سهرة"],
-    },
-]
+
 
 export default async function Header() {
     const token = (await cookies()).get('token_luxary')?.value ?? null
+    const t = await getTranslations('Header');
+const menuItems = [
+        {
+            label: t('menu.categories.label'),
+            items: [
+                t('menu.categories.items.0'),
+                t('menu.categories.items.1'),
+                t('menu.categories.items.2'),
+            ],
+        },
+        {
+            label: t('menu.naturalLeather.label'),
+            items: [
+                t('menu.naturalLeather.items.0'),
+                t('menu.naturalLeather.items.1'),
+                t('menu.naturalLeather.items.2'),
+            ],
+        },
+        {
+            label: t('menu.fashion.label'),
+            items: [
+                t('menu.fashion.items.0'),
+                t('menu.fashion.items.1'),
+                t('menu.fashion.items.2'),
+            ],
+        },
+        {
+            label: t('menu.decor.label'),
+            items: [
+                t('menu.decor.items.0'),
+                t('menu.decor.items.1'),
+                t('menu.decor.items.2'),
+            ],
+        },
+
+    ]
     return (
         <>
-            <header className="hidden md:flex flex-col border-b ">
+            <header className="hidden md:flex flex-col border-b shrink-0">
                 {/* Top Nav */}
                 <div className="bg-secondary flex justify-between items-center py-4 px-10">
                     {/* Phone & Email */}
@@ -65,9 +76,9 @@ export default async function Header() {
                 </div>
 
                 {/* Second Nav */}
-                <nav className="grid grid-cols-[3fr_1fr] items-start justify-between gap-15  py-6 px-4  " >
+                <nav className="grid grid-cols-[3fr_1.5fr] items-start justify-between gap-15  py-6 px-4  " >
 
-                    <div className="flex justify-between items-center gap-12">
+                    <div className="flex justify-between items-center gap-6">
 
                         {/* Logo */}
                         <Link href="/" className="shrink-0">
@@ -118,12 +129,13 @@ export default async function Header() {
                             <div className="flex gap-3 items-center shrink-0">
                                 <LoginDialog />
                                 <SignUp />
+                                <LanguageSwitcher />
                             </div>
                         )
                     }
                     {
                         token && (
-                            <div className="flex gap-3 items-center shrink-0">
+                            <div className="flex gap-5 items-center shrink-0">
                                 {/* Fav */}
                                 <FavouriteIcon />
                                 {/* notifation */}
@@ -133,24 +145,7 @@ export default async function Header() {
                                 {/* notifation */}
                                 <CartLink />
                                 {/* Language */}
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
-                                        <Image src={flag} alt="flag" className="size-7 ml-2 object-contain rounded-xs" />
-                                        العربية
-                                        <ChevronDownIcon className="size-3.5" />
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="start">
-                                        <DropdownMenuGroup>
-                                            <DropdownMenuItem>
-                                                <Image src={flag} alt="flag" className="size-7 ml-2 object-contain rounded-xs" />
-                                                العربية</DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Image src={flag2} alt="flag" className="size-7 ml-2 object-contain rounded-xs" />
-
-                                                الإنجليزية</DropdownMenuItem>
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                                <LanguageSwitcher />
                             </div>
                         )
                     }

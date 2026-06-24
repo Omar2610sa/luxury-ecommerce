@@ -2,7 +2,8 @@ import ProductImageCarousel from "@/components/ProductSwiper/ProductSwiper";
 import { Product } from "@/interfaces/interfaces";
 import Image from "next/image";
 import Star from "@/assets/icons/star.png";
-import Link from "next/link";
+import { Link } from "@/services/navigation"
+;
 import { ChevronLeftIcon, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";

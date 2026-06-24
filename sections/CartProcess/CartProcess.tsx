@@ -2,7 +2,8 @@ import SecondButton from "@/components/Layout/SecondButton"
 import { Button } from "@/components/ui/button"
 import { Cart } from "@/interfaces/interfaces"
 import { LucideArrowLeft, } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/services/navigation"
+
 export default function CartProcess({ cart }: { cart: Cart }) {
     return (
         <div className="flex flex-col gap-5 p-2">

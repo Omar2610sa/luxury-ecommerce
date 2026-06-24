@@ -7,12 +7,12 @@ import "swiper/css";
 import SecondButton from "@/components/Layout/SecondButton";
 import { MoveLeft } from "lucide-react";
 
-export default function NewEditions({ products }: { products: ForYou[] }) {
+export default function NewEditions({ products, title }: { products: ForYou[], title: string }) {
     return (
         <section className="container flex flex-col gap-5 py-10">
             {/* Title */}
             <h2 className="mb-6 sm:mb-10 text-center text-primary !text-2xl md:!text-3xl lg:!text-4xl">
-                أحدث الإصدارات
+                {title}
             </h2>
 
             {/* Swiper */}

@@ -1,17 +1,308 @@
 {
-  "Nav": {
-    "home": "الرئيسية",
-    "products": "المنتجات",
-    "about": "حول",
-    "contact": "اتصل بنا"
+  "Header": {
+    "email": "admin@gmail.com",
+    "phone": "+966102030405",
+    "searchPlaceholder": "البحث عن منتج",
+    "menu": {
+      "categories": {
+        "label": "تسوق حسب الفئات",
+        "items": [
+          "حقائب جلدية",
+          "أحذية جلدية",
+          "حزام جلدي"
+        ]
+      },
+      "naturalLeather": {
+        "label": "منتجات الجلود الطبيعية",
+        "items": [
+          "حقائب جلدية",
+          "أحذية جلدية",
+          "حزام جلدي"
+        ]
+      },
+      "fashion": {
+        "label": "ملابس وأزياء الجلود الطبيعية",
+        "items": [
+          "جاكيت جلدي",
+          "بنطلون جلدي",
+          "تنورة جلدية"
+        ]
+      },
+      "decor": {
+        "label": "الديكورات الجلدية",
+        "items": [
+          "إطارات صور",
+          "وسائد جلدية",
+          "سجادة جلدية"
+        ]
+      },
+      "evening": {
+        "label": "ازياء السهرة",
+        "items": [
+          "فستان سهرة",
+          "بدلة رسمية",
+          "إكسسوارات سهرة"
+        ]
+      }
+    }
+  },
+
+    "HeaderLinks": {
+    "faq": "الأسئلة الشائعة",
+    "returnPolicy": "سياسة الإسترجاع والخصوصية",
+    "support": "الدعم الفني"
   },
   "Auth": {
     "login": "دخول",
     "register": "إنشاء حساب",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "remember_me": "تذكر بيانات دخولي",
+    "forgot_password": "هل نسيت كلمة المرور؟",
+    "sign_in": "تسجيل الدخول",
+    "create_account": "إنشاء حساب جديد",
+    "already_have_account": "هل لديك حساب بالفعل؟",
+    "dont_have_account": "ليس لديك حساب؟",
+    "full_name": "الاسم الكامل",
+    "confirm_password": "تأكيد كلمة المرور",
+    "otp_code": "رمز التحقق",
+    "send_otp": "إرسال الرمز",
+    "verify": "تحقق",
+    "resend": "إعادة إرسال",
+    "invalid_credentials": "بيانات دخول غير صحيحة",
+    "account_created": "تم إنشاء الحساب بنجاح"
   },
   "Home": {
     "title": "مرحبا بك في متجرنا الفاخر",
-    "subtitle": "تسوق منتجاتنا الحصرية عالية الجودة"
+    "subtitle": "تسوق منتجاتنا الحصرية عالية الجودة",
+    "hero_button": "تسوق الآن",
+    "featured_products": "المنتجات المميزة",
+    "new_arrivals": "المنتجات الجديدة",
+    "best_sellers": "الأكثر مبيعاً",
+    "special_offers": "عروض خاصة",
+    "flash_deals": "عروض فلاش",
+    "shop_by_category": "تسوق حسب الفئة",
+    "view_all": "عرض الكل",
+    "select_options": "اختر الخيارات",
+    "products_for_you": "منتجات اختارناها لك"
+  },
+  "Product": {
+    "title": "المنتج",
+    "description": "الوصف",
+    "add_to_cart": "أضف إلى السلة",
+    "size": "الحجم",
+    "color": "اللون",
+    "price": "السعر",
+    "in_stock": "في المخزون",
+    "out_of_stock": "غير متوفر",
+    "quantity": "الكمية",
+    "recommended": "موصى به لك",
+    "also_may_like": "قد يعجبك أيضاً",
+    "specifications": "المواصفات",
+    "material": "المادة",
+    "dimensions": "الأبعاد",
+    "weight": "الوزن",
+    "sku": "رقم المنتج",
+    "reviews": "التقييمات",
+    "rating": "التقييم",
+    "write_review": "اكتب تقييم",
+    "share_product": "شارك المنتج",
+    "add_to_favorite": "أضف إلى المفضلة",
+    "compare": "مقارنة",
+    "available_now": "متاح الآن"
+  },
+  "Category": {
+    "title": "الفئة",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "no_results": "لا توجد نتائج",
+    "shop_by_categories": "تسوق حسب الفئات",
+    "natural_leather": "منتجات الجلود الطبيعية",
+    "fashion": "ملابس وأزياء الجلود الطبيعية",
+    "decorations": "الديكورات الجلدية",
+    "evening_wear": "ازياء السهرة",
+    "bags": "حقائب",
+    "shoes": "أحذية",
+    "belts": "أحزمة",
+    "jackets": "جاكيتات",
+    "pants": "بناطيل",
+    "skirts": "تنانير",
+    "sort_newest": "الأحدث",
+    "sort_price_low": "السعر: من الأقل إلى الأعلى",
+    "sort_price_high": "السعر: من الأعلى إلى الأقل",
+    "sort_popular": "الأكثر شهرة",
+    "filter_by_price": "تصفية حسب السعر",
+    "filter_by_color": "تصفية حسب اللون",
+    "filter_by_size": "تصفية حسب الحجم",
+    "items_found": "تم العثور على {count} منتج",
+    "subcategories": "الفئات الفرعية",
+    "apply_filters": "تطبيق التصفية",
+    "clear_filters": "مسح التصفية"
+  },
+  "Cart": {
+    "title": "السلة",
+    "empty_cart": "السلة فارغة",
+    "continue_shopping": "متابعة التسوق",
+    "checkout": "الدفع",
+    "total": "الإجمالي",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "tax": "الضريبة",
+    "discount": "الخصم",
+    "promo_code": "كود ترويجي",
+    "apply": "تطبيق",
+    "remove": "إزالة",
+    "quantity": "الكمية",
+    "price": "السعر",
+    "update_cart": "تحديث السلة",
+    "item_removed": "تم إزالة المنتج من السلة",
+    "item_added": "تم إضافة المنتج إلى السلة",
+    "estimated_total": "الإجمالي المتوقع",
+    "cart_total": "إجمالي السلة",
+    "free_shipping": "شحن مجاني",
+    "select_quantity": "اختر الكمية"
+  },
+  "Checkout": {
+    "title": "الدفع",
+    "confirm_order": "تأكيد الطلب",
+    "payment_method": "طريقة الدفع",
+    "shipping_address": "عنوان الشحن",
+    "billing_address": "عنوان الفواتير",
+    "credit_card": "بطاقة ائتمان",
+    "bank_transfer": "تحويل بنكي",
+    "cash_on_delivery": "الدفع عند الاستلام",
+    "order_summary": "ملخص الطلب",
+    "same_as_shipping": "نفس عنوان الشحن",
+    "different_billing": "عنوان مختلف للفواتير",
+    "first_name": "الاسم الأول",
+    "last_name": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "country": "الدولة",
+    "postal_code": "الرمز البريدي",
+    "order_placed": "تم تأكيد الطلب",
+    "order_number": "رقم الطلب",
+    "thank_you": "شكراً لك على شرائك",
+    "track_order": "تتبع الطلب",
+    "card_number": "رقم البطاقة",
+    "expiry_date": "تاريخ الانتهاء",
+    "cvv": "CVV",
+    "cardholder_name": "اسم صاحب البطاقة",
+    "shipping_method": "طريقة الشحن",
+    "standard_shipping": "شحن قياسي",
+    "express_shipping": "شحن سريع",
+    "overnight_shipping": "شحن ليلي"
+  },
+  "language": {
+    "ar": "العربية",
+    "en": "الانجليزية"
+  },
+  "Profile": {
+    "title": "ملفي الشخصي",
+    "edit_profile": "تعديل الملف الشخصي",
+    "my_orders": "طلباتي",
+    "logout": "تسجيل الخروج",
+    "account_settings": "إعدادات الحساب",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "country": "الدولة",
+    "postal_code": "الرمز البريدي",
+    "save_changes": "حفظ التغييرات",
+    "change_password": "تغيير كلمة المرور",
+    "current_password": "كلمة المرور الحالية",
+    "new_password": "كلمة المرور الجديدة",
+    "confirm_password": "تأكيد كلمة المرور",
+    "edit_info": "تعديل المعلومات",
+    "order_history": "سجل الطلبات",
+    "order_date": "تاريخ الطلب",
+    "order_status": "حالة الطلب",
+    "order_total": "إجمالي الطلب",
+    "view_details": "عرض التفاصيل",
+    "personal_info": "معلومات شخصية",
+    "first_name": "الاسم الأول",
+    "last_name": "الاسم الأخير",
+    "date_of_birth": "تاريخ الميلاد",
+    "gender": "الجنس",
+    "preferences": "التفضيلات",
+    "notifications": "الإخطارات"
+  },
+  "Favourite": {
+    "title": "المفضلة",
+    "empty_favorite": "لا توجد منتجات مفضلة",
+    "add_to_favorite": "أضف إلى المفضلة",
+    "remove_from_favorite": "أزل من المفضلة",
+    "saved_items": "العناصر المحفوظة",
+    "add_to_cart_from_favorite": "أضف إلى السلة من المفضلة",
+    "favorites_count": "عدد المفضلات: {count}"
+  },
+  "Common": {
+    "search": "البحث",
+    "search_products": "البحث عن منتج",
+    "email_address": "عنوان البريد الإلكتروني",
+    "phone_number": "رقم الهاتف",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "success": "تم بنجاح",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "close": "إغلاق",
+    "submit": "إرسال",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "confirm": "تأكيد",
+    "no": "لا",
+    "yes": "نعم",
+    "required_field": "هذا الحقل مطلوب",
+    "invalid_email": "البريد الإلكتروني غير صحيح",
+    "password_mismatch": "كلمات المرور غير متطابقة",
+    "something_went_wrong": "حدث شيء خاطئ",
+    "try_again": "حاول مجدداً",
+    "welcome": "مرحباً",
+    "goodbye": "إلى اللقاء",
+    "home": "الرئيسية",
+    "categories": "الأقسام",
+    "filters": "الفلاتر",
+    "results": "النتائج",
+    "no_data": "لا توجد بيانات",
+    "processing": "جاري المعالجة...",
+    "completed": "مكتمل",
+    "pending": "قيد الانتظار",
+    "failed": "فشل"
+  },
+  "Footer": {
+    "description": "أزياء صُنعت لك – أنيقة ودائماً في صميم الموضة. تسوق الإطلالات التي تحبها، في أي وقت وأي مكان.",
+    "email": "nourb.gmail.com",
+    "phone": "01123456789",
+    "address": "المنصورة (القسم 2)، أول المنصورة، الدقهلية، مصر",
+    "section": {
+      "title": "الأقسام",
+      "eveningFashion": "أزياء السهرة",
+      "leatherDecor": "الديكورات الجلدية",
+      "leatherClothing": "ملابس وأزياء الجلود الطبيعية",
+      "leatherProducts": "منتجات الجلود الطبيعية"
+    },
+    "help": {
+      "title": "المركز والمساعدة",
+      "home": "الرئيسية",
+      "faq": "الأسئلة الشائعة",
+      "howToBuy": "كيفية الشراء"
+    },
+    "newsletter": {
+      "title": "انضم إلى نشرتنا البريدية",
+      "placeholder": "أدخل بريدك الإلكتروني",
+      "subscribe": "اشترك"
+    },
+    "downloadApp": "حمّل التطبيق",
+    "rights": "جميع الحقوق محفوظة © كلوب 2025",
+    "privacy": "سياسة الخصوصية",
+    "terms": "الشروط والأحكام"
   }
 }

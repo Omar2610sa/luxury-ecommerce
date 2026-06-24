@@ -1,61 +1,30 @@
-import { ChevronDownIcon, DotIcon, Flag } from "lucide-react"
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Image from "next/image"
+import { getTranslations } from 'next-intl/server';
 
-import logo from "@/assets/icons/Flags.png"
 
-export default function HeaderLinks() {
+export default async function HeaderLinks() {
+    const t = await getTranslations('HeaderLinks');
+
     return (
         <Breadcrumb>
             <BreadcrumbList>
-
                 <BreadcrumbItem>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
-                            <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
-                            العربية
-                            <ChevronDownIcon className="size-3.5" />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start">
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem>
-                            <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
-                                    العربية</DropdownMenuItem>
-                                <DropdownMenuItem>
-                            <Image src={logo} alt="flag" className="w-3 h-3 object-cover rounded-xs" />
-                                    الإنجليزية</DropdownMenuItem>
-                            </DropdownMenuGroup>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </BreadcrumbItem>
-
-                <BreadcrumbSeparator>|</BreadcrumbSeparator>
-
-                <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">الأسئلة الشائعة</BreadcrumbLink>
+                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">{t("faq")}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator>|</BreadcrumbSeparator>
 
                 <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">سياسة الإسترجاع والخصوصية</BreadcrumbLink>
+                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">{t("returnPolicy")}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator>|</BreadcrumbSeparator>
                 <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">الدعم الفني</BreadcrumbLink>
+                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">{t("support")}</BreadcrumbLink>
                 </BreadcrumbItem>
             </BreadcrumbList>
         </Breadcrumb>

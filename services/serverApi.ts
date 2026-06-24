@@ -17,14 +17,17 @@ export async function serverApi<T = unknown>(
 
     const cookieStore = await cookies()
     let token: string | undefined
+    let Language: string | undefined
     let guestToken: string | undefined
 
     try {
         token = cookieStore.get("token_luxary")?.value
+        Language = cookieStore.get("NEXT_LOCALE")?.value || "ar"
         guestToken = await ensureGuestToken()
     } catch {
         token = undefined
-        guestToken = uuidv4() 
+        Language = "ar"
+        guestToken = uuidv4()
     }
 
     const res = await fetch(
@@ -35,7 +38,7 @@ export async function serverApi<T = unknown>(
                 "Content-Type": "application/json",
                 ...(token ? { Authorization: `Bearer ${token}` } : {}),
                 ...(guestToken ? { "Guest-Token": guestToken } : {}),
-                ...headers,
+                ...(headers ? { "Accept-Language": Language } : {}),
             },
             ...(body ? { body: JSON.stringify(body) } : {}),
             ...(next ? { next } : {}),

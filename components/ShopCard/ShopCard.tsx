@@ -10,8 +10,8 @@ import { Product } from "@/interfaces/interfaces"
 import { Star, ZapIcon } from "lucide-react"
 import Image from "next/image"
 import FavButton from "../FavHeart/FavHeart"
-import Link from "next/link"
 import AddShopCard from "../AddToCartButton/AddShopCard"
+import { Link } from "@/services/navigation"
 
 
 export default function ShopCard({ product }: { product: Product }) {
@@ -63,10 +63,10 @@ export default function ShopCard({ product }: { product: Product }) {
                             )
                         }
                     </div>
-                    <CardTitle className="text-lg font-bold text-right leading-snug line-clamp-2">
+                    <CardTitle className="text-lg font-bold  leading-snug line-clamp-2">
                         {product.title}
                     </CardTitle>
-                    <CardDescription className="text-xs font-thin text-right line-clamp-1">
+                    <CardDescription className="text-xs font-thin  line-clamp-1">
                         {product.short_desc}
                     </CardDescription>
                     {/* Price */}

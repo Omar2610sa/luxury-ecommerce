@@ -1,7 +1,8 @@
 'use client'
 
 import { Home, Search, ShoppingCartIcon, SparklesIcon, User2Icon } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/services/navigation"
+
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 

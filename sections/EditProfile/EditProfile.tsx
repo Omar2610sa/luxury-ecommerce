@@ -5,7 +5,8 @@ import SecondButton from "@/components/Layout/SecondButton";
 import { EditIcon } from "lucide-react";
 import ProfileForm from "@/sections/ProfileForm/ProfileForm";
 import { useAuthStore } from "@/store/useAuthStore";
-import Link from "next/link";
+import { Link } from "@/services/navigation"
+;
 
 export default function EditProfile() {
     const user = useAuthStore((state) => state.user)
