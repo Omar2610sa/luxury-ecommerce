@@ -1,0 +1,17 @@
+{
+  "Nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "Auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "Home": {
+    "title": "Welcome to Our Luxury Store",
+    "subtitle": "Shop our exclusive high-quality products"
+  }
+}
