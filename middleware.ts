@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
 
     // Set locale at cookies
     const cookiesStore = await cookies()
-    cookiesStore.set('NEXT_LOCALE', (cookiesStore.get("NEXT_LOCALE")?.value || (pathname.startsWith(`/en`) ? "en" : 'ar')) as Lang)
+    cookiesStore.set('NEXT_LOCALE', (cookiesStore.get("NEXT_LOCALE")?.value || (pathname.startsWith(`/ar`) ? "ar" : 'en')) as Lang)
     if (isProtected && !token) {
         return NextResponse.redirect(new URL('/', request.url))
     }

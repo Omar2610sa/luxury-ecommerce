@@ -16,31 +16,32 @@ import {
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { apiClient } from "@/services/useApiClient"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
+export default function ProfileForm({ profile }: { profile: Profile }) {
+    const t = useTranslations("Edit Profile")
 
+    const profileSchema = Yup.object({
+        name: Yup.string()
+            .min(3, t("validation.name_min"))
+            .required(t("validation.name_required")),
+        email: Yup.string()
+            .email(t("validation.email_invalid"))
+            .required(t("validation.email_required")),
+        phone: Yup.string()
+            .matches(/^[0-9]{7,15}$/, t("validation.phone_invalid"))
+            .required(t("validation.phone_required")),
+        phone_code: Yup.string().required(t("validation.phone_code_required")),
+        country_id: Yup.string().required(t("validation.country_required")),
+        date_of_birth: Yup.string().required(t("validation.dob_required")),
+        gender: Yup.string().required(t("validation.gender_required")),
+    })
 
-const profileSchema = Yup.object({
-    name: Yup.string()
-        .min(3, "الاسم يجب أن يكون 3 أحرف على الأقل")
-        .required("الاسم مطلوب"),
-    email: Yup.string()
-        .email("البريد الإلكتروني غير صحيح")
-        .required("البريد الإلكتروني مطلوب"),
-    phone: Yup.string()
-        .matches(/^[0-9]{7,15}$/, "رقم الهاتف غير صحيح")
-        .required("رقم الهاتف مطلوب"),
-    phone_code: Yup.string().required("كود الدولة مطلوب"),
-    country_id: Yup.string().required("الدولة مطلوبة"),
-    date_of_birth: Yup.string().required("تاريخ الميلاد مطلوب"),
-    gender: Yup.string().required("النوع مطلوب"),
-})
-
-export default function ProfileForm({ profile }: {profile : Profile}) {
     const [countries, setCountries] = useState<Country[]>([])
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/general/countries`)
-            .then(res => res.json())
-            .then(data => setCountries(data.data ?? []))
+            .then((res) => res.json())
+            .then((data) => setCountries(data.data ?? []))
     }, [])
 
     const formik = useFormik({
@@ -56,20 +57,24 @@ export default function ProfileForm({ profile }: {profile : Profile}) {
         validationSchema: profileSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await apiClient<{ data?: Profile }>("profile_edit", {
-                    method: "PUT",
-                    body: {
-                        name: formik.initialValues.name,
-                        email: formik.initialValues.email,
-                        phone: formik.initialValues.phone,
-                        country_id: formik.initialValues.country_id,
-                        phone_code: formik.initialValues.phone_code,
-                        date_of_birth: formik.initialValues.date_of_birth,
-                        gender: formik.initialValues.gender,
+                const response = await apiClient<{ data?: Profile }>(
+                    "profile_edit",
+                    {
+                        method: "PUT",
+                        body: {
+                            name: values.name,
+                            email: values.email,
+                            phone: values.phone,
+                            country_id: values.country_id,
+                            phone_code: values.phone_code,
+                            date_of_birth: values.date_of_birth,
+                            gender: values.gender,
+                        },
                     }
-                })
+                )
+
                 if (response.data) {
-                    SuccessAlert("تم تعديل البيانات بنجاح")
+                    SuccessAlert(t("success"))
                 }
             } catch (error) {
                 console.error("Profile edit error:", error)
@@ -78,23 +83,22 @@ export default function ProfileForm({ profile }: {profile : Profile}) {
             }
         },
     })
-console.log(formik.initialValues)
+
     const selectedCountry = countries.find(
-        c => c.id.toString() === formik.values.country_id
+        (c) => c.id.toString() === formik.values.country_id
     )
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldGroup>
                 <div className="grid md:grid-cols-2 gap-4">
-
                     {/* Full Name */}
                     <Field>
-                        <Label htmlFor="name">الاسم كامل</Label>
+                        <Label htmlFor="name">{t("fields.name")}</Label>
                         <Input
                             id="name"
                             name="name"
-                            placeholder="أدخل الاسم كامل"
+                            placeholder={t("placeholders.name")}
                             value={formik.values.name}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
@@ -106,30 +110,36 @@ console.log(formik.initialValues)
 
                     {/* Country */}
                     <Field>
-                        <Label>الدولة</Label>
+                        <Label>{t("fields.country")}</Label>
                         <Select
                             defaultValue={profile?.country?.name}
                             onValueChange={(value) => {
-                                const country = countries.find(c => c.id.toString() === value)
+                                const country = countries.find(
+                                    (c) => c.id.toString() === value
+                                )
                                 formik.setFieldValue("country_id", value)
-                                formik.setFieldValue("phone_code", country?.phone_code ?? "")
+                                formik.setFieldValue(
+                                    "phone_code",
+                                    country?.phone_code ?? ""
+                                )
                             }}
                         >
                             <SelectTrigger>
-                                <SelectValue placeholder="اختر الدولة">
+                                <SelectValue placeholder={t("placeholders.country")}>
                                     {selectedCountry && (
                                         <span className="flex items-center gap-2">
-
                                             <span>{selectedCountry.name}</span>
                                         </span>
                                     )}
                                 </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
-                                {countries.map(country => (
-                                    <SelectItem key={country.id} value={country.id.toString()}>
+                                {countries.map((country) => (
+                                    <SelectItem
+                                        key={country.id}
+                                        value={country.id.toString()}
+                                    >
                                         <span className="flex items-center gap-2">
-
                                             <span>{country.name}</span>
                                         </span>
                                     </SelectItem>
@@ -137,18 +147,20 @@ console.log(formik.initialValues)
                             </SelectContent>
                         </Select>
                         {formik.touched.country_id && formik.errors.country_id && (
-                            <p className="text-red-500 text-sm">{formik.errors.country_id}</p>
+                            <p className="text-red-500 text-sm">
+                                {formik.errors.country_id}
+                            </p>
                         )}
                     </Field>
 
                     {/* Email */}
                     <Field>
-                        <Label htmlFor="email">البريد الإلكتروني</Label>
+                        <Label htmlFor="email">{t("fields.email")}</Label>
                         <Input
                             id="email"
                             name="email"
                             type="email"
-                            placeholder="أدخل البريد الإلكتروني"
+                            placeholder={t("placeholders.email")}
                             value={formik.values.email}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
@@ -158,9 +170,9 @@ console.log(formik.initialValues)
                         )}
                     </Field>
 
-                    {/* date_of_birth */}
+                    {/* DOB */}
                     <Field>
-                        <Label htmlFor="date_of_birth">تاريخ الميلاد</Label>
+                        <Label htmlFor="date_of_birth">{t("fields.dob")}</Label>
                         <Input
                             id="date_of_birth"
                             name="date_of_birth"
@@ -170,29 +182,43 @@ console.log(formik.initialValues)
                             onBlur={formik.handleBlur}
                         />
                         {formik.touched.date_of_birth && formik.errors.date_of_birth && (
-                            <p className="text-red-500 text-sm">{formik.errors.date_of_birth}</p>
+                            <p className="text-red-500 text-sm">
+                                {formik.errors.date_of_birth}
+                            </p>
                         )}
                     </Field>
 
-                    {/* Phone with country code */}
+                    {/* Phone */}
                     <Field>
-                        <Label htmlFor="phone">رقم الهاتف</Label>
+                        <Label htmlFor="phone">{t("fields.phone")}</Label>
                         <div className="flex  border-primary border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
                             <Select
-                            
                                 defaultValue={
-                                    countries.find(c => c.phone_code === formik.values.phone_code)?.flag
+                                    countries.find(
+                                        (c) =>
+                                            c.phone_code === formik.values.phone_code
+                                    )?.flag
                                 }
                                 onValueChange={(value) => {
-                                    const country = countries.find(c => c.flag === value)
-                                    formik.setFieldValue("phone_code", country?.phone_code ?? "")
-                                    formik.setFieldValue("country_id", country?.id.toString() ?? "")
+                                    const country = countries.find(
+                                        (c) => c.flag === value
+                                    )
+                                    formik.setFieldValue(
+                                        "phone_code",
+                                        country?.phone_code ?? ""
+                                    )
+                                    formik.setFieldValue(
+                                        "country_id",
+                                        country?.id.toString() ?? ""
+                                    )
                                 }}
                             >
-
                                 <SelectContent>
-                                    {countries.map(country => (
-                                        <SelectItem key={country.id} value={country.flag}>
+                                    {countries.map((country) => (
+                                        <SelectItem
+                                            key={country.id}
+                                            value={country.flag}
+                                        >
                                             <span className="flex items-center gap-2">
                                                 <Image
                                                     width={20}
@@ -214,7 +240,7 @@ console.log(formik.initialValues)
                                 id="phone"
                                 name="phone"
                                 type="tel"
-                                placeholder="Phone Number"
+                                placeholder={t("placeholders.phone")}
                                 value={formik.values.phone}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -224,24 +250,23 @@ console.log(formik.initialValues)
                         {formik.touched.phone && formik.errors.phone && (
                             <p className="text-red-500 text-sm">{formik.errors.phone}</p>
                         )}
-                        {formik.touched.phone_code && formik.errors.phone_code && (
-                            <p className="text-red-500 text-sm">{formik.errors.phone_code}</p>
-                        )}
                     </Field>
 
                     {/* Gender */}
                     <Field>
-                        <Label>النوع</Label>
+                        <Label>{t("fields.gender")}</Label>
                         <Select
                             defaultValue={formik.values.gender}
-                            onValueChange={(value) => formik.setFieldValue("gender", value)}
+                            onValueChange={(value) =>
+                                formik.setFieldValue("gender", value)
+                            }
                         >
                             <SelectTrigger className="border border-primary">
-                                <SelectValue placeholder="اختر النوع" />
+                                <SelectValue placeholder={t("placeholders.gender")} />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="male">ذكر</SelectItem>
-                                <SelectItem value="female">انثى</SelectItem>
+                                <SelectItem value="male">{t("options.gender.male")}</SelectItem>
+                                <SelectItem value="female">{t("options.gender.female")}</SelectItem>
                             </SelectContent>
                         </Select>
                         {formik.touched.gender && formik.errors.gender && (
@@ -257,8 +282,9 @@ console.log(formik.initialValues)
                 className="rounded-none mx-auto w-fit my-5 md:my-3 py-3 px-4 gap-4 text-lg flex items-center cursor-pointer"
                 disabled={formik.isSubmitting}
             >
-                {formik.isSubmitting ? "جاري الحفظ..." : "Edit Profile"}
+                {formik.isSubmitting ? t("submitting") : t("submit")}
             </Button>
         </form>
     )
 }
+

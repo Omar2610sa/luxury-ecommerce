@@ -1,22 +1,12 @@
 // components/Layout/Header/MobileTopHeader.tsx
 import Image from "next/image"
 import { Link } from "@/services/navigation"
-
-import { ChevronDownIcon,  } from "lucide-react"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import logo from "@/assets/image 44 (2) (1) 2 (1).png"
-import flag from "@/assets/icons/saudia.png"
-import flag2 from "@/assets/icons/english(3-5).svg"
 import { LoginDialog } from "@/sections/Auth/LoginDialog"
 import { SignUp } from "@/sections/Auth/SignUp"
 import FavouriteIcon from "@/components/FavoriteLink/FavLink"
 import CartLink from "@/components/FavoriteLink/CartLink"
+import { LanguageSwitcher } from "@/components/LanguageSwitcher"
 
 type Props = {
     isLoggedIn: boolean
@@ -52,26 +42,7 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
 
                         }
                         {/* <MobileSearch /> */}
-
-                        {/* Language */}
-                        <DropdownMenu>
-                            <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
-                                <Image src={flag} alt="flag" className="size-6 object-contain rounded-xs" />
-                                <ChevronDownIcon className="size-3.5" />
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        <Image src={flag} alt="flag" className="size-6 ml-2 object-contain rounded-xs" />
-                                        العربية
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        <Image src={flag2} alt="flag" className="size-6 ml-2 object-contain rounded-xs" />
-                                        الإنجليزية
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <LanguageSwitcher />
                     </div>
 
                 </div>

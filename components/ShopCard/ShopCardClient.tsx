@@ -1,3 +1,4 @@
+"use client"
 import { Badge } from "@/components/ui/badge"
 import {
     Card,
@@ -12,10 +13,10 @@ import Image from "next/image"
 import FavButton from "../FavHeart/FavHeart"
 import AddShopCard from "../AddToCartButton/AddShopCard"
 import { Link } from "@/services/navigation"
-import { getTranslations } from "next-intl/server"
+import { useTranslations } from 'next-intl';
 
-export default async function ShopCard({ product }: { product: Product }) {
-    const t = await getTranslations('Shop Card');
+export default function ShopCardClient({ product }: { product: Product }) {
+    const t = useTranslations('Shop Card');
 
     return (
         <Card className="relative h-full max-w-sm md:max-w-xs rounded-none bg-gray-50/50 border-b p-0 group overflow-hidden">

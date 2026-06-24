@@ -7,15 +7,18 @@ import ProfileForm from "@/sections/ProfileForm/ProfileForm";
 import { useAuthStore } from "@/store/useAuthStore";
 import { Link } from "@/services/navigation"
 ;
+import { useTranslations } from 'next-intl';
+
 
 export default function EditProfile() {
+    const t = useTranslations('Edit Profile');
     const user = useAuthStore((state) => state.user)
 
     return (
         <Card className="container bg-[rgba(246,247,252,1)] rounded-lg">
             <CardContent className="p-0 space-y-4">
                 <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold">تعديل معلوماتك</h3>
+                    <h3 className="text-lg font-semibold">{t('title')}</h3>
                 </div>
 
                 {/* Header */}
@@ -34,7 +37,7 @@ export default function EditProfile() {
                         </div>
                     </div>
                     <Link href="/profile/change-password">
-                        <SecondButton text="تغيير كلمة السر" icon={EditIcon} />
+                        <SecondButton text={t('change_password')} icon={EditIcon} />
                     </Link>
                 </div>
                 {/* Form */}

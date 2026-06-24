@@ -6,7 +6,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { XIcon } from "lucide-react"
-
+import Cookies from 'js-cookie';
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
 }
@@ -47,6 +47,8 @@ function DialogContent({
 }: DialogPrimitive.Popup.Props & {
   hideCloseButton?: boolean
 }) {
+  const locale = Cookies.get('NEXT_LOCALE') ?? 'ar';
+  const isRTL = locale === 'ar';
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -65,7 +67,7 @@ function DialogContent({
             render={
               <Button
                 variant="outline"
-                className="absolute top-4 left-4"
+                className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'}`}
                 size="icon-sm"
               />
             }

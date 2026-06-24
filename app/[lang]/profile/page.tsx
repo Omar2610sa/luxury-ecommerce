@@ -16,10 +16,7 @@ export async function generateMetadata({ params }: ProfilePageProps) {
   };
 }
 
-export default async function page({
-  params,
-}: ProfilePageProps) {
-  const { lang } = await params;
+export default async function page() {
 
   return (
     <>

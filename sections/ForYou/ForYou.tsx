@@ -2,8 +2,12 @@ import SecondButton from "@/components/Layout/SecondButton";
 import ShopCard from "@/components/ShopCard/ShopCard";
 import type { Product } from "@/interfaces/interfaces";
 import { MoveLeft } from "lucide-react";
+import { getTranslations } from 'next-intl/server';
 
-export default function ForYouSection({ products, title }: { products: Product[]; title: string }) {
+
+export default async function ForYouSection({ products, title }: { products: Product[]; title: string }) {
+    const t = await getTranslations('View All');
+
     return (
         <section className="container flex flex-col gap-5 py-10">
             {/* Title */}
@@ -24,7 +28,7 @@ export default function ForYouSection({ products, title }: { products: Product[]
 
             {/* Btn */}
             <div className="mx-auto">
-                <SecondButton text="عرض الكل" icon={MoveLeft} />
+                <SecondButton text={t('Main')} icon={MoveLeft} />
             </div>
         </section>
     )

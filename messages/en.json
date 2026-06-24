@@ -199,6 +199,17 @@
     "express_shipping": "Express Shipping",
     "overnight_shipping": "Overnight Shipping"
   },
+  "FlashOffers": {
+  "flashSale": "Flash Sale",
+  "endsIn": "Ends in",
+  "currency": "EGP",
+  "products": {
+    "0": { "name": "Red Summer Dress 2024" },
+    "1": { "name": "Red Summer Dress 2024" },
+    "2": { "name": "Red Summer Dress 2024" },
+    "3": { "name": "Red Summer Dress 2024" }
+  }
+},
   "Profile": {
     "title": "My Profile",
     "edit_profile": "Edit Profile",
@@ -304,6 +315,55 @@
     "privacy": "Privacy Policy",
     "terms": "Terms and Conditions"
   },
+  "Account Setting": {
+    "account_title": "My Account",
+    "settings_title": "Account Settings",
+    "orders": "Your Orders",
+    "favorites": "Favorites",
+    "cart": "Shopping Cart",
+    "wallet": "My Wallet",
+    "logout": "Logout"
+  },
+  "Edit Profile": {
+    "title": "Edit Profile",
+    "change_password": "Change Password",
+    "fields": {
+      "name": "Full Name",
+      "country": "Country",
+      "email": "Email",
+      "dob": "Date of Birth",
+      "phone": "Phone Number",
+      "gender": "Gender"
+    },
+    "placeholders": {
+      "name": "Enter full name",
+      "country": "Select country",
+      "email": "Enter email",
+      "gender": "Select gender",
+      "phone": "Phone Number"
+    },
+    "options": {
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      }
+    },
+    "validation": {
+      "name_min": "Name must be at least 3 characters",
+      "name_required": "Name is required",
+      "email_invalid": "Email is not valid",
+      "email_required": "Email is required",
+      "phone_invalid": "Phone number is not valid",
+      "phone_required": "Phone number is required",
+      "phone_code_required": "Country code is required",
+      "country_required": "Country is required",
+      "dob_required": "Date of birth is required",
+      "gender_required": "Gender is required"
+    },
+    "submit": "Save Changes",
+    "submitting": "Saving...",
+    "success": "Profile updated successfully"
+  },
   "LoginDialog": {
     "trigger": "Log in",
     "title": "Sign in to your account",
@@ -324,5 +384,14 @@
       "password_required": "Password is required"
     },
     "success": "Logged in successfully"
+  },
+  "Shop Card": {
+    "discount": "Discount %{value}",
+    "popular": "Popular",
+    "trending": "Most Trending",
+    "outOfStock": "Out of Stock"
+  },
+  "View All": {
+    "Main": "View All"
   }
 }

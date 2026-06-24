@@ -1,13 +1,18 @@
 "use client"
-import ShopCard from "@/components/ShopCard/ShopCard";
 import { ForYou, Product } from "@/interfaces/interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import SecondButton from "@/components/Layout/SecondButton";
 import { MoveLeft } from "lucide-react";
+import ShopCardClient from "@/components/ShopCard/ShopCardClient";
+import { useTranslations } from 'next-intl';
+
+
 
 export default function NewEditions({ products, title }: { products: ForYou[], title: string }) {
+    const t = useTranslations('View All');
+
     return (
         <section className="container flex flex-col gap-5 py-10">
             {/* Title */}
@@ -34,7 +39,7 @@ export default function NewEditions({ products, title }: { products: ForYou[], t
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product.id} >
-                            <ShopCard product={product as unknown as Product} />
+                            <ShopCardClient product={product as unknown as Product} />
 
                         </SwiperSlide>
                     ))}
@@ -43,7 +48,7 @@ export default function NewEditions({ products, title }: { products: ForYou[], t
 
             {/* Btn */}
             <div className="mx-auto">
-                <SecondButton text="عرض الكل" icon={MoveLeft} />
+                <SecondButton text={t('Main')} icon={MoveLeft} />
             </div>
         </section>
     )

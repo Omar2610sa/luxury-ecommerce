@@ -46,8 +46,7 @@
       }
     }
   },
-
-    "HeaderLinks": {
+  "HeaderLinks": {
     "faq": "الأسئلة الشائعة",
     "returnPolicy": "سياسة الإسترجاع والخصوصية",
     "support": "الدعم الفني"
@@ -305,6 +304,55 @@
     "privacy": "سياسة الخصوصية",
     "terms": "الشروط والأحكام"
   },
+  "Account Setting": {
+    "account_title": "حسابك الشخصي",
+    "settings_title": "الإعدادات",
+    "orders": "طلباتك",
+    "favorites": "المفضلة",
+    "cart": "عربة التسوق",
+    "wallet": "محفظتي",
+    "logout": "تسجيل خروج"
+  },
+  "Edit Profile": {
+    "title": "تعديل ملفك ",
+    "change_password": "تغيير كلمة السر",
+    "fields": {
+      "name": "الاسم كامل",
+      "country": "الدولة",
+      "email": "البريد الإلكتروني",
+      "dob": "تاريخ الميلاد",
+      "phone": "رقم الهاتف",
+      "gender": "النوع"
+    },
+    "placeholders": {
+      "name": "أدخل الاسم كامل",
+      "country": "اختر الدولة",
+      "email": "أدخل البريد الإلكتروني",
+      "gender": "اختر النوع",
+      "phone": "رقم الهاتف"
+    },
+    "options": {
+      "gender": {
+        "male": "ذكر",
+        "female": "أنثى"
+      }
+    },
+    "validation": {
+      "name_min": "الاسم يجب أن يكون 3 أحرف على الأقل",
+      "name_required": "الاسم مطلوب",
+      "email_invalid": "البريد الإلكتروني غير صحيح",
+      "email_required": "البريد الإلكتروني مطلوب",
+      "phone_invalid": "رقم الهاتف غير صحيح",
+      "phone_required": "رقم الهاتف مطلوب",
+      "phone_code_required": "كود الدولة مطلوب",
+      "country_required": "الدولة مطلوبة",
+      "dob_required": "تاريخ الميلاد مطلوب",
+      "gender_required": "النوع مطلوب"
+    },
+    "submit": "حفظ التغييرات",
+    "submitting": "جاري الحفظ...",
+    "success": "تم تحديث الملف الشخصي بنجاح"
+  },
   "LoginDialog": {
     "trigger": "تسجيل دخول",
     "title": "قم بتسجيل الدخول إلى حسابك",
@@ -325,5 +373,31 @@
       "password_required": "كلمة المرور مطلوبة"
     },
     "success": "تم تسجيل الدخول إلى حسابك بنجاح"
+  },
+  "Shop Card": {
+    "discount": "خصم %",
+    "popular": "شائع",
+    "trending": "الأكثر شيوعاً",
+    "outOfStock": "غير متوفر"
+  },
+  "View All": "عرض الكل",
+  "FlashOffers": {
+    "flashSale": "بيع فلاش",
+    "endsIn": "ينتهي ب",
+    "currency": "جنيه",
+    "products": {
+      "0": {
+        "name": "فستان صيفي 2024 منقوش"
+      },
+      "1": {
+        "name": "فستان صيفي 2024 منقوش"
+      },
+      "2": {
+        "name": "فستان صيفي 2024 منقوش"
+      },
+      "3": {
+        "name": "فستان صيفي 2024 منقوش"
+      }
+    }
   }
 }

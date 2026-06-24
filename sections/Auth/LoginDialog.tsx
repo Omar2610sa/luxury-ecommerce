@@ -127,7 +127,9 @@ export function LoginDialog() {
 
                         {/* Password */}
                         <Field>
-                            <Label htmlFor="password">كلمة المرور</Label>
+                            <Label htmlFor="password">
+                                {t('password.label')}
+                                </Label>
                             <div className="relative">
                                 <Input
                                     id="password"

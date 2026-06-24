@@ -14,7 +14,6 @@ import {
 import { ChevronDownIcon } from 'lucide-react';
 import Image from 'next/image';
 
-// Import flags (adjust paths based on your assets)
 import flagAr from '@/assets/icons/saudia.png';
 import flagEn from '@/assets/icons/english(3-5).svg';
 
@@ -26,13 +25,13 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
   const currentLocale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
-  const t = useTranslations('language'); 
+  const t = useTranslations('language');
 
-  
+
   const languages = [
-  { code: 'ar', label: t('ar'), flag: flagAr },
-  { code: 'en', label: t('en'), flag: flagEn },
-];
+    { code: 'ar', label: t('ar'), flag: flagAr },
+    { code: 'en', label: t('en'), flag: flagEn },
+  ];
 
   const currentLanguage = languages.find(lang => lang.code === currentLocale);
 
@@ -45,7 +44,7 @@ export function LanguageSwitcher() {
   };
 
 
-  
+
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
@@ -54,7 +53,9 @@ export function LanguageSwitcher() {
           alt="flag"
           className="size-7 ml-2 object-contain rounded-xs"
         />
-        {currentLanguage?.label}
+        <span className='hidden md:block'>
+          {currentLanguage?.label}
+        </span>
         <ChevronDownIcon className="size-3.5" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">

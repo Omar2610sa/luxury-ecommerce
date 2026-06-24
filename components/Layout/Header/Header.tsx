@@ -92,7 +92,7 @@ const menuItems = [
                             <div className="relative w-full max-w-2xl">
                                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                                 <Input
-                                    placeholder="البحث عن منتج"
+                                    placeholder={t('searchPlaceholder')}
                                     className="pr-9 text-right"
 
                                 />
