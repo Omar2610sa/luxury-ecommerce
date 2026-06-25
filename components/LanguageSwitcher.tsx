@@ -47,7 +47,7 @@ export function LanguageSwitcher() {
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer">
+      <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer ">
         <Image
           src={currentLanguage?.flag}
           alt="flag"
@@ -58,7 +58,7 @@ export function LanguageSwitcher() {
         </span>
         <ChevronDownIcon className="size-3.5" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
+      <DropdownMenuContent align="start" >
         <DropdownMenuGroup>
           {languages.map((lang) => (
             <DropdownMenuItem

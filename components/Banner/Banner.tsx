@@ -6,7 +6,7 @@ import { Link } from "@/services/navigation"
 export default function Banner({ banner }: { banner: { image: string, id: number } }) {
     return (
         <Link href={`/slider/${banner?.id}`}>
-            <div className="relative container h-[150px] md:h-[450px] my-6  rounded-2xl">
+            <div className="relative container h-[180px] md:h-[450px] my-6  rounded-2xl">
                 <Image
                     src={banner?.image || ''}
                     alt="Banner"

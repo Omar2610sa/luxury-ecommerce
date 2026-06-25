@@ -76,8 +76,8 @@ export default function FlashOffers() {
                             <div className="p-2 pb-3">
                                 <p className="text-white mb-1.5">{product.name}</p>
                                 <p className="font-bold text-white text-xl flex items-center">
-                                    <span className="text-xs font-bold mr-2">{t('currency')}</span>
                                     {product.price}
+                                    <span className="text-xl font-bold mx-2">{t('currency')}</span>
                                 </p>
                             </div>
                         </div>
