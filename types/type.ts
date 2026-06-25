@@ -46,6 +46,7 @@ type Profile = {
     country_id: number
     date_of_birth: string
     gender: string
+    token? : string
 }
 
 type PropsProfile = {

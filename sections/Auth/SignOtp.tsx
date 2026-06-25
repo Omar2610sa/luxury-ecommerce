@@ -45,7 +45,7 @@ export function OtpDialog({ open, onOpenChange }: Props) {
         setError("")
 
         try {
-            const response = await apiClient<{ status?: string; message?: string }>("verify_Phone", {
+            const response = await apiClient<{data?: Profile , status?: string; message?: string ,  }>("verify_Phone", {
                 method: "POST",
                 body: {
                     phone: phone,
@@ -60,7 +60,7 @@ export function OtpDialog({ open, onOpenChange }: Props) {
             if (response?.status === "success") {
                 if (response?.data) {
                     const token = response.data?.token
-                    Cookies.set("token_luxary", token)
+                    Cookies.set("token_luxary", token ?? '')
                 }
                 onOpenChange(false)
                 SuccessAlert("تم التحقق من رقم الهاتف بنجاح")
