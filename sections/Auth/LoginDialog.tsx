@@ -95,7 +95,7 @@ export function LoginDialog() {
             <DialogTrigger className="">
                 <MainButton text={t('trigger')} />
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md" >
                 <form onSubmit={formik.handleSubmit}>
                     <DialogHeader>
                         <DialogTitle className="text-lg mb-3 ">

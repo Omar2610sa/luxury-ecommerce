@@ -46,7 +46,7 @@ export function LanguageSwitcher() {
 
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
       <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer ">
         <Image
           src={currentLanguage?.flag}
