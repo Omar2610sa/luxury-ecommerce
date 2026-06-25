@@ -1,7 +1,12 @@
+'use client'
 import Image from "next/image";
 import cartCard from "@/assets/icons/CartCar.png"
 import SecondButton from "../Layout/SecondButton";
+import { } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { Link } from "@/services/navigation";
 export default function NoCart({ title, decs }: { title: string, decs?: string }) {
+    const t = useTranslations()
     return (
         <div className="container flex justify-center items-center flex-col gap-5">
             <div>
@@ -15,7 +20,9 @@ export default function NoCart({ title, decs }: { title: string, decs?: string }
             <div className="text-center flex justify-center items-center flex-col gap-4">
                 <p className="text-2xl font-bold">{title}</p>
                 <p className="text-md text-gray-500">{decs}</p>
-                <SecondButton text="تسوق الأن" />
+                <Link href='/'>
+                    <SecondButton text={t('ShopNow')} />
+                </Link>
             </div>
         </div>
     )

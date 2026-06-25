@@ -228,6 +228,7 @@
       }
     }
   },
+  "ShopNow" : "Shop Now",
   "Profile": {
     "title": "My Profile",
     "edit_profile": "Edit Profile",
