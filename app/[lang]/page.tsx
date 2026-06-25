@@ -8,6 +8,8 @@ import FlashOffers from "@/sections/Flash_offers/FlashOffers";
 import { serverApi } from "@/services/serverApi";
 import { HomeData } from "@/interfaces/interfaces";
 import { getTranslations } from 'next-intl/server';
+import logo from "@/assets/logo.svg"
+
 
 interface HomePageProps {
   params: Promise<{
@@ -19,10 +21,14 @@ export async function generateMetadata({
   params,
 }: HomePageProps): Promise<Metadata> {
   const { lang } = await params;
-const t = await getTranslations({ locale: lang, namespace: 'Home' })
+  const t = await getTranslations({ locale: lang, namespace: 'Home' })
   return {
     title: t('title'),
     description: t('subtitle'),
+    icons: {
+      icon: logo.src,
+    },
+
   };
 }
 

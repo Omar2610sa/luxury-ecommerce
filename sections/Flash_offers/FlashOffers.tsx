@@ -48,7 +48,7 @@ export default function FlashOffers() {
                     {/* Countdown */}
                     <div className="flex flex-col gap-2.5 md:flex-row md:items-center gap-4 text-lg font-semibold text-white">
                         <div className="flex justify-between">
-                            <span>{t('endsIn')}</span>
+                            <span className='md:px-3 text-xl'>{t('endsIn')}</span>
                             <div className="flex gap-2">
                                 <div className="bg-black size-10 flex items-center justify-center p-1 rounded text-xl font-bold text-center">
                                     {pad(hours)}
