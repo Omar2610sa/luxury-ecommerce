@@ -1,5 +1,7 @@
 "use client"
 import { useState } from "react"
+import { useTranslations } from 'next-intl';
+
 import { Checkbox } from "@/components/ui/checkbox"
 import { Field, FieldContent, FieldLabel, FieldTitle } from "@/components/ui/field"
 import paymentOne from "@/assets/paycar.png"
@@ -10,18 +12,21 @@ import Image from "next/image"
 
 type PaymentMethod = "online" | "wallet" | "cash"
 
-const methods: { key: PaymentMethod; label: string; images: any[] }[] = [
-    { key: "online", label: "الدفع المباشر", images: [paymentTwo, paymentOne] },
-    { key: "wallet", label: "قسمها إلى 4 أقساط.", images: [paymentThree] },
-    { key: "cash", label: "الدفع عند الاستلام", images: [paymentFour] },
-]
-
 type Props = {
     onChange: (method: PaymentMethod) => void
 }
 
 export default function PaymentMethods({ onChange }: Props) {
+    const t = useTranslations('Checkout');
+
     const [selected, setSelected] = useState<PaymentMethod | null>(null)
+
+    const methods: { key: PaymentMethod; label: string; images: string[] }[] = [
+        { key: "online", label: t('cash_online_label'), images: [paymentTwo, paymentOne] },
+        { key: "wallet", label: t('cash_wallet_label'), images: [paymentThree] },
+        { key: "cash", label: t('cash_on_delivery_label'), images: [paymentFour] },
+    ]
+
 
     const handleSelect = (key: PaymentMethod) => {
         setSelected(key)
@@ -30,7 +35,8 @@ export default function PaymentMethods({ onChange }: Props) {
 
     return (
         <div className="flex flex-col gap-5 p-8 bg-[#F9F9F9]">
-            <h3 className="text-2xl font-bold">طريقة الدفع</h3>
+            <h3 className="text-2xl font-bold">{t('payment_method')}</h3>
+
             <div className="flex flex-col gap-4">
                 {methods.map(({ key, label, images }) => (
                     <FieldLabel

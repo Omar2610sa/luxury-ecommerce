@@ -1,8 +1,14 @@
-- [x] Update AccountSettings component translations.
-- [ ] Update EditProfile section to use `useTranslations` for UI strings.
-- [ ] Update ProfileForm to use `useTranslations` for labels, placeholders, buttons, and validation messages.
-- [ ] Add i18n namespace for EditProfile/ProfileForm to `messages/en.json` and `messages/ar.json`.
-- [ ] Ensure JSON validity and no missing keys.
+# TODO - Checkout Translation
 
+- [x] Replace hardcoded Arabic strings in checkout components with `useTranslations('Checkout')`
+  - [ ] sections/CheckoutClient/CheckoutClient.tsx
+  - [ ] sections/CheckOut/CartAddress.tsx
+  - [ ] sections/CheckOut/PaymentMethods.tsx
+  - [ ] sections/CheckOut/ShippingType.tsx
+  - [ ] sections/CheckOut/OrderDetails.tsx
+  - [ ] sections/CheckOut/OrderProcess.tsx
+- [ ] Update `messages/en.json` with missing `Checkout` keys
+- [ ] Update `messages/ar.json` with matching `Checkout` keys
+- [ ] Ensure no new files created and no commands executed
 
 

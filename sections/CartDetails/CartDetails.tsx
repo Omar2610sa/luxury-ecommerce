@@ -11,6 +11,7 @@ import NoInfo from "@/components/NoInfo/NoInfo"
 import { CartCount } from "@/store/useCountCartStore"
 import NoCart from "@/components/NoCart/NoCart"
 import { useTranslations } from 'next-intl';
+import { count } from "console"
 
 
 export default function CartDetails({ cart, lang }: { cart: Cart; lang: string }) {
@@ -30,7 +31,7 @@ export default function CartDetails({ cart, lang }: { cart: Cart; lang: string }
             })
 
             if (response) {
-            SuccessAlert(t('itemDeleted'))  // ✅
+            SuccessAlert(t('itemDeleted'))  
                 router.refresh()
             } else {
                 console.error("Delete failed:", response)
@@ -57,6 +58,7 @@ export default function CartDetails({ cart, lang }: { cart: Cart; lang: string }
 
             if (response) {
                 router.refresh()
+                decrement()
             } else {
                 console.error("Delete failed:", response)
             }

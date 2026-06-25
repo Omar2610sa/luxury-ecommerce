@@ -28,6 +28,7 @@ import { apiClientGeneral } from "@/services/useApiClientGeneral"
 import GoogleMap from "@/components/GoogleMap/GoogleMap"
 import SimpleMap from "@/components/GoogleMap/GoogleMap"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 type Country = {
     id: number
@@ -46,31 +47,33 @@ type City = {
     name: string
 }
 
-const addressSchema = Yup.object({
-    first_name: Yup.string().min(2, "الاسم الأول يجب أن يكون حرفين على الأقل").required("الاسم الأول مطلوب"),
-    last_name: Yup.string().min(2, "اسم العائلة يجب أن يكون حرفين على الأقل").required("اسم العائلة مطلوب"),
-    country_id: Yup.string().required("الدولة مطلوبة"),
-    state_id: Yup.string().required("المنطقة مطلوبة"),
-    city_id: Yup.string().required("المدينة مطلوبة"),
-    street_address: Yup.string().min(5, "العنوان يجب أن يكون 5 أحرف على الأقل").required("العنوان مطلوب"),
-    phone: Yup.string()
-        .matches(/^[0-9]{7,15}$/, "رقم الهاتف غير صحيح")
-        .required("رقم الهاتف مطلوب"),
-    zip_code: Yup.string().required("الرمز البريدي مطلوب"),
-    is_default: Yup.boolean(),
-})
 
 export function AddressDialog() {
     const [open, setOpen] = useState(false)
     const [countries, setCountries] = useState<Country[]>([])
     const [states, setStates] = useState<StateType[]>([])
     const [cities, setCities] = useState<City[]>([])
+    const t = useTranslations('AddressDialog')
+
     const router = useRouter()
     useEffect(() => {
         if (!open) return
         apiClientGeneral<{ data?: Country[] }>("countries", { method: "GET" })
             .then(res => setCountries(res?.data ?? []))
     }, [open])
+
+    const addressSchema = Yup.object({
+        first_name: Yup.string().min(2, t('validation.firstName.min')).required(t('validation.firstName.required')),
+        last_name: Yup.string().min(2, t('validation.lastName.min')).required(t('validation.lastName.required')),
+        country_id: Yup.string().required(t('validation.country.required')),
+        state_id: Yup.string().required(t('validation.state.required')),
+        city_id: Yup.string().required(t('validation.city.required')),
+        street_address: Yup.string().min(5, t('validation.street.min')).required(t('validation.street.required')),
+        phone: Yup.string().matches(/^[0-9]{7,15}$/, t('validation.phone.invalid')).required(t('validation.phone.required')),
+        zip_code: Yup.string().required(t('validation.zip.required')),
+        is_default: Yup.boolean(),
+    })
+
 
     const formik = useFormik({
         initialValues: {
@@ -138,9 +141,9 @@ export function AddressDialog() {
         setStates([])
         setCities([])
 
-            if (!countryId) return
+        if (!countryId) return
 
-            ;(async () => {
+            ; (async () => {
                 const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
                 setStates(res?.data ?? [])
             })()
@@ -154,36 +157,36 @@ export function AddressDialog() {
 
         if (!stateId) return
 
-        ;(async () => {
-            const res = await apiClientGeneral<{ data?: City[] }>(`get_state_cities/${stateId}`, { method: "GET" })
-            setCities(res?.data ?? [])
-        })()
+            ; (async () => {
+                const res = await apiClientGeneral<{ data?: City[] }>(`get_state_cities/${stateId}`, { method: "GET" })
+                setCities(res?.data ?? [])
+            })()
     }
 
-    return (
+return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger className="bg-primary text-primary-foreground text-xl  p-3 hover:bg-primary/40 hover:text-white cursor-pointer w-full">
-                إضافه عنوان جديد
+            <DialogTrigger className="bg-primary text-primary-foreground text-xl p-3 hover:bg-primary/40 hover:text-white cursor-pointer w-full">
+                {t('trigger')}
             </DialogTrigger>
             <DialogContent className="sm:max-w-3xl scrollbar-thumb-primary overflow-y-scroll h-[90vh]">
                 <form onSubmit={formik.handleSubmit}>
                     <DialogHeader className="mb-5">
-                        <DialogTitle className="text-2xl my-3 mx-auto">إضافه عنوان جديد</DialogTitle>
+                        <DialogTitle className="text-2xl my-3 mx-auto">{t('title')}</DialogTitle>
                     </DialogHeader>
 
                     <FieldGroup className="grid grid-cols-2 gap-4">
-                        {/* الدولة */}
+                        {/* Country */}
                         <Field>
-                            <Label>الدولة</Label>
+                            <Label>{t('fields.country.label')}</Label>
                             <Select value={countries.find(c => c.id.toString() === formik.values.country_id)?.name} onValueChange={handleCountryChange}>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="اختر الدولة" >
+                                    <SelectValue placeholder={t('fields.country.placeholder')}>
                                         {countries.find(c => c.id.toString() === formik.values.country_id)?.name}
                                     </SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {countries.map(country => (
-                                        <SelectItem key={country.id} value={country.id.toString()}  >
+                                        <SelectItem key={country.id} value={country.id.toString()}>
                                             {country.name}
                                         </SelectItem>
                                     ))}
@@ -194,16 +197,12 @@ export function AddressDialog() {
                             )}
                         </Field>
 
-                        {/* المنطقة */}
+                        {/* State */}
                         <Field>
-                            <Label>المنطقة</Label>
-                            <Select
-                                value={states.find(c => c.id.toString() === formik.values.state_id)?.name}
-                                onValueChange={handleStateChange}
-                                disabled={!formik.values.country_id}
-                            >
+                            <Label>{t('fields.state.label')}</Label>
+                            <Select value={states.find(c => c.id.toString() === formik.values.state_id)?.name} onValueChange={handleStateChange} disabled={!formik.values.country_id}>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="اختر المنطقة" >
+                                    <SelectValue placeholder={t('fields.state.placeholder')}>
                                         {states.find(c => c.id.toString() === formik.values.state_id)?.name}
                                     </SelectValue>
                                 </SelectTrigger>
@@ -219,20 +218,14 @@ export function AddressDialog() {
                                 <p className="text-red-500 text-sm">{formik.errors.state_id}</p>
                             )}
                         </Field>
-
                     </FieldGroup>
 
-                    {/* المدينة */}
+                    {/* City */}
                     <Field>
-                        <Label>المدينة</Label>
-
-                        <Select
-                            value={formik.values.city_id}
-                            onValueChange={(value) => formik.setFieldValue("city_id", value)}
-                            disabled={!formik.values.state_id}
-                        >
+                        <Label>{t('fields.city.label')}</Label>
+                        <Select value={formik.values.city_id} onValueChange={(value) => formik.setFieldValue("city_id", value)} disabled={!formik.values.state_id}>
                             <SelectTrigger>
-                                <SelectValue placeholder="اختر المدينة" >
+                                <SelectValue placeholder={t('fields.city.placeholder')}>
                                     {cities.find(c => c.id.toString() === formik.values.city_id)?.name}
                                 </SelectValue>
                             </SelectTrigger>
@@ -248,13 +241,14 @@ export function AddressDialog() {
                             <p className="text-red-500 text-sm">{formik.errors.city_id}</p>
                         )}
                     </Field>
+
                     <FieldGroup className="grid grid-cols-2 gap-4 mt-5">
+                        {/* First Name */}
                         <Field>
-                            <Label htmlFor="first_name">الاسم الأول</Label>
+                            <Label htmlFor="first_name">{t('fields.firstName.label')}</Label>
                             <Input
-                                id="first_name"
-                                name="first_name"
-                                placeholder="أدخل الاسم الأول"
+                                id="first_name" name="first_name"
+                                placeholder={t('fields.firstName.placeholder')}
                                 value={formik.values.first_name}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -264,12 +258,12 @@ export function AddressDialog() {
                             )}
                         </Field>
 
+                        {/* Last Name */}
                         <Field>
-                            <Label htmlFor="last_name">اسم العائلة</Label>
+                            <Label htmlFor="last_name">{t('fields.lastName.label')}</Label>
                             <Input
-                                id="last_name"
-                                name="last_name"
-                                placeholder="أدخل اسم العائلة"
+                                id="last_name" name="last_name"
+                                placeholder={t('fields.lastName.placeholder')}
                                 value={formik.values.last_name}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -280,20 +274,14 @@ export function AddressDialog() {
                         </Field>
                     </FieldGroup>
 
-                    {/* الهاتف */}
+                    {/* Phone */}
                     <Field className="mt-5">
-                        <Label htmlFor="phone">رقم الهاتف</Label>
+                        <Label htmlFor="phone">{t('fields.phone.label')}</Label>
                         <div className="flex border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
                             <div className="flex items-center gap-2 px-3 bg-muted text-sm whitespace-nowrap">
                                 {selectedCountry ? (
                                     <>
-                                        <Image
-                                            width={20}
-                                            height={14}
-                                            src={selectedCountry.flag}
-                                            alt={selectedCountry.name}
-                                            className="w-5 h-3.5 object-cover rounded-sm"
-                                        />
+                                        <Image width={20} height={14} src={selectedCountry.flag} alt={selectedCountry.name} className="w-5 h-3.5 object-cover rounded-sm" />
                                         <span>{selectedCountry.phone_code}</span>
                                     </>
                                 ) : (
@@ -302,10 +290,8 @@ export function AddressDialog() {
                             </div>
                             <div className="w-px bg-border self-stretch" />
                             <Input
-                                id="phone"
-                                name="phone"
-                                type="tel"
-                                placeholder="أدخل رقم الهاتف"
+                                id="phone" name="phone" type="tel"
+                                placeholder={t('fields.phone.placeholder')}
                                 value={formik.values.phone}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -318,12 +304,12 @@ export function AddressDialog() {
                     </Field>
 
                     <FieldGroup className="grid grid-cols-2 gap-4 mt-5">
+                        {/* Street */}
                         <Field>
-                            <Label htmlFor="street_address">العنوان</Label>
+                            <Label htmlFor="street_address">{t('fields.street.label')}</Label>
                             <Input
-                                id="street_address"
-                                name="street_address"
-                                placeholder="أدخل العنوان بالتفصيل"
+                                id="street_address" name="street_address"
+                                placeholder={t('fields.street.placeholder')}
                                 value={formik.values.street_address}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -333,12 +319,12 @@ export function AddressDialog() {
                             )}
                         </Field>
 
+                        {/* Zip */}
                         <Field>
-                            <Label htmlFor="zip_code">الرمز البريدي</Label>
+                            <Label htmlFor="zip_code">{t('fields.zip.label')}</Label>
                             <Input
-                                id="zip_code"
-                                name="zip_code"
-                                placeholder="أدخل الرمز البريدي"
+                                id="zip_code" name="zip_code"
+                                placeholder={t('fields.zip.placeholder')}
                                 value={formik.values.zip_code}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -348,34 +334,28 @@ export function AddressDialog() {
                             )}
                         </Field>
                     </FieldGroup>
-                    <Field className="my-8">
-                        <SimpleMap
-                            onLocationSelect={(lat, lng) => {
-                                formik.setFieldValue("lat", lat);
-                                formik.setFieldValue("lng", lng);
-                            }}
-                        />
 
+                    <Field className="my-8">
+                        <SimpleMap onLocationSelect={(lat, lng) => {
+                            formik.setFieldValue("lat", lat)
+                            formik.setFieldValue("lng", lng)
+                        }} />
                     </Field>
+
+                    {/* Is Default */}
                     <Field className="mt-5 flex flex-row justify-start">
                         <Input
-                            id="is_default"
-                            name="is_default"
-                            type="checkbox"
+                            id="is_default" name="is_default" type="checkbox"
                             checked={formik.values.is_default}
                             onChange={formik.handleChange}
                             className="h-4 w-4"
                         />
-                        <Label htmlFor="is_default">تعيين كعنوان افتراضي</Label>
+                        <Label htmlFor="is_default">{t('fields.isDefault')}</Label>
                     </Field>
 
                     <DialogFooter className="mt-6">
-                        <Button
-                            className="w-full cursor-pointer"
-                            type="submit"
-                            disabled={formik.isSubmitting}
-                        >
-                            {formik.isSubmitting ? "جاري الإضافة..." : "إضافة عنوان"}
+                        <Button className="w-full cursor-pointer" type="submit" disabled={formik.isSubmitting}>
+                            {formik.isSubmitting ? t('submitting') : t('submit')}
                         </Button>
                     </DialogFooter>
                 </form>

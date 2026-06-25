@@ -1,5 +1,7 @@
 "use client"
 import { useState } from "react"
+import { useTranslations } from 'next-intl';
+
 import { useRouter } from "next/navigation"
 import { apiClient } from "@/services/useApiClient"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
@@ -20,7 +22,9 @@ type Props = {
 }
 
 export default function CheckoutClient({ cart, Address }: Props) {
+    const t = useTranslations('Checkout');
     const router = useRouter()
+
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null)
     const [shippingType, setShippingType] = useState<ShippingType | null>(null)
     const [addressId, setAddressId] = useState<number | null>(
@@ -28,15 +32,18 @@ export default function CheckoutClient({ cart, Address }: Props) {
     )
     const handleOrder = async () => {
         if (!paymentMethod) {
-            ErrorAlert("اختر طريقة الدفع")
+            ErrorAlert(t('choose_payment_method'))
+
             return
         }
         if (!addressId) {
-            ErrorAlert("اختر عنوان الشحن")
+            ErrorAlert(t('choose_shipping_address'))
+
             return
         }
         if (!shippingType) {
-            ErrorAlert("اختر طريقة الشحن")
+            ErrorAlert(t('choose_shipping_method'))
+
             return
         }
 
@@ -58,15 +65,17 @@ export default function CheckoutClient({ cart, Address }: Props) {
             })
 
             if (response?.status === "success") {
-                SuccessAlert("تم تأكيد الطلب")
+                SuccessAlert(t('order_confirmed'))
+
                 router.push("/")
             } else {
-                ErrorAlert(response?.message ?? "حدثت مشكلة")
+                ErrorAlert(response?.message ?? t('error_generic'))
             }
         } catch {
-            ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
+            ErrorAlert(t('error_server_connection'))
         }
     }
+
 
     return (
         <div className="grid md:grid-cols-2 gap-8">

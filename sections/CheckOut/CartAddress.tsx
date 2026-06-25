@@ -10,6 +10,8 @@ import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { ErrorAlert } from "@/components/Alert/ErrorAlert"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Field, FieldContent, FieldLabel, FieldTitle } from "@/components/ui/field"
+import { useTranslations } from 'next-intl';
+
 
 type Props = {
     Address: Address[]
@@ -20,9 +22,11 @@ type Props = {
 
 
 export default function CartAddress({ Address, onChange, selected }: Props) {
+    const t = useTranslations('Checkout');
     const [loadingId, setLoadingId] = useState<number | null>(null)
 
     const router = useRouter()
+
 
     const deleteAddress = async (itemId: number) => {
         if (loadingId) return
@@ -31,14 +35,15 @@ export default function CartAddress({ Address, onChange, selected }: Props) {
             const response = await apiClient<{ status?: string; message?: string }>(`address/${itemId}`, {
                 method: "DELETE",
             })
-            if (response?.status === "success") {
-                SuccessAlert("تم حذف الموقع")
+if (response?.status === "success") {
+                SuccessAlert(t('address_deleted'))
+                
                 router.refresh()
-            } else {
-                ErrorAlert(response?.message ?? "حدثت مشكلة")
+} else {
+                ErrorAlert(response?.message ?? t('error_generic'))
             }
-        } catch {
-            ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
+} catch {
+            ErrorAlert(t('error_server_connection'))
         } finally {
             setLoadingId(null)
         }
@@ -46,7 +51,8 @@ export default function CartAddress({ Address, onChange, selected }: Props) {
 
     return (
         <div className="flex flex-col gap-5 p-8 bg-[#F9F9F9]">
-            <h3 className="text-2xl font-bold">عنوان الشحن</h3>
+            <h3 className="text-2xl font-bold">{t('shipping_address')}</h3>
+
             <div className="flex flex-col gap-4">
                 {Address.map((ele) => (
                     <FieldLabel
@@ -67,7 +73,7 @@ export default function CartAddress({ Address, onChange, selected }: Props) {
                             </FieldContent>
                             <div className="flex items-center gap-2">
                                 <Button type="button" variant="ghost">
-                                    <span className="text-primary">حرر</span>
+                                    <span className="text-primary">{t('edit')}</span>
                                     <EditIcon className="text-primary size-6" />
                                 </Button>
                                 <Button

@@ -161,6 +161,15 @@
   "Checkout": {
     "title": "الدفع",
     "confirm_order": "تأكيد الطلب",
+    "choose_payment_method": "اختر طريقة الدفع",
+    "choose_shipping_address": "اختر عنوان الشحن",
+    "choose_shipping_method": "اختر طريقة الشحن",
+    "order_confirmed": "تم تأكيد الطلب",
+    "error_generic": "حدثت مشكلة",
+    "error_server_connection": "حدثت مشكلة في الاتصال بالسيرفر",
+    "edit": "حرر",
+    "address_deleted": "تم حذف الموقع",
+
     "payment_method": "طريقة الدفع",
     "shipping_address": "عنوان الشحن",
     "billing_address": "عنوان الفواتير",
@@ -527,5 +536,34 @@
   "AddTOCart": {
     "add": "اضف الى السلة",
     "loading": "جاري الإضافة..."
-  }
+  },
+  "AddressDialog": {
+  "trigger": "إضافه عنوان جديد",
+  "title": "إضافه عنوان جديد",
+  "fields": {
+    "country": { "label": "الدولة", "placeholder": "اختر الدولة" },
+    "state": { "label": "المنطقة", "placeholder": "اختر المنطقة" },
+    "city": { "label": "المدينة", "placeholder": "اختر المدينة" },
+    "firstName": { "label": "الاسم الأول", "placeholder": "أدخل الاسم الأول" },
+    "lastName": { "label": "اسم العائلة", "placeholder": "أدخل اسم العائلة" },
+    "phone": { "label": "رقم الهاتف", "placeholder": "أدخل رقم الهاتف" },
+    "street": { "label": "العنوان", "placeholder": "أدخل العنوان بالتفصيل" },
+    "zip": { "label": "الرمز البريدي", "placeholder": "أدخل الرمز البريدي" },
+    "isDefault": "تعيين كعنوان افتراضي"
+  },
+  "validation": {
+    "firstName": { "min": "الاسم الأول يجب أن يكون حرفين على الأقل", "required": "الاسم الأول مطلوب" },
+    "lastName": { "min": "اسم العائلة يجب أن يكون حرفين على الأقل", "required": "اسم العائلة مطلوب" },
+    "country": { "required": "الدولة مطلوبة" },
+    "state": { "required": "المنطقة مطلوبة" },
+    "city": { "required": "المدينة مطلوبة" },
+    "street": { "min": "العنوان يجب أن يكون 5 أحرف على الأقل", "required": "العنوان مطلوب" },
+    "phone": { "invalid": "رقم الهاتف غير صحيح", "required": "رقم الهاتف مطلوب" },
+    "zip": { "required": "الرمز البريدي مطلوب" }
+  },
+  "submitting": "جاري الإضافة...",
+  "submit": "إضافة عنوان",
+  "errorDefault": "حدثت مشكلة",
+  "errorConnection": "حدثت مشكلة في الاتصال بالسيرفر"
+}
 }
