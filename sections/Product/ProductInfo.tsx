@@ -113,7 +113,7 @@ export default function ProductInfo({ product }: { product: Product }) {
                                 <div className="flex gap-2 flex-wrap">
                                     <ColorSelector
                                         details={product.details}
-                                        onChange={(detail) => setSelectedDetail(detail)}
+                                        // onChange={(detail) => setSelectedDetail(detail)}
                                     />
                                 </div>
                             </div>

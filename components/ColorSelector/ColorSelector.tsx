@@ -1,13 +1,25 @@
 'use client'
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { ProductDetail } from '@/interfaces/interfaces'
+type Detail = {
+    id: number
+    color: {
+        id: number
+        title: string
+        hex: string
+    }
+}
 
+type Props = {
+    details: ProductDetail[]
+    onChange?: (detail: Detail) => void
+}
 
-
-const ColorSelector = ({ details , onChange  }: Props) => {
+const ColorSelector = ({ details, onChange }: Props) => {
     const [selectedDetailId, setSelectedDetailId] = React.useState(details[0]?.id)
 
-    const handleSelect = (detail: Detail) => {
+    const handleSelect = (detail: ProductDetail) => {
         setSelectedDetailId(detail.id)
         onChange?.(detail)
     }
