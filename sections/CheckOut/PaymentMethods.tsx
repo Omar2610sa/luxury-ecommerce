@@ -21,7 +21,7 @@ export default function PaymentMethods({ onChange }: Props) {
 
     const [selected, setSelected] = useState<PaymentMethod | null>(null)
 
-    const methods: { key: PaymentMethod; label: string; images: string[] }[] = [
+    const methods: { key: PaymentMethod; label: string; images: any[] }[] = [
         { key: "online", label: t('cash_online_label'), images: [paymentTwo, paymentOne] },
         { key: "wallet", label: t('cash_wallet_label'), images: [paymentThree] },
         { key: "cash", label: t('cash_on_delivery_label'), images: [paymentFour] },
