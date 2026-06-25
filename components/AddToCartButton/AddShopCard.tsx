@@ -6,6 +6,7 @@ import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 import { apiClient } from "@/services/useApiClient"
 import { CartCount } from "@/store/useCountCartStore"
+import { useTranslations } from "next-intl"
 
 type Props = {
     productId: number
@@ -14,7 +15,7 @@ type Props = {
 export default function AddShopCard({ productId }: Props) {
     const [loading, setLoading] = useState(false)
     const { increment } = CartCount()
-
+    const t = useTranslations('Alert messages')
     const addCart = async () => {
         if (loading) return
         setLoading(true)
@@ -31,7 +32,7 @@ export default function AddShopCard({ productId }: Props) {
 
             if (response?.data) {
                 increment()
-                SuccessAlert("تم إضافة المنتج إلى السلة بنجاح")
+                SuccessAlert(t('addShopCard'))
             }
         } catch (error) {
             console.error("Add to cart error:", error)

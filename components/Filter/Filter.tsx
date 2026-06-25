@@ -11,12 +11,13 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { ChevronDown, Plus, Minus, X } from "lucide-react"
 import { useState } from "react"
 import { ActiveFilter, CategoryFilterProps } from "@/interfaces/interfaces"
+import { useTranslations } from "next-intl"
 
 export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
     const router = useRouter()
     const searchParams = useSearchParams()
     const [isPending, startTransition] = useTransition()
-
+    const t = useTranslations('filter')
     const selectedSubCat = searchParams.get("sub_cat") ?? ""
     const selectedSubSubCat = searchParams.get("sub_sub_cat") ?? ""
     const minPrice = Number(searchParams.get("min_price") ?? 0)
@@ -105,10 +106,14 @@ export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
             <CardContent className="p-0 space-y-4">
                 {/* Header */}
                 <div className="flex items-center justify-between pb-2">
-                    <h3 className="text-primary text-lg font-semibold">التصنيف</h3>
+                    <h3 className="text-primary text-lg font-semibold">
+                        {
+                            t('Classification')
+                        }
+                    </h3>
                     {activeFilters.length > 0 && (
                         <Button variant="ghost" size="icon-lg" onClick={clearAll} className="text-primary h-auto p-1 text-sm">
-                            مسح الكل
+                            {t('clear')}
                         </Button>
                     )}
                 </div>
@@ -131,7 +136,9 @@ export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
                 <Collapsible open={openSections.categories} onOpenChange={() => toggleSection("categories")}>
                     <CollapsibleTrigger className="w-full">
                         <div className="flex items-center justify-between py-2 border-b">
-                            <span className="text-sm font-medium">الفئات الفرعية</span>
+                            <span className="text-sm font-medium">
+                                {t('Subcategories')}
+                            </span>
                             <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${openSections.categories ? "rotate-180" : ""}`} />
                         </div>
                     </CollapsibleTrigger>
@@ -192,7 +199,9 @@ export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
                 <Collapsible open={openSections.price} onOpenChange={() => toggleSection("price")} dir="ltr">
                     <CollapsibleTrigger className="w-full">
                         <div className="flex items-center justify-between py-2 border-b">
-                            <span className="text-sm font-medium">نطاق السعر</span>
+                            <span className="text-sm font-medium">
+                                {t('PriceRange')}
+                            </span>
                             <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${openSections.price ? "rotate-180" : ""}`} />
                         </div>
                     </CollapsibleTrigger>

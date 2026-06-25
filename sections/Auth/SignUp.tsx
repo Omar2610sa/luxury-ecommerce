@@ -25,7 +25,11 @@ import { useState, useEffect } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { OtpDialog } from "./SignOtp"
 import { ErrorAlert } from "@/components/Alert/ErrorAlert"
+import { apiClient } from "@/services/useApiClient"
+import { useTranslations } from "next-intl"
+import { apiClientGeneral } from "@/services/useApiClientGeneral"
 import Cookies from "js-cookie"
+
 
 
 type Country = {
@@ -40,49 +44,52 @@ type City = {
     name: string
 }
 
-const signUpSchema = Yup.object({
-    name: Yup.string()
-        .min(3, "الاسم يجب أن يكون 3 أحرف على الأقل")
-        .required("الاسم مطلوب"),
-    email: Yup.string()
-        .email("البريد الإلكتروني غير صحيح")
-        .required("البريد الإلكتروني مطلوب"),
-    phone: Yup.string()
-        .matches(/^[0-9]{7,15}$/, "رقم الهاتف غير صحيح")
-        .required("رقم الهاتف مطلوب"),
-    country_id: Yup.string().required("الدولة مطلوبة"),
-    city_id: Yup.string().required("المدينة مطلوبة"),
-    gender: Yup.string().required("النوع مطلوب"),
-    password: Yup.string()
-        .min(6, "كلمة المرور يجب أن تكون 6 أحرف على الأقل")
-        .required("كلمة المرور مطلوبة"),
-})
+type StateType = {
+    id: number
+    name: string
+}
+
 
 export function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
     const [open, setOpen] = useState(false)
     const [countries, setCountries] = useState<Country[]>([])
+    const [states, setStates] = useState<StateType[]>([])
     const [cities, setCities] = useState<City[]>([])
     const [selectedPhoneCode, setSelectedPhoneCode] = useState("")
     const [otpOpen, setOtpOpen] = useState(false)
+    const t = useTranslations('SignUp')
+
+    const signUpSchema = Yup.object({
+        name: Yup.string()
+            .min(3, t('validation.name.min'))
+            .required(t('validation.name.required')),
+        email: Yup.string()
+            .email(t('validation.email.invalid'))
+            .required(t('validation.email.required')),
+        phone: Yup.string()
+            .matches(/^[0-9]{7,15}$/, t('validation.phone.invalid'))
+            .required(t('validation.phone.required')),
+        country_id: Yup.string().required(t('validation.country.required')),
+        state_id: Yup.string().required(t('validation.state.required')),
+        city_id: Yup.string().required(t('validation.city.required')),
+        gender: Yup.string().required(t('validation.gender.required')),
+        date_of_birth: Yup.string().required(t("validation.dob_required")),
+
+        password: Yup.string()
+            .min(6, t('validation.password.min'))
+            .required(t('validation.password.required')),
+    });
 
     useEffect(() => {
         if (!open) return
-        fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/general/countries`)
-            .then(res => res.json())
-            .then(data => setCountries(data.data ?? []))
+        apiClientGeneral<{ data?: Country[] }>("countries", { method: "GET" })
+            .then(res => setCountries(res?.data ?? []))
 
-        fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/general/cities`)
-            .then(res => res.json())
-            .then(data => setCities(data.data ?? []))
     }, [open])
 
-    const getGuestToken = () => {
-        return document.cookie
-            .split('; ')
-            .find(row => row.startsWith('guest_token='))
-            ?.split('=')[1] ?? ''
-    }
+    const guestToken = Cookies.get('guest_token')
+
 
     const formik = useFormik({
         initialValues: {
@@ -91,66 +98,106 @@ export function SignUp() {
             phone: "",
             country_id: "",
             phone_code: "",
+            date_of_birth: "",
             city_id: "",
+            state_id: "",
             gender: "",
             password: "",
         },
         validationSchema: signUpSchema,
         onSubmit: async (values, { setSubmitting }) => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_BASE}/api/client/register`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        name: values.name,
-                        email: values.email,
-                        phone_code: `${selectedPhoneCode}`,
-                        phone: `${values.phone}`,
-                        country_id: values.country_id,
-                        city_id: values.city_id,
-                        date_of_birth: "2020-05-01",
-                        gender: values.gender,
-                        password: values.password,
-                        type: "ios",
-                        device_token: getGuestToken(),
-                    }),
-                }
-            ).then(res => res.json())
 
-            if (response?.status === "success") {
-                Cookies.set("user_phone", values.phone)
-                Cookies.set("user_phone_code", selectedPhoneCode)
-                setOpen(false)
-                setOtpOpen(true)
-            } else {
-                ErrorAlert(response?.message ?? "حدثت مشكلة")
+            const form = new FormData()
+            form.append("name", values.name)
+            form.append("email", values.email)
+            form.append("phone_code", values.phone_code)
+            form.append("phone", values.phone)
+            form.append("country_id", values.country_id)
+            form.append("state_id", values.state_id)
+            form.append("city_id", values.city_id)
+            form.append("gender", values.gender)
+            form.append("date_of_birth", values.date_of_birth)
+            form.append("password", values.password)
+            form.append("type", 'ios')
+            form.append("device_token", guestToken ?? '')
+
+            try {
+                const response = await apiClient<{ status?: string; message?: string }>("register", {
+                    method: "POST",
+                    body: form as unknown as Record<string, unknown>,
+                })
+
+                if (response?.status === "success") {
+                    Cookies.set("user_phone", values.phone)
+                    Cookies.set("user_phone_code", values.phone_code)
+                    setOpen(false)
+                    setOtpOpen(true)
+                } else {
+                    ErrorAlert(response?.message ?? "حدثت مشكلة")
+                }
+            } catch {
+                ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
             }
         },
     })
 
+
+    const handleCountryChange = (value: string | null) => {
+        const countryId = value ?? ""
+        const country = countries.find(c => c.id.toString() === countryId)
+
+        formik.setFieldValue("country_id", countryId)
+        formik.setFieldValue("phone_code", country?.phone_code ?? "")
+        formik.setFieldValue("state_id", "")
+        formik.setFieldValue("city_id", "")
+        setCities([])
+
+        if (!countryId) return
+
+            ; (async () => {
+                const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
+                setStates(res?.data ?? [])
+            })()
+    }
+
+
+    const handleStateChange = (value: string | null) => {
+        const stateId = value ?? ""
+        formik.setFieldValue("state_id", stateId)
+        formik.setFieldValue("city_id", "")
+        setCities([])
+
+        if (!stateId) return
+
+            ; (async () => {
+                const res = await apiClientGeneral<{ data?: City[] }>(`get_state_cities/${stateId}`, { method: "GET" })
+                setCities(res?.data ?? [])
+            })()
+    }
+
+
     return (
         <>
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger >
-                    <MainButton text="انشاء حساب جديد" />
+                <DialogTrigger>
+                    <MainButton text={t('trigger')} />
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[60vh]">
+                <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[80vh]">
                     <form onSubmit={formik.handleSubmit}>
                         <DialogHeader className="mb-3">
-                            <DialogTitle className="text-lg">قم بإنشاء حسابك</DialogTitle>
-                            <p className="text-2xl my-3 mx-auto">إنشاء حساب جديد</p>
+                            <DialogTitle className="text-lg">{t('title')}</DialogTitle>
+                            <p className="text-2xl my-3 mx-auto">{t('subtitle')}</p>
                         </DialogHeader>
 
                         <FieldGroup>
                             {/* Name */}
                             <Field>
-                                <Label htmlFor="name">الاسم كامل</Label>
+                                <Label htmlFor="name">{t('fields.name.label')}</Label>
                                 <Input
                                     id="name"
                                     name="name"
                                     type="text"
-                                    placeholder="أدخل الاسم كامل"
+                                    placeholder={t('fields.name.placeholder')}
                                     value={formik.values.name}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -162,12 +209,12 @@ export function SignUp() {
 
                             {/* Email */}
                             <Field>
-                                <Label htmlFor="email">البريد الإلكتروني</Label>
+                                <Label htmlFor="email">{t('fields.email.label')}</Label>
                                 <Input
                                     id="email"
                                     name="email"
                                     type="text"
-                                    placeholder="أدخل البريد الإلكتروني"
+                                    placeholder={t('fields.email.placeholder')}
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -177,25 +224,20 @@ export function SignUp() {
                                 )}
                             </Field>
 
-                            {/* Phone with country code */}
+                            {/* Phone */}
                             <Field>
-                                <Label htmlFor="phone">رقم الهاتف</Label>
+                                <Label htmlFor="phone">{t('fields.phone.label')}</Label>
                                 <div className="flex border rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-ring">
-                                    <Select
-                                        onValueChange={(value) => {
-                                            const country = countries.find(c => c.flag === value)
-                                            setSelectedPhoneCode(country?.phone_code ?? "")
-                                            formik.setFieldValue("country_id", country?.id.toString() ?? "")
-                                        }}
+                                    <Select onValueChange={(value) => {
+                                        const country = countries.find(c => c.flag === value)
+                                        setSelectedPhoneCode(country?.phone_code ?? "")
+                                        formik.setFieldValue("phone_code", country?.phone_code ?? "") // ✅ بس phone_code
+                                    }}
                                     >
                                         <SelectTrigger className="w-[60px] border-none shadow-none rounded-none focus:ring-0 bg-muted px-2">
                                             <SelectValue>
                                                 {selectedPhoneCode ? (
-                                                    <img
-                                                        src={countries.find(c => c.phone_code === selectedPhoneCode)?.flag}
-                                                        alt=""
-                                                        className="w-6 h-4 object-cover rounded-sm"
-                                                    />
+                                                    <img src={countries.find(c => c.phone_code === selectedPhoneCode)?.flag} alt="" className="w-6 h-4 object-cover rounded-sm" />
                                                 ) : (
                                                     <span>🌍</span>
                                                 )}
@@ -205,11 +247,7 @@ export function SignUp() {
                                             {countries.map(country => (
                                                 <SelectItem key={country.id} value={country.flag}>
                                                     <span className="flex items-center gap-2">
-                                                        <img
-                                                            src={country.flag}
-                                                            alt={country.name}
-                                                            className="w-5 h-4 object-cover rounded-sm"
-                                                        />
+                                                        <img src={country.flag} alt={country.name} className="w-5 h-4 object-cover rounded-sm" />
                                                         <span>{country.phone_code}</span>
                                                     </span>
                                                 </SelectItem>
@@ -223,7 +261,7 @@ export function SignUp() {
                                         id="phone"
                                         name="phone"
                                         type="tel"
-                                        placeholder="أدخل رقم الهاتف"
+                                        placeholder={t('fields.phone.placeholder')}
                                         value={formik.values.phone}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
@@ -238,18 +276,71 @@ export function SignUp() {
                                 )}
                             </Field>
 
-                            {/* City */}
+                            {/* Country */}
                             <Field>
-                                <Label>المدينة</Label>
+                                <Label>{t('fields.country.label')}</Label>
+                                <Select value={countries.find(c => c.id.toString() === formik.values.country_id)?.name} onValueChange={handleCountryChange}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder={t('fields.country.placeholder')}>
+                                            {countries.find(c => c.id.toString() === formik.values.country_id)?.name}
+                                        </SelectValue>
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {countries.map(country => (
+                                            <SelectItem key={country.id} value={country.id.toString()}  >
+                                                {country.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                {formik.touched.country_id && formik.errors.country_id && (
+                                    <p className="text-red-500 text-sm">{formik.errors.country_id}</p>
+                                )}
+                            </Field>
+
+
+                            {/* state */}
+                            <Field>
+                                <Label>{t('fields.state.label')}</Label>
                                 <Select
-                                    onValueChange={(value) => formik.setFieldValue("city_id", value)}
+                                    value={states.find(c => c.id.toString() === formik.values.state_id)?.name}
+                                    onValueChange={handleStateChange}
+                                    disabled={!formik.values.country_id}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="اختر المدينة" />
+                                        <SelectValue placeholder={t('fields.state.placeholder')} >
+                                            {states.find(c => c.id.toString() === formik.values.state_id)?.name}
+                                        </SelectValue>
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {states.map(state => (
+                                            <SelectItem key={state.id} value={state.id.toString()}>
+                                                {state.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                {formik.touched.state_id && formik.errors.state_id && (
+                                    <p className="text-red-500 text-sm">{formik.errors.state_id}</p>
+                                )}
+                            </Field>
+                            {/* city */}
+                            <Field>
+                                <Label>{t('fields.city.label')}</Label>
+
+                                <Select
+                                    value={formik.values.city_id}
+                                    onValueChange={(value) => formik.setFieldValue("city_id", value)}
+                                    disabled={!formik.values.state_id}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder={t('fields.city.placeholder')} >
+                                            {cities.find(c => c.id.toString() === formik.values.city_id)?.name}
+                                        </SelectValue>
                                     </SelectTrigger>
                                     <SelectContent>
                                         {cities.map(city => (
-                                            <SelectItem key={city.id} value={city.name}>
+                                            <SelectItem key={city.id} value={city.id.toString()}>
                                                 {city.name}
                                             </SelectItem>
                                         ))}
@@ -260,18 +351,16 @@ export function SignUp() {
                                 )}
                             </Field>
 
-                            {/* Gender  */}
+                            {/* Gender */}
                             <Field>
-                                <Label>النوع</Label>
-                                <Select
-                                    onValueChange={(value) => formik.setFieldValue("gender", value)}
-                                >
+                                <Label>{t('fields.gender.label')}</Label>
+                                <Select onValueChange={(value) => formik.setFieldValue("gender", value)}>
                                     <SelectTrigger>
-                                        <SelectValue placeholder="اختر النوع" />
+                                        <SelectValue placeholder={t('fields.gender.placeholder')} />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="male">ذكر</SelectItem>
-                                        <SelectItem value="female">أنثى</SelectItem>
+                                        <SelectItem value="male">{t('fields.gender.male')}</SelectItem>
+                                        <SelectItem value="female">{t('fields.gender.female')}</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 {formik.touched.gender && formik.errors.gender && (
@@ -279,15 +368,31 @@ export function SignUp() {
                                 )}
                             </Field>
 
+                            {/* DOB */}
+                            <Field>
+                                <Label htmlFor="date_of_birth">{t('fields.dob.label')}</Label>
+                                <Input
+                                    id="date_of_birth"
+                                    name="date_of_birth"
+                                    type="date"
+                                    value={formik.values.date_of_birth}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.date_of_birth && formik.errors.date_of_birth && (
+                                    <p className="text-red-500 text-sm">{formik.errors.date_of_birth}</p>
+                                )}
+                            </Field>
+
                             {/* Password */}
                             <Field>
-                                <Label htmlFor="password">كلمة المرور</Label>
+                                <Label htmlFor="password">{t('fields.password.label')}</Label>
                                 <div className="relative">
                                     <Input
                                         id="password"
                                         name="password"
                                         type={showPassword ? "text" : "password"}
-                                        placeholder="إدخل كلمة السر"
+                                        placeholder={t('fields.password.placeholder')}
                                         value={formik.values.password}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
@@ -308,12 +413,8 @@ export function SignUp() {
                         </FieldGroup>
 
                         <DialogFooter className="mt-4">
-                            <Button
-                                className="w-full cursor-pointer"
-                                type="submit"
-                                disabled={formik.isSubmitting}
-                            >
-                                {formik.isSubmitting ? "جاري التسجيل..." : "إنشاء الحساب"}
+                            <Button className="w-full cursor-pointer" type="submit" disabled={formik.isSubmitting}>
+                                {formik.isSubmitting ? t('submitting') : t('submit')}
                             </Button>
                         </DialogFooter>
                     </form>

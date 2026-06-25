@@ -142,25 +142,21 @@
   "Cart": {
     "title": "السلة",
     "empty_cart": "السلة فارغة",
-    "continue_shopping": "متابعة التسوق",
-    "checkout": "الدفع",
-    "total": "الإجمالي",
+    "addedProducts": "المنتجات المضافة",
+    "color": "اللون",
+    "orderSummary": "ملخص الطلب",
     "subtotal": "المجموع الفرعي",
-    "shipping": "الشحن",
-    "tax": "الضريبة",
-    "discount": "الخصم",
-    "promo_code": "كود ترويجي",
-    "apply": "تطبيق",
-    "remove": "إزالة",
-    "quantity": "الكمية",
-    "price": "السعر",
-    "update_cart": "تحديث السلة",
-    "item_removed": "تم إزالة المنتج من السلة",
-    "item_added": "تم إضافة المنتج إلى السلة",
-    "estimated_total": "الإجمالي المتوقع",
-    "cart_total": "إجمالي السلة",
-    "free_shipping": "شحن مجاني",
-    "select_quantity": "اختر الكمية"
+    "products": "منتجات",
+    "shippingFees": "رسوم الشحن",
+    "freeShipping": "مجانا",
+    "couponDiscount": "خصم الكوبون",
+    "total": "المجموع",
+    "includingTax": "(شامل الضريبة)",
+    "checkout": "إتمام الشراء",
+    "itemDeleted": "تم حذف المنتج",
+    "noCart": "لا يوجد منتجات مضافه الى السلة",
+    "noCartDesc": "يبدو أنك لم تُضف أي شيء إلى سلة التسوق الخاصة بك حتى الآن.",
+    "currency": "جنيه مصري"
   },
   "Checkout": {
     "title": "الدفع",
@@ -380,7 +376,9 @@
     "trending": "الأكثر شيوعاً",
     "outOfStock": "غير متوفر"
   },
-  "View All": "عرض الكل",
+  "View All": {
+    "Main": "عرض كل"
+  },
   "FlashOffers": {
     "flashSale": "بيع فلاش",
     "endsIn": "ينتهي ب",
@@ -399,5 +397,115 @@
         "name": "فستان صيفي 2024 منقوش"
       }
     }
+  },
+  "Breadcrumb": {
+    "main": "الرئيسية"
+  },
+  "Alert messages": {
+    "addShopCard": "تم إضافة المنتج إلى السلة بنجاح",
+    "OtpMessatge": "تم التحقق من المستخدم بنجاح"
+  },
+  "MobileHeader": {
+    "home": "الرئيسية",
+    "categories": "الأقسام",
+    "products": "المنتجات",
+    "cart": "السلة",
+    "profile": "ملفي الشخصي"
+  },
+  "SignUp": {
+    "trigger": "انشاء حساب جديد",
+    "title": "قم بإنشاء حسابك",
+    "subtitle": "إنشاء حساب جديد",
+    "fields": {
+      "name": {
+        "label": "الاسم كامل",
+        "placeholder": "أدخل الاسم كامل"
+      },
+      "email": {
+        "label": "البريد الإلكتروني",
+        "placeholder": "أدخل البريد الإلكتروني"
+      },
+      "phone": {
+        "label": "رقم الهاتف",
+        "placeholder": "أدخل رقم الهاتف"
+      },
+      "country": {
+        "label": "الدولة",
+        "placeholder": "اختر الدولة"
+      },
+      "state": {
+        "label": "المنطقة",
+        "placeholder": "اختر المنطقة"
+      },
+      "city": {
+        "label": "المدينة",
+        "placeholder": "اختر المدينة"
+      },
+      "gender": {
+        "label": "النوع",
+        "placeholder": "اختر النوع",
+        "male": "ذكر",
+        "female": "أنثى"
+      },
+      "dob": {
+        "label": "تاريخ الميلاد"
+      },
+      "password": {
+        "label": "كلمة المرور",
+        "placeholder": "إدخل كلمة السر"
+      }
+    },
+    "validation": {
+      "name": {
+        "min": "الاسم يجب أن يكون 3 أحرف على الأقل",
+        "required": "الاسم مطلوب"
+      },
+      "dob_required": "تاريخ الميلاد مطلوب",
+      "email": {
+        "invalid": "البريد الإلكتروني غير صحيح",
+        "required": "البريد الإلكتروني مطلوب"
+      },
+      "phone": {
+        "invalid": "رقم الهاتف غير صحيح",
+        "required": "رقم الهاتف مطلوب"
+      },
+      "country": {
+        "required": "الدولة مطلوبة"
+      },
+      "city": {
+        "required": "المدينة مطلوبة"
+      },
+      "state": {
+        "required": "المنطقة مطلوبة"
+      },
+      "gender": {
+        "required": "النوع مطلوب"
+      },
+      "password": {
+        "min": "كلمة المرور يجب أن تكون 6 أحرف على الأقل",
+        "required": "كلمة المرور مطلوبة"
+      }
+    },
+    "submitting": "جاري التسجيل...",
+    "submit": "إنشاء الحساب"
+  },
+  "Otp": {
+    "title": "تحقق من رقم الهاتف",
+    "description": "تم إرسال كود التحقق على رقم {phone}",
+    "label": "كود التحقق",
+    "placeholder": "أدخل الكود",
+    "loading": "جاري التحقق...",
+    "submit": "تأكيد"
+  },
+  "NoFav": {
+    "title": "جاهز لحفظ منتجاتك إلي المفضلة",
+    "description": "اضغط على أيقونة القلب لإضافة العناصر المفضلة لديك إلى قائمة الرغبات بنجاح.",
+    "button": "تسوق الان"
+  },
+  "filter": {
+    "clear": "مسح الكل",
+    "Subcategories": "الأقسام الفرعية",
+    "PriceRange": "نطاق السعر",
+    "Classification": "تصنيف"
   }
 }

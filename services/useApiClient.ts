@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid"
 
 const guest_Token = "guest_token"
 const auth_Token = "token_luxary"
+const Language_Token = "NEXT_LOCALE"
 
 function ensureGuestTokenClient(): string {
     let guestToken = Cookies.get(guest_Token)
@@ -33,17 +34,20 @@ export async function apiClient<T = unknown>(
     } = options
 
     let token: string | undefined
+    let Language: string | undefined
     let guestToken: string | undefined
 
     try {
         token = Cookies.get(auth_Token)
+        Language = Cookies.get(Language_Token)
+        
         guestToken = ensureGuestTokenClient()
     } catch {
         token = undefined
         guestToken = uuidv4()
     }
 
-    const isFormData = body instanceof FormData  // ضيف دي هنا
+    const isFormData = body instanceof FormData  
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE}/api/client/${endpoint}`,
         {
@@ -54,7 +58,7 @@ export async function apiClient<T = unknown>(
                 "Accept": "application/json",
                 ...(token ? { Authorization: `Bearer ${token}` } : {}),
                 ...(guestToken ? { "Guest-Token": guestToken } : {}),
-                ...headers,
+                ...(headers ? { "Accept-Language": Language } : {}),
             },
             ...(body ? { body: isFormData ? body : JSON.stringify(body) } : {}),
         }

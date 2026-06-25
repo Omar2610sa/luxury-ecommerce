@@ -19,7 +19,7 @@ export async function serverApi<T = unknown>(
     let token: string | undefined
     let Language: string | undefined
     let guestToken: string | undefined
-
+    
     try {
         token = cookieStore.get("token_luxary")?.value
         Language = cookieStore.get("NEXT_LOCALE")?.value || "ar"

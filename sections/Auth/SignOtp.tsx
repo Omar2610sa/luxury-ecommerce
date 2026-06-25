@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -12,27 +12,25 @@ import { Label } from "@/components/ui/label"
 import { Field } from "@/components/ui/field"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { useRouter } from "next/navigation"
+import { apiClient } from "@/services/useApiClient"
+import { ErrorAlert } from "@/components/Alert/ErrorAlert"
+import Cookies from "js-cookie"
+import { useTranslations } from 'next-intl';
 
 type Props = {
     open: boolean
     onOpenChange: (open: boolean) => void
 }
-const getCookie = (name: string) => {
-    if (typeof window === 'undefined') return ''
-    return document.cookie
-        .split('; ')
-        .find(row => row.startsWith(`${name}=`))
-        ?.split('=')[1] ?? ''
-}
+
 
 export function OtpDialog({ open, onOpenChange }: Props) {
     const [otp, setOtp] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const router = useRouter()
-    const [phone] = useState(() => getCookie('user_phone'))
-    const [phoneCode] = useState(() => getCookie('user_phone_code'))
-    const [token] = useState(() => getCookie('token_luxary'))
+    const phone = Cookies.get('user_phone')
+    const phoneCode = Cookies.get('user_phone_code')
+    const deviceToken = Cookies.get('guest_token')
 
 
 
@@ -43,62 +41,60 @@ export function OtpDialog({ open, onOpenChange }: Props) {
             setError("أدخل كود التحقق كامل")
             return
         }
-
         setLoading(true)
         setError("")
 
         try {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_BASE}/api/client/verify_Phone`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`,
-                    },
-                    body: JSON.stringify({
-                        phone: phone,
-                        phone_code: phoneCode.toString(),
-                        code: otp,
-                        device_token: 125487986562323157,
-                        type: "ios",
-                    }),
-                }
-            ).then(res => res.json())
+            const response = await apiClient<{ status?: string; message?: string }>("verify_Phone", {
+                method: "POST",
+                body: {
+                    phone: phone,
+                    phone_code: phoneCode,
+                    code: otp,
+                    type: "ios",
+                    device_token: deviceToken
+                },
+            })
 
-            if (response.data) {
-                const token = response.data?.token
-                document.cookie = `token_luxary=${token}; path=/`
+            // verify_Phone
+            if (response?.status === "success") {
+                if (response?.data) {
+                    const token = response.data?.token
+                    Cookies.set("token_luxary", token)
+                }
                 onOpenChange(false)
                 SuccessAlert("تم التحقق من رقم الهاتف بنجاح")
                 setTimeout(() => router.refresh(), 2000)
             } else {
-                setError(response.message ?? "كود التحقق غير صحيح")
+                ErrorAlert(response?.message ?? "حدثت مشكلة")
+                setLoading(false)
+
             }
-        } catch (error) {
-            console.error("OTP error:", error)
-            setError("حدث خطأ، حاول مرة أخرى")
-        } finally {
+        } catch {
+            ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
             setLoading(false)
+
         }
     }
+
+    const t = useTranslations('Otp');
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-sm">
                 <DialogHeader>
-                    <DialogTitle className="text-lg">تحقق من رقم الهاتف</DialogTitle>
+                    <DialogTitle className="text-lg">{t('title')}</DialogTitle>
                     <p className="text-sm text-gray-500">
-                        تم إرسال كود التحقق على رقم {phone}
+                        {t('description', { phone: phone ?? '' })}
                     </p>
                 </DialogHeader>
 
                 <Field>
-                    <Label htmlFor="otp">كود التحقق</Label>
+                    <Label htmlFor="otp">{t('label')}</Label>
                     <Input
                         id="otp"
                         type="text"
-                        placeholder="أدخل الكود"
+                        placeholder={t('placeholder')}
                         maxLength={6}
                         value={otp}
                         onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
@@ -107,12 +103,8 @@ export function OtpDialog({ open, onOpenChange }: Props) {
                     {error && <p className="text-red-500 text-sm">{error}</p>}
                 </Field>
 
-                <Button
-                    className="w-full cursor-pointer"
-                    onClick={handleSubmit}
-                    disabled={loading}
-                >
-                    {loading ? "جاري التحقق..." : "تأكيد"}
+                <Button className="w-full cursor-pointer" onClick={handleSubmit} disabled={loading}>
+                    {loading ? t('loading') : t('submit')}
                 </Button>
             </DialogContent>
         </Dialog>

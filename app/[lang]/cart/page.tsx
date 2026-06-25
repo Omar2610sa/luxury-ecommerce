@@ -31,8 +31,8 @@ export default async function page({
     <div className="container flex flex-col gap-8">
       <BreadCrumb thirdLink={t('title')} />
       <div className="grid md:grid-cols-2 gap-8 ">
-        <CartDetails cart={cart} />
-        <CartProcess cart={cart} />
+        <CartDetails cart={cart} lang={lang} />
+        <CartProcess cart={cart} lang={lang} />
       </div>
     </div>
   );

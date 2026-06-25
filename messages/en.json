@@ -146,25 +146,21 @@
   "Cart": {
     "title": "Shopping Cart",
     "empty_cart": "Your cart is empty",
-    "continue_shopping": "Continue Shopping",
-    "checkout": "Checkout",
-    "total": "Total",
+    "addedProducts": "Added Products",
+    "color": "Color",
+    "orderSummary": "Order Summary",
     "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "tax": "Tax",
-    "discount": "Discount",
-    "promo_code": "Promo Code",
-    "apply": "Apply",
-    "remove": "Remove",
-    "quantity": "Quantity",
-    "price": "Price",
-    "update_cart": "Update Cart",
-    "item_removed": "Item removed from cart",
-    "item_added": "Item added to cart",
-    "estimated_total": "Estimated Total",
-    "cart_total": "Cart Total",
-    "free_shipping": "Free Shipping",
-    "select_quantity": "Select Quantity"
+    "products": "products",
+    "shippingFees": "Shipping Fees",
+    "freeShipping": "Free",
+    "couponDiscount": "Coupon Discount",
+    "total": "Total",
+    "includingTax": "(including tax)",
+    "checkout": "Checkout",
+    "itemDeleted": "Product deleted successfully",
+    "noCart": "No products in cart",
+    "noCartDesc": "It seems you haven't added anything to your cart yet.",
+    "currency": "EGP"
   },
   "Checkout": {
     "title": "Checkout",
@@ -200,16 +196,24 @@
     "overnight_shipping": "Overnight Shipping"
   },
   "FlashOffers": {
-  "flashSale": "Flash Sale",
-  "endsIn": "Ends in",
-  "currency": "EGP",
-  "products": {
-    "0": { "name": "Red Summer Dress 2024" },
-    "1": { "name": "Red Summer Dress 2024" },
-    "2": { "name": "Red Summer Dress 2024" },
-    "3": { "name": "Red Summer Dress 2024" }
-  }
-},
+    "flashSale": "Flash Sale",
+    "endsIn": "Ends in",
+    "currency": "EGP",
+    "products": {
+      "0": {
+        "name": "Red Summer Dress 2024"
+      },
+      "1": {
+        "name": "Red Summer Dress 2024"
+      },
+      "2": {
+        "name": "Red Summer Dress 2024"
+      },
+      "3": {
+        "name": "Red Summer Dress 2024"
+      }
+    }
+  },
   "Profile": {
     "title": "My Profile",
     "edit_profile": "Edit Profile",
@@ -393,5 +397,115 @@
   },
   "View All": {
     "Main": "View All"
+  },
+  "Breadcrumb": {
+    "main": "Home"
+  },
+  "Alert messages": {
+    "addShopCard": "The product has been successfully added to the cart",
+    "OtpMessatge": "The User has been successfully verified"
+  },
+  "MobileHeader": {
+    "home": "Home",
+    "categories": "Categories",
+    "products": "Products",
+    "cart": "Cart",
+    "profile": "My Profile"
+  },
+  "SignUp": {
+    "trigger": "Create New Account",
+    "title": "Create Your Account",
+    "subtitle": "Create a New Account",
+    "fields": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Select a country"
+      },
+      "state": {
+        "label": "City",
+        "placeholder": "Select a city"
+      },
+      "city": {
+        "label": "State",
+        "placeholder": "Select a state"
+      },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Select gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "dob": {
+        "label": "Date of Birth"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+    "validation": {
+      "name": {
+        "min": "Name must be at least 3 characters",
+        "required": "Name is required"
+      },
+      "email": {
+        "invalid": "Invalid email address",
+        "required": "Email is required"
+      },
+      "phone": {
+        "invalid": "Invalid phone number",
+        "required": "Phone number is required"
+      },
+      "country": {
+        "required": "Country is required"
+      },
+      "city": {
+        "required": "City is required"
+      },
+      "state": {
+        "required": "State is required"
+      },
+      "gender": {
+        "required": "Gender is required"
+      },
+      "dob_required": "Date of birth is required",
+      "password": {
+        "min": "Password must be at least 6 characters",
+        "required": "Password is required"
+      }
+    },
+    "submitting": "Creating account...",
+    "submit": "Create Account"
+  },
+  "Otp": {
+    "title": "Verify Phone Number",
+    "description": "A verification code has been sent to {phone}",
+    "label": "Verification Code",
+    "placeholder": "Enter the code",
+    "loading": "Verifying...",
+    "submit": "Confirm"
+  },
+  "NoFav": {
+    "title": "Ready to save your favorite products",
+    "description": "Click the heart icon to successfully add your favorite items to your wishlist.",
+    "button": "Shop Now"
+  },
+  "filter": {
+    "clear": "Clear all",
+    "Subcategories": "Subcategories",
+    "PriceRange": "Price range",
+    "Classification": "Price range"
   }
 }

@@ -1,19 +1,23 @@
+import NoFav from "@/components/NoFav/NoFav";
 import NoInfo from "@/components/NoInfo/NoInfo";
 import ShopCard from "@/components/ShopCard/ShopCard";
 import { CartData, HomeData, Product } from "@/interfaces/interfaces";
 import ChangePasswordForm from "@/sections/Auth/ChangePass";
 import CartDetails from "@/sections/CartDetails/CartDetails";
 import { serverApi } from "@/services/serverApi";
+import { getTranslations } from "next-intl/server";
 
 
 
 type Props = {
     params: Promise<{
         slug: string;
+        lang: string;
+
     }>;
 };
 export default async function page({ params }: Props) {
-    const { slug } = await params;
+    const { slug, lang } = await params;
 
     if (slug === "my-order") {
         const { data: order } = await serverApi<{ data: CartData[] }>("orders")
@@ -49,8 +53,10 @@ export default async function page({ params }: Props) {
     }
     if (slug === "cart") {
         const { data: cart } = await serverApi<CartData>("cart")
+        const t = await getTranslations({ locale: lang, namespace: 'Cart' });
+
         return (
-            <CartDetails cart={cart} />
+            <CartDetails cart={cart} lang={lang} />
         )
     }
     if (slug === "change-password") {
@@ -81,6 +87,8 @@ export default async function page({ params }: Props) {
                             }
                         </div>
                     )}
+                {fave?.length === 0 && <NoFav />}
+
             </>
         )
     }

@@ -1,4 +1,3 @@
-import { Link } from "@/services/navigation"
 
 
 import {
@@ -9,14 +8,17 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { getTranslations } from "next-intl/server";
 
-export function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thirdLink?: string }) {
+export async function BreadCrumb({ secondLink, thirdLink }: { secondLink?: string; thirdLink?: string }) {
+      const t = await getTranslations('Breadcrumb');
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink className="text-lg" href="/">
-              الرئيسية
+              {t('main')}
           </BreadcrumbLink>
         </BreadcrumbItem>
         {

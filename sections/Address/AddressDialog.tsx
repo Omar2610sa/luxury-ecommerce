@@ -138,12 +138,12 @@ export function AddressDialog() {
         setStates([])
         setCities([])
 
-        if (!countryId) return
+            if (!countryId) return
 
-        ;(async () => {
-            const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
-            setStates(res?.data ?? [])
-        })()
+            ;(async () => {
+                const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
+                setStates(res?.data ?? [])
+            })()
     }
 
     const handleStateChange = (value: string | null) => {

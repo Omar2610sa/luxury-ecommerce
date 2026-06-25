@@ -4,7 +4,7 @@ import ShopCard from "@/components/ShopCard/ShopCard";
 import { Product, Slider } from "@/interfaces/interfaces";
 import { serverApi } from "@/services/serverApi";
 import { Link } from "@/services/navigation"
-;
+  ;
 import { getTranslations } from 'next-intl/server';
 
 type Props = {
@@ -34,9 +34,7 @@ export default async function page({ params }: Props) {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 ">
           {products.map((product, index) => {
             return (
-              <Link href={`/product/${product.id}`} key={index}>
-                <ShopCard product={product as unknown as Product} />
-              </Link>
+              <ShopCard product={product as unknown as Product} key={index} />
             );
           })}
         </div>

@@ -5,6 +5,7 @@ import { Link } from "@/services/navigation"
 
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useTranslations } from "next-intl"
 
 type Props = {
     isLoggedIn: boolean
@@ -13,35 +14,15 @@ type Props = {
 export default function MobileHeader({ isLoggedIn }: Props) {
     const pathname = usePathname()
 
+    const t = useTranslations('MobileHeader');
+
     const links = [
-        {
-            name: "الرئيسية",
-            icon: Home,
-            href: "/"
-        },
-        {
-            name: "الأقسام",
-            icon: Search,
-            href: "/categories"
-        },
-        {
-            name: "المنتجات",
-            icon: SparklesIcon,
-            href: "/products"
-        },
-        {
-            name: "السلة",
-            icon: ShoppingCartIcon,
-            href: "/cart"
-        },
+        { name: t('home'), icon: Home, href: "/" },
+        { name: t('categories'), icon: Search, href: "/categories" },
+        { name: t('products'), icon: SparklesIcon, href: "/products" },
+        { name: t('cart'), icon: ShoppingCartIcon, href: "/cart" },
         ...(isLoggedIn
-            ? [
-                {
-                    name: "ملفي الشخصي",
-                    icon: User2Icon,
-                    href: "/profile",
-                },
-            ]
+            ? [{ name: t('profile'), icon: User2Icon, href: "/profile" }]
             : []),
     ]
 
