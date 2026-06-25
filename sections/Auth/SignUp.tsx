@@ -231,7 +231,7 @@ export function SignUp() {
                                     <Select onValueChange={(value) => {
                                         const country = countries.find(c => c.flag === value)
                                         setSelectedPhoneCode(country?.phone_code ?? "")
-                                        formik.setFieldValue("phone_code", country?.phone_code ?? "") // ✅ بس phone_code
+                                        formik.setFieldValue("phone_code", country?.phone_code ?? "") 
                                     }}
                                     >
                                         <SelectTrigger className="w-[60px] border-none shadow-none rounded-none focus:ring-0 bg-muted px-2">

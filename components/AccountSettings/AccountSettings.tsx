@@ -1,50 +1,72 @@
 "use client"
 // import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { PackagePlusIcon, ChevronLeft, HeartPlusIcon, WalletIcon, Globe, LogOut, ShoppingCart } from "lucide-react";
+import { PackagePlusIcon, ChevronLeft, HeartPlusIcon, WalletIcon, Globe, LogOut, ShoppingCart, DeleteIcon, UserRoundXIcon } from "lucide-react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { Link } from "@/services/navigation"
-;
+    ;
 import { useTranslations } from 'next-intl';
+import { apiClient } from "@/services/useApiClient";
+import { ErrorAlert } from "../Alert/ErrorAlert";
+import { SuccessAlert } from "../Alert/SuccessAlert";
 
 
 
 export default function AccountSettings() {
-const t = useTranslations('Account Setting');
-const router = useRouter();
+    const t = useTranslations('Account Setting');
+    const router = useRouter();
     const handleLogout = async () => {
         Cookies.remove("token_luxary")
         router.push("/")
         router.refresh()
     };
-const links = [
-    {
-        header: t('orders'),
-        href: "/my-order",
-        icons: PackagePlusIcon
-    },
+    const handleDeleteAccount = async () => {
+        try {
+            const response = await apiClient<{ status?: string; message?: string }>("delete_account", {
+                method: "DELETE",
+            })
+            if (response?.status === "sucess") {
+                SuccessAlert("تم حذف الحساب بنجاح")
+                Cookies.remove("token_luxary")
+                router.push("/")
+                router.refresh()
+            }
+            else {
+                ErrorAlert(response?.message ?? "حدثت مشكلة")
+            }
+        } catch {
+            ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
+        }
 
-    {
-        header: t('favorites'),
-        href: "/favoutie",
-        icons: HeartPlusIcon
+    };
+    const links = [
+        {
+            header: t('orders'),
+            href: "/my-order",
+            icons: PackagePlusIcon
+        },
 
-    },
-    {
-        header: t('cart'),
-        href: "/cart",
-        icons: ShoppingCart
+        {
+            header: t('favorites'),
+            href: "/favoutie",
+            icons: HeartPlusIcon
 
-    },
-    {
-        header: t('wallet'),
-        href: "/my-order",
-        icons: WalletIcon
+        },
+        {
+            header: t('cart'),
+            href: "/cart",
+            icons: ShoppingCart
 
-    },
+        },
+        {
+            header: t('wallet'),
+            href: "/my-order",
+            icons: WalletIcon
 
-]
+        },
+
+    ]
     return (
         <Card className="p-4 rounded-lg bg-[rgba(246,247,252,1)] order-2 md:order-1">
             <CardContent className="p-0 space-y-4">
@@ -90,6 +112,18 @@ const links = [
                         </div>
                         <ChevronLeft className="text-black/70" />
                     </Link>
+                    <hr />
+                    <div className="flex  justify-between items-center cursor-pointer py-5" onClick={handleDeleteAccount} >
+                        <div className="flex items-center gap-2">
+                            <div className="flex justify-center items-center rounded-full size-7 p-0.5 bg-white">
+                                <UserRoundXIcon className="size-5 text-red-500" />
+                            </div>
+                            <span className="font-medium text-lg text-red-500">
+                                {t('Delete')}
+                            </span>
+                        </div>
+                        <ChevronLeft className="text-red-500" />
+                    </div>
                     <hr />
                     <div className="flex  justify-between items-center cursor-pointer py-5" onClick={handleLogout}>
                         <div className="flex items-center gap-2">

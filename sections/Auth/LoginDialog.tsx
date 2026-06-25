@@ -23,6 +23,7 @@ import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
 import { useAuthStore } from "@/store/useAuthStore"
 import { apiClient } from "@/services/useApiClient"
+import { ErrorAlert } from "@/components/Alert/ErrorAlert"
 
 
 
@@ -41,18 +42,18 @@ export function LoginDialog() {
 
 
     const loginSchema = Yup.object({
-    identifier: Yup.string()
-        .required(t('validation.identifier_required'))
-        .test("email-or-phone", t('validation.identifier_invalid'), (value) => {
-            if (!value) return false
-            const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-            const isPhone = /^[1-9]/.test(value)
-            return isEmail || isPhone
-        }),
-    password: Yup.string()
-        .min(6, t('validation.password_min'))
-        .required(t('validation.password_required')),
-})
+        identifier: Yup.string()
+            .required(t('validation.identifier_required'))
+            .test("email-or-phone", t('validation.identifier_invalid'), (value) => {
+                if (!value) return false
+                const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+                const isPhone = /^[1-9]/.test(value)
+                return isEmail || isPhone
+            }),
+        password: Yup.string()
+            .min(6, t('validation.password_min'))
+            .required(t('validation.password_required')),
+    })
     const setUser = useAuthStore((state) => state.setUser)
 
 
@@ -64,7 +65,7 @@ export function LoginDialog() {
         validationSchema: loginSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await apiClient<{ data?: Profile & { token?: string } }>("login", {
+                const response = await apiClient<{ status?: string; message?: string , data?: Profile }>("login", {
                     method: "POST",
                     body: {
                         credential: values.identifier, password: values.password, type: "ios",
@@ -73,7 +74,7 @@ export function LoginDialog() {
                 })
 
                 const token = response.data?.token
-                if (token && response.data) {
+                if (response?.status === "success") {
                     document.cookie = `token_luxary=${token}; path=/`
                     setOpen(false)
                     setSuccessOpen(true)
@@ -82,10 +83,11 @@ export function LoginDialog() {
                     setUser(response.data)
                     SuccessAlert(t('success'))
                 }
-            } catch (error) {
-                console.error("Login error:", error)
-            } finally {
-                setSubmitting(false)
+                else {
+                    ErrorAlert(response?.message ?? "حدثت مشكلة")
+                }
+            } catch {
+                ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
             }
         },
     })
@@ -129,7 +131,7 @@ export function LoginDialog() {
                         <Field>
                             <Label htmlFor="password">
                                 {t('password.label')}
-                                </Label>
+                            </Label>
                             <div className="relative">
                                 <Input
                                     id="password"
