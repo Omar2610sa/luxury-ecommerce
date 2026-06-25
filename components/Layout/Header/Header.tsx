@@ -20,8 +20,9 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function Header() {
     const token = (await cookies()).get('token_luxary')?.value ?? null
+    const isRtl = (await cookies()).get('NEXT_LOCALE')?.value === 'ar' ? true : false 
     const t = await getTranslations('Header');
-const menuItems = [
+    const menuItems = [
         {
             label: t('menu.categories.label'),
             items: [
@@ -90,10 +91,10 @@ const menuItems = [
 
                             {/* Search */}
                             <div className="relative w-full max-w-2xl">
-                                <Search className="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                                <Search className={`absolute ${isRtl ? "right-3" : "left-3"}  top-1/2 -translate-y-1/2 size-4 text-muted-foreground`} />
                                 <Input
                                     placeholder={t('searchPlaceholder')}
-                                    className="pr-9 text-right"
+                                    className="px-9 "
 
                                 />
                             </div>
