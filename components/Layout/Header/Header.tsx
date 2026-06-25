@@ -29,6 +29,7 @@ export default async function Header() {
                 t('menu.categories.items.0'),
                 t('menu.categories.items.1'),
                 t('menu.categories.items.2'),
+                t('menu.categories.items.3'),
             ],
         },
         {

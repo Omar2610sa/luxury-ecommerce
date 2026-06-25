@@ -7,9 +7,10 @@
       "categories": {
         "label": "Shop by Category",
         "items": [
-          "Leather Bags",
-          "Leather Shoes",
-          "Leather Belt"
+          "Men",
+          "Laides",
+          "Kids",
+          "Accessories"
         ]
       },
       "naturalLeather": {
@@ -169,7 +170,6 @@
     "choose_shipping_address": "Choose shipping address",
     "choose_shipping_method": "Choose shipping method",
     "order_confirmed": "Order confirmed",
-
     "payment_method": "Payment Method",
     "shipping_address": "Shipping Address",
     "billing_address": "Billing Address",
@@ -179,19 +179,15 @@
     "order_summary": "Order Summary",
     "same_as_shipping": "Same as shipping address",
     "different_billing": "Different billing address",
-
     "cash_online_label": "Cash payment",
     "cash_wallet_label": "Split into 4 installments.",
     "cash_on_delivery_label": "Pay on delivery",
-
     "shipping_method": "Shipping Method",
     "standard_shipping": "Standard Shipping",
     "express_shipping": "Express Shipping",
     "overnight_shipping": "Overnight Shipping",
-
     "standard_shipping_price": "+5 EGP",
     "express_shipping_price": "+30 EGP",
-
     "subtotal": "Subtotal",
     "products": "products",
     "shippingFees": "Shipping Fees",
@@ -199,13 +195,10 @@
     "couponDiscount": "Coupon Discount",
     "total": "Total",
     "includingTax": "(including tax)",
-
     "confirm_order_button": "Confirm Order",
-
     "choose_shipping_address": "Choose shipping address",
     "edit": "Edit",
     "address_deleted": "Address deleted successfully",
-
     "error_generic": "Something went wrong",
     "error_server_connection": "Server connection error"
   },
@@ -228,7 +221,7 @@
       }
     }
   },
-  "ShopNow" : "Shop Now",
+  "ShopNow": "Shop Now",
   "Profile": {
     "title": "My Profile",
     "edit_profile": "Edit Profile",
@@ -544,32 +537,76 @@
     "loading": "Adding..."
   },
   "AddressDialog": {
-  "trigger": "Add New Address",
-  "title": "Add New Address",
-  "fields": {
-    "country": { "label": "Country", "placeholder": "Select a country" },
-    "state": { "label": "Region", "placeholder": "Select a region" },
-    "city": { "label": "City", "placeholder": "Select a city" },
-    "firstName": { "label": "First Name", "placeholder": "Enter your first name" },
-    "lastName": { "label": "Last Name", "placeholder": "Enter your last name" },
-    "phone": { "label": "Phone Number", "placeholder": "Enter your phone number" },
-    "street": { "label": "Address", "placeholder": "Enter your address in detail" },
-    "zip": { "label": "Zip Code", "placeholder": "Enter your zip code" },
-    "isDefault": "Set as default address"
-  },
-  "validation": {
-    "firstName": { "min": "First name must be at least 2 characters", "required": "First name is required" },
-    "lastName": { "min": "Last name must be at least 2 characters", "required": "Last name is required" },
-    "country": { "required": "Country is required" },
-    "state": { "required": "Region is required" },
-    "city": { "required": "City is required" },
-    "street": { "min": "Address must be at least 5 characters", "required": "Address is required" },
-    "phone": { "invalid": "Invalid phone number", "required": "Phone number is required" },
-    "zip": { "required": "Zip code is required" }
-  },
-  "submitting": "Adding...",
-  "submit": "Add Address",
-  "errorDefault": "Something went wrong",
-  "errorConnection": "Connection error"
-}
+    "trigger": "Add New Address",
+    "title": "Add New Address",
+    "fields": {
+      "country": {
+        "label": "Country",
+        "placeholder": "Select a country"
+      },
+      "state": {
+        "label": "Region",
+        "placeholder": "Select a region"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Select a city"
+      },
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Enter your first name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Enter your last name"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "street": {
+        "label": "Address",
+        "placeholder": "Enter your address in detail"
+      },
+      "zip": {
+        "label": "Zip Code",
+        "placeholder": "Enter your zip code"
+      },
+      "isDefault": "Set as default address"
+    },
+    "validation": {
+      "firstName": {
+        "min": "First name must be at least 2 characters",
+        "required": "First name is required"
+      },
+      "lastName": {
+        "min": "Last name must be at least 2 characters",
+        "required": "Last name is required"
+      },
+      "country": {
+        "required": "Country is required"
+      },
+      "state": {
+        "required": "Region is required"
+      },
+      "city": {
+        "required": "City is required"
+      },
+      "street": {
+        "min": "Address must be at least 5 characters",
+        "required": "Address is required"
+      },
+      "phone": {
+        "invalid": "Invalid phone number",
+        "required": "Phone number is required"
+      },
+      "zip": {
+        "required": "Zip code is required"
+      }
+    },
+    "submitting": "Adding...",
+    "submit": "Add Address",
+    "errorDefault": "Something went wrong",
+    "errorConnection": "Connection error"
+  }
 }
