@@ -609,5 +609,19 @@
     "submit": "Add Address",
     "errorDefault": "Something went wrong",
     "errorConnection": "Connection error"
+  },
+  "ShippingInfo": {
+    "shipping": {
+      "title": "Shipping to Egypt",
+      "freeShipping": "Free for orders over 2500 EGP or more",
+      "estimatedDelivery": "Estimated delivery on",
+      "deliveryDate": "2022/09/15 - 2022/09/30"
+    },
+    "returnPolicy": {
+      "title": "Return Policy"
+    },
+    "description": {
+      "title": "Description"
+    }
   }
 }

@@ -611,5 +611,19 @@
     "submit": "إضافة عنوان",
     "errorDefault": "حدثت مشكلة",
     "errorConnection": "حدثت مشكلة في الاتصال بالسيرفر"
+  },
+    "ShippingInfo" : {
+  "shipping": {
+    "title": "الشحن إلى مصر",
+    "freeShipping": "مجاناً للطلبات التي تزيد عن 2500 جنيه أو أكثر",
+    "estimatedDelivery": "من المتوقع أن يتم تسليمها في",
+    "deliveryDate": "2022/09/15 - 2022/09/30"
+  },
+  "returnPolicy": {
+    "title": "سياسة الإرجاع"
+  },
+  "description": {
+    "title": "وصف"
   }
+}
 }
