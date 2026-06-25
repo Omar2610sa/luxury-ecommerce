@@ -65,7 +65,7 @@ export function LoginDialog() {
         validationSchema: loginSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await apiClient<{ status?: string; message?: string , data?: Profile }>("login", {
+                const response = await apiClient<{ status: string; message: string; data: Profile }>("login", {
                     method: "POST",
                     body: {
                         credential: values.identifier, password: values.password, type: "ios",
