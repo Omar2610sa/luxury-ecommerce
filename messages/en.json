@@ -507,5 +507,25 @@
     "Subcategories": "Subcategories",
     "PriceRange": "Price range",
     "Classification": "Price range"
+  },
+  "ProductInfo": {
+    "oldPrice": "EGP 950",
+    "outOfStock": "Out of Stock",
+    "lowStock": "Only {quantity} items left",
+    "brand": "Brand",
+    "color": "Color",
+    "colorPlaceholder": "Color",
+    "size": "Size",
+    "sizePlaceholder": "Type",
+    "sizeGuide": "Size Guide",
+    "notes": "Reviews",
+    "noReviews": "No reviews yet",
+    "reviewColor": "Color",
+    "reviewSize": "Size",
+    "matchOptions": "Match Options"
+  },
+  "AddTOCart": {
+    "add": "Add to Cart",
+    "loading": "Adding..."
   }
 }

@@ -22,6 +22,7 @@ type Detail = {
 
 type Props = {
     details: Detail[]
+    onChange?: (detail: Detail) => void
 }
 
 

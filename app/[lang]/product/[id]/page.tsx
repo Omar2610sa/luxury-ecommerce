@@ -38,10 +38,11 @@ export default async function Page({ params }: Props) {
         title={t('recommended')}
         products={product?.recommended ?? []}
       />
-      <ForYouSection
-        title={t('also_may_like')}
-        products={product?.also_may_like ?? []}
-      />
+
+          <ForYouSection
+            title={t('also_may_like')}
+            products={product?.also_may_like ?? []}
+          />
     </div>
   );
 }

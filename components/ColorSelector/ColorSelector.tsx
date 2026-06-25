@@ -4,19 +4,24 @@ import { cn } from '@/lib/utils'
 
 
 
-const ColorSelector = ({ details }: Props) => {
+const ColorSelector = ({ details , onChange  }: Props) => {
     const [selectedDetailId, setSelectedDetailId] = React.useState(details[0]?.id)
 
+    const handleSelect = (detail: Detail) => {
+        setSelectedDetailId(detail.id)
+        onChange?.(detail)
+    }
+
     return (
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-3 flex-wrap">
             {details.map((detail) => (
                 <button
                     key={detail.id}
-                    onClick={() => setSelectedDetailId(detail.id)}
+                    onClick={() => handleSelect(detail)}
                     title={detail.color.title}
                     style={{
                         backgroundColor: detail.color.hex,
-                        borderColor: selectedDetailId === detail.id ? detail.color.hex : 'transparent',
+                        borderColor: selectedDetailId === detail.id ? detail.color.hex : 'gray',
                     }}
                     className={cn(
                         "size-6 rounded-full border-2 transition-all hover:scale-110",

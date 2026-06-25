@@ -507,5 +507,25 @@
     "Subcategories": "الأقسام الفرعية",
     "PriceRange": "نطاق السعر",
     "Classification": "تصنيف"
+  },
+  "ProductInfo": {
+    "oldPrice": "950 جنيه",
+    "outOfStock": "نفذت الكمية",
+    "lowStock": "متبقي عدد {quantity} من الكمية",
+    "brand": "العلامة التجارية",
+    "color": "لون",
+    "colorPlaceholder": "اللون",
+    "size": "الحجم",
+    "sizePlaceholder": "نوع",
+    "sizeGuide": "مقاس جيد",
+    "notes": "ملاحظات",
+    "noReviews": "لا يوجد مراجعات حاليا",
+    "reviewColor": "اللون",
+    "reviewSize": "الحجم",
+    "matchOptions": "مطابقة الخيارات"
+  },
+  "AddTOCart": {
+    "add": "اضف الى السلة",
+    "loading": "جاري الإضافة..."
   }
 }
