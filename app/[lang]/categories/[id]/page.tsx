@@ -1,3 +1,4 @@
+
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
 import CategoryFilter from "@/components/Filter/Filter";
 import ProductsGridSkeleton from "@/components/ProductsGridSkeleton/ProductsGridSkeleton";
@@ -6,6 +7,13 @@ import { Suspense } from "react";
 import { getTranslations } from 'next-intl/server';
 import { serverApi } from "@/services/serverApi";
 import { Category } from "@/interfaces/interfaces";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import { ChevronDownIcon, Settings2Icon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   params: Promise<{
@@ -49,9 +57,25 @@ export default async function page({ params, searchParams }: Props) {
         secondLink={t('shop_by_categories')}
         thirdLink={category?.title ?? ""}
       />
-      <div className="grid md:grid-cols-[0.4fr_1fr] justify-center gap-5 items-center md:items-start">
+      <div className="grid md:grid-cols-[0.4fr_1fr] justify-s gap-5 items-center md:items-start">
         <div className="max-w-2xs">
-          <CategoryFilter subCategories={category?.sub_categories ?? []} />
+          <div className="hidden md:block">
+            <CategoryFilter subCategories={category?.sub_categories ?? []} />
+          </div>
+          <div className="md:hidden">
+
+            <Collapsible className="rounded-md space-y-3">
+              <CollapsibleTrigger render={
+                <div className="lg:hidden flex items-center gap-2 w-fit  text-black p-2 lg:p-6 rounded-full">
+                  <Settings2Icon className=" group-data-panel-open/button:rotate-180" />
+                  <span className="text-2xl">{t('filter')}</span>
+                </div>} />
+              <CollapsibleContent className="duration-300">
+                <CategoryFilter subCategories={category?.sub_categories ?? []} />
+
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
         </div>
         <Suspense fallback={<ProductsGridSkeleton />} key={JSON.stringify(resolvedSearchParams)}>
           <CategoryProducts

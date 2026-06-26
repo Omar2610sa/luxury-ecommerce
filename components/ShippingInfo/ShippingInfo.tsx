@@ -1,7 +1,12 @@
-import { TruckIcon, RotateCcwIcon, InfoIcon, ChevronLeft } from "lucide-react"
-import { useTranslations } from "next-intl" 
+import { TruckIcon, RotateCcwIcon, InfoIcon, ChevronLeft, ChevronRight } from "lucide-react"
+import { useTranslations } from "next-intl"
+import Cookies from "js-cookie"
+
+
+
 export default function ShippingInfo() {
   const t = useTranslations('ShippingInfo')
+  const isRtl = Cookies.get('NEXT_LOCALE') == "ar"
 
   return (
     <div className="flex flex-col gap-4 w-full">
@@ -25,7 +30,11 @@ export default function ShippingInfo() {
           <RotateCcwIcon className="size-7" />
           <span className="text-xl font-semibold">{t("returnPolicy.title")}</span>
         </div>
-        <ChevronLeft className="size-5 text-gray-400" />
+        {
+          isRtl ?
+            <ChevronLeft className="size-5 text-gray-400" /> :
+            <ChevronRight className="size-5 text-gray-400" />
+        }
       </button>
 
       {/* Description */}
@@ -34,7 +43,11 @@ export default function ShippingInfo() {
           <InfoIcon className="size-7" />
           <span className="text-xl font-semibold">{t("description.title")}</span>
         </div>
-        <ChevronLeft className="size-5 text-gray-400" />
+        {
+          isRtl ?
+            <ChevronLeft className="size-5 text-gray-400" /> :
+            <ChevronRight className="size-5 text-gray-400" />
+        }
       </button>
 
     </div>

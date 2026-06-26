@@ -101,9 +101,9 @@ export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
         setOpenSections(prev => ({ ...prev, [key]: !prev[key] }))
 
     return (
-        <Card className={`p-4 rounded-lg bg-[rgba(246,247,252,1)] sticky top-40 
+        <Card  className={`p-4 min-w-sm md:min-w-xs  rounded-lg bg-[rgba(246,247,252,1)] sticky top-40 
             ${isPending ? "opacity-60 pointer-events-none" : ""}`}>
-            <CardContent className="p-0 space-y-4">
+            <CardContent className="p-0 space-y-4 ">
                 {/* Header */}
                 <div className="flex items-center justify-between pb-2">
                     <h3 className="text-primary text-lg font-semibold">
