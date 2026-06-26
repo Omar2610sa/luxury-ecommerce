@@ -627,5 +627,11 @@
     "description": {
       "title": "Description"
     }
+  },
+  "serverError": {
+    "title": "Unexpected Error Occurred",
+    "description": "We encountered a problem while processing your request. Please try again later.",
+    "backHome": "Back to Home",
+    "retry": "Retry"
   }
 }

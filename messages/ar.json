@@ -114,7 +114,7 @@
   },
   "SLider": {
     "no_results": "لا توجد نتائج",
-    "breadCumb_link" :  "السلايدر"
+    "breadCumb_link": "السلايدر"
   },
   "Category": {
     "title": "الفئة",
@@ -629,5 +629,11 @@
     "description": {
       "title": "وصف"
     }
+  },
+  "serverError": {
+    "title": "حدث خطأ غير متوقع",
+    "description": "واجهنا مشكلة أثناء معالجة طلبك. يرجى المحاولة مرة أخرى لاحقاً.",
+    "backHome": "العودة للرئيسية",
+    "retry": "إعادة المحاولة"
   }
 }
