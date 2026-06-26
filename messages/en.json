@@ -116,6 +116,10 @@
     "compare": "Compare",
     "available_now": "Available Now"
   },
+  "SLider": {
+    "no_results": "No results found",
+    "breadCumb_link": "Slider"
+  },
   "Category": {
     "title": "Category",
     "filter": "Filter",

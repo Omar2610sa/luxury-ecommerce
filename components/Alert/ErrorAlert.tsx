@@ -10,7 +10,7 @@ type Props = {
 function ErrorAlertComponent({ title }: Props) {
     return (
         <Dialog open={true}>
-            <DialogContent className="sm:max-w-sm flex flex-col items-center gap-6 py-10 animate-success-alert">
+            <DialogContent hideCloseButton className="sm:max-w-sm flex flex-col items-center gap-6 py-10 animate-success-alert">
                 <BadgeX
                     width={100}
                     height={100}

@@ -11,21 +11,15 @@ type Lang = 'ar' | 'en'
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
 
-    // Reomove /ar to /
-    if (pathname.startsWith(`/ar`)) {
-        const segments = pathname.split("/").filter(Boolean);
-        const [, ...rest] = segments;
-        const cleanedPath = "/" + rest.join("/");
-        const url = new URL(cleanedPath, request.url);
-        return NextResponse.redirect(url);
-    }
+
     const isProtected = protectedRoutes.some(route => pathname.startsWith(route))
 
     const token = request.cookies.get('token_luxary')?.value
 
     // Set locale at cookies
     const cookiesStore = await cookies()
-    cookiesStore.set('NEXT_LOCALE', (cookiesStore.get("NEXT_LOCALE")?.value || (pathname.startsWith(`/ar`) ? "ar" : 'en')) as Lang)
+    cookiesStore.set('NEXT_LOCALE', (cookiesStore.get("NEXT_LOCALE")?.value || 'ar') as Lang)
+   
     if (isProtected && !token) {
         return NextResponse.redirect(new URL('/', request.url))
     }
@@ -35,6 +29,14 @@ export async function middleware(request: NextRequest) {
     const guestToken = request.cookies.get('guest_token')?.value
     if (!guestToken) {
         response.cookies.set('guest_token', uuidv4())
+    }
+    // Reomove /ar to /
+    if (pathname.startsWith(`/ar`)) {
+        const segments = pathname.split("/").filter(Boolean);
+        const [, ...rest] = segments;
+        const cleanedPath = "/" + rest.join("/");
+        const url = new URL(cleanedPath, request.url);
+        return NextResponse.redirect(url);
     }
 
     return response

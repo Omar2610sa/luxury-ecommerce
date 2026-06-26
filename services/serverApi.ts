@@ -22,11 +22,10 @@ export async function serverApi<T = unknown>(
     
     try {
         token = cookieStore.get("token_luxary")?.value
-        Language = cookieStore.get("NEXT_LOCALE")?.value || "ar"
+        Language = cookieStore.get("NEXT_LOCALE")?.value 
         guestToken = await ensureGuestToken()
     } catch {
         token = undefined
-        Language = "ar"
         guestToken = uuidv4()
     }
 

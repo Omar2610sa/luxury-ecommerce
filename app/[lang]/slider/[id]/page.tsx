@@ -16,7 +16,7 @@ type Props = {
 
 export default async function page({ params }: Props) {
   const { lang, id } = await params;
-  const t = await getTranslations({ locale: lang, namespace: 'Category' });
+  const t = await getTranslations({ locale: lang, namespace: 'SLider' });
   const { data: slider } = await serverApi<{ data: Slider }>(`slider/${id}`);
 
   const products = Array.isArray(slider?.product_details)
@@ -29,7 +29,7 @@ export default async function page({ params }: Props) {
 
   return (
     <div className="container flex flex-col gap-8">
-      <BreadCrumb secondLink="السلايدر" thirdLink={slider?.name ?? ""} />
+      <BreadCrumb secondLink={t('breadCumb_link')} thirdLink={slider?.name ?? ""} />
       {hasProducts ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 ">
           {products.map((product, index) => {

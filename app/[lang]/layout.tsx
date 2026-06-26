@@ -8,6 +8,10 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { ReactNode } from 'react';
+import { Metadata } from "next";
+import logo from "@/assets/logo.svg"
+
+
 
 export const dinNextArabic = localFont({
   src: [
@@ -17,6 +21,12 @@ export const dinNextArabic = localFont({
   ],
   variable: "--font-din-next-arabic",
 });
+
+export const metadata: Metadata = {
+  icons: {
+    icon: logo.src,
+  },
+}
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ lang: locale }));

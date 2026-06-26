@@ -13,12 +13,13 @@ type Props = {
 
 export default function MobileHeader({ isLoggedIn }: Props) {
     const pathname = usePathname()
+    const cleanPathname = pathname.replace(/^\/(en|ar)/, '') || '/'
 
     const t = useTranslations('MobileHeader');
 
     const links = [
         { name: t('home'), icon: Home, href: "/" },
-        { name: t('categories'), icon: Search, href: "/categories" },
+        { name: t('categories'), icon: Search, href: "/categories/14" },
         { name: t('products'), icon: SparklesIcon, href: "/products" },
         { name: t('cart'), icon: ShoppingCartIcon, href: "/cart" },
         ...(isLoggedIn
@@ -31,7 +32,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
             <div className="py-2 px-3">
                 <div className="mini-links w-full flex items-center justify-around py-2">
                     {links.map((ele, index) => {
-                        const isActive = pathname === ele.href
+                        const isActive = cleanPathname === ele.href
 
                         return (
                             <Link

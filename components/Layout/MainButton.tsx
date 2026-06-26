@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 
 export default function MainButton({text} : {text : string}) {
   return (

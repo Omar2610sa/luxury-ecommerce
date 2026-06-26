@@ -38,7 +38,7 @@ export default function Hero({ slider, shopNowText = "تسوق الآن" }: { sl
                                 <div className="flex flex-col items-center justify-center space-y-16 px-6">
                                     <div className="space-y-6">
 
-                                        <h1 className="font-bold text-[40px] md:text-7xl leading-[1.4]">
+                                        <h1 className="font-bold text-5xl md:text-7xl leading-[1.4]">
                                             {slider.name}
                                         </h1>
                                         <p className="text-3xl leading-relaxed">
