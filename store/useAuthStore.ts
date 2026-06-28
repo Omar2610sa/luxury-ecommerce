@@ -1,3 +1,4 @@
+import { Profile } from "@/types/type"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
