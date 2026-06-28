@@ -17,6 +17,7 @@ import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import { apiClient } from "@/services/useApiClient"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { Country, Profile } from "@/types/type"
 
 export default function ProfileForm({ profile }: { profile: Profile }) {
     const t = useTranslations("Edit Profile")

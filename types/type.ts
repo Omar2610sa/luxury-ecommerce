@@ -28,7 +28,7 @@ type Props = {
 }
 
 
-type Country = {
+export type Country = {
     id: number
     name: string
     flag: string
