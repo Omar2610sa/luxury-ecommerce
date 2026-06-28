@@ -1,5 +1,6 @@
 "use client"
 
+import { Options } from "@/types/type"
 import Cookies from "js-cookie"
 import { v4 as uuidv4 } from "uuid"
 
