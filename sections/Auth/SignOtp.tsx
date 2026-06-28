@@ -16,6 +16,7 @@ import { apiClient } from "@/services/useApiClient"
 import { ErrorAlert } from "@/components/Alert/ErrorAlert"
 import Cookies from "js-cookie"
 import { useTranslations } from 'next-intl';
+import { Profile } from "@/types/type"
 
 type Props = {
     open: boolean
