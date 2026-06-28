@@ -24,6 +24,7 @@ import { useRouter } from "next/navigation"
 import { useAuthStore } from "@/store/useAuthStore"
 import { apiClient } from "@/services/useApiClient"
 import { ErrorAlert } from "@/components/Alert/ErrorAlert"
+import { Profile } from "@/types/type"
 
 
 

@@ -35,7 +35,7 @@ type Country = {
     phone_code: string
 }
 
-type Profile = {
+export type Profile = {
     name: string
     email: string
     phone: string
