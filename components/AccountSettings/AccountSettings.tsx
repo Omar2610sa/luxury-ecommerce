@@ -10,36 +10,45 @@ import { useTranslations } from 'next-intl';
 import { apiClient } from "@/services/useApiClient";
 import { ErrorAlert } from "../Alert/ErrorAlert";
 import { SuccessAlert } from "../Alert/SuccessAlert";
+import { CheckAlert } from "../Alert/CheckAlert";
 
 
 
 export default function AccountSettings() {
     const t = useTranslations('Account Setting');
     const router = useRouter();
-    const handleLogout = async () => {
-        Cookies.remove("token_luxary")
-        router.push("/")
-        router.refresh()
-    };
-    const handleDeleteAccount = async () => {
-        try {
+const handleLogout = async () => {
+    try {
+        const result = await CheckAlert({ title: t('logoutQ') })
+        if (result.isConfirmed) {
+            Cookies.remove("token_luxary")
+            router.push("/")
+            router.refresh()
+        }
+    } catch {
+        ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
+    }
+}
+const handleDeleteAccount = async () => {
+    try {
+        const result = await CheckAlert({ title: t('DeleteQ') })
+        if (result.isConfirmed) {
             const response = await apiClient<{ status?: string; message?: string }>("delete_account", {
                 method: "DELETE",
             })
-            if (response?.status === "sucess") {
+            if (response?.status === "success") { 
                 SuccessAlert("تم حذف الحساب بنجاح")
                 Cookies.remove("token_luxary")
                 router.push("/")
                 router.refresh()
-            }
-            else {
+            } else {
                 ErrorAlert(response?.message ?? "حدثت مشكلة")
             }
-        } catch {
-            ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
         }
-
-    };
+    } catch {
+        ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
+    }
+}
     const links = [
         {
             header: t('orders'),

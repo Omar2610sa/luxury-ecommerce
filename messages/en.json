@@ -339,7 +339,9 @@
     "cart": "Shopping Cart",
     "wallet": "My Wallet",
     "Delete": "Delete Account",
-    "logout": "Logout"
+    "logout": "Logout",
+    "logoutQ": "Are You Want To Log out?",
+    "DeleteQ": "Are You Want To Delete this account?"
   },
   "Edit Profile": {
     "title": "Edit Profile",
