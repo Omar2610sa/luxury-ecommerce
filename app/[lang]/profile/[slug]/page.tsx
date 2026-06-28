@@ -1,9 +1,11 @@
 import NoFav from "@/components/NoFav/NoFav";
 import NoInfo from "@/components/NoInfo/NoInfo";
 import ShopCard from "@/components/ShopCard/ShopCard";
+import Tablist from "@/components/Tablist/Tablist";
 import { CartData, HomeData, Product } from "@/interfaces/interfaces";
 import ChangePasswordForm from "@/sections/Auth/ChangePass";
 import CartDetails from "@/sections/CartDetails/CartDetails";
+import MyOrders from "@/sections/MyOrders/MyOrders";
 import { serverApi } from "@/services/serverApi";
 import { getTranslations } from "next-intl/server";
 
@@ -13,60 +15,46 @@ type Props = {
     params: Promise<{
         slug: string;
         lang: string;
-
     }>;
+    searchParams: Promise<{ type?: string }>
 };
-export default async function page({ params }: Props) {
+
+export default async function page({ params, searchParams }: Props) {
     const { slug, lang } = await params;
+    const resolvedSearch = await searchParams;
+    const status = resolvedSearch?.type;
 
     if (slug === "my-order") {
-        const { data: order } = await serverApi<{ data: CartData[] }>("orders")
-        return (
-            <div className="container bg-[#F6F7FC]">
-                <div className="flex items-center justify-between">
-
-                </div>
-                <h3 className="text-lg font-semibold text-primary">طلباتي</h3>
-
-                {
-                    order && (
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-6 ">
-                            {
-                                order?.map((ele, index) => {
-                                    return (
-                                        <div key={index}>
-                                            {/* {ele?.status} */}
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    )}
-                {
-                    !order.length && (
-                        <NoInfo title="لا يوجد طلب مسبق" decs="اذهب و تسوق الأن" />
-                    )
-                }
-            </div>
-        )
+        return <MyOrders status={status} />  
     }
+
     if (slug === "cart") {
         const { data: cart } = await serverApi<CartData>("cart")
         const t = await getTranslations({ locale: lang, namespace: 'Cart' });
-
-        return (
-            <CartDetails cart={cart} lang={lang} />
-        )
+        return <CartDetails cart={cart} lang={lang} />
     }
-    if (slug === "change-password") {
 
+    if (slug === "change-password") {
+        return <ChangePasswordForm />
+    }
+
+    if (slug === "favoutie") {
+        const { data: fave } = await serverApi<{ data: HomeData[] }>("get_fave_products")
         return (
             <>
-                <ChangePasswordForm />
+                {fave?.length ? (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {fave.map((ele, index) => (
+                            <ShopCard key={index} product={ele as unknown as Product} />
+                        ))}
+                    </div>
+                ) : (
+                    <NoFav />
+                )}
             </>
         )
     }
+
     if (slug === "favoutie") {
         const { data: fave } = await serverApi<{ data: HomeData[] }>("get_fave_products")
 

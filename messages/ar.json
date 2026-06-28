@@ -635,5 +635,30 @@
     "description": "واجهنا مشكلة أثناء معالجة طلبك. يرجى المحاولة مرة أخرى لاحقاً.",
     "backHome": "العودة للرئيسية",
     "retry": "إعادة المحاولة"
+  },
+  "Tablist": {
+    "all": "كل الطلبات",
+    "confirmed": "قيد الإنتظار",
+    "processing": "قيد التنفيذ",
+    "in_the_way": "في الطريق",
+    "delivered": "تم التوصيل",
+    "cancelled": "تم إلغائه",
+    "rejected": "تم رفضه"
+  },
+  "MyOrders": {
+    "MyOrders": "طلباتي",
+    "order": "طلب",
+    "count": "العدد",
+    "detail": "التفاصيل",
+    "cancel": " إلغاء الطلب",
+    "noOrders": "لا يوجد طلب مسبق",
+    "noOrdersDesc": "اذهب و تسوق الأن"
+  },
+  "OrderStatus": {
+    "pending": "قيد الانتظار",
+    "confirmed": "مؤكد",
+    "shipped": "تم الشحن",
+    "delivered": "تم التسليم",
+    "cancelled": "ملغي"
   }
 }

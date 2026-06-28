@@ -1,3 +1,5 @@
+import { Order } from "@/interfaces/interfaces"
+
 type searchParams = {
     searchParams: {
         main_category_id?: string
@@ -55,6 +57,7 @@ type PropsProfile = {
 }
 
 
+
 type Method = "GET" | "POST" | "PUT" | "DELETE"
 
 type Options = {
@@ -64,3 +67,7 @@ type Options = {
     next?: NextFetchRequestConfig
 }
 
+
+export type OrdersResponse = {
+    data: Order[]
+}

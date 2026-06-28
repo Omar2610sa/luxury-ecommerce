@@ -633,5 +633,30 @@
     "description": "We encountered a problem while processing your request. Please try again later.",
     "backHome": "Back to Home",
     "retry": "Retry"
+  },
+  "Tablist": {
+    "all": "All Orders",
+    "confirmed": "Pending",
+    "processing": "In Progress",
+    "in_the_way": "On The Way",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled",
+    "rejected": "Rejected"
+  },
+  "MyOrders": {
+    "MyOrders": "My Orders",
+    "order": "Order",
+    "count": "Count",
+    "detail": "Details",
+    "cancel": "Cancel Order",
+    "noOrders": "No previous orders",
+    "noOrdersDesc": "Go and shop now"
+  },
+  "OrderStatus": {
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
   }
 }

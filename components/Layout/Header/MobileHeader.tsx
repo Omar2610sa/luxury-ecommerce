@@ -20,7 +20,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
     const links = [
         { name: t('home'), icon: Home, href: "/" },
         { name: t('categories'), icon: Search, href: "/categories/14" },
-        { name: t('NewArrival'), icon: SparklesIcon, href: "/products" },
+        { name: t('NewArrival'), icon: SparklesIcon, href: "/brand" },
         { name: t('cart'), icon: ShoppingCartIcon, href: "/cart" },
         ...(isLoggedIn
             ? [{ name: t('profile'), icon: User2Icon, href: "/profile" }]

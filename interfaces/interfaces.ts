@@ -298,3 +298,20 @@ export interface SubCategory {
     id: number;
     title: string;
 }
+
+export interface OrderImage {
+    id: number
+    media: string
+    alt: string | null
+}
+
+export interface Order {
+    id: number
+    order_no: string
+    status: string
+    total: number
+    count: number
+    shipping_type: 'standard_shipping' | 'express_shipping'
+    images: OrderImage[]
+}
+
