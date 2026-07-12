@@ -156,6 +156,7 @@
     "freeShipping": "مجانا",
     "couponDiscount": "خصم الكوبون",
     "total": "المجموع",
+    "order_summary": "ملخص الطلب",
     "includingTax": "(شامل الضريبة)",
     "checkout": "إتمام الشراء",
     "itemDeleted": "تم حذف المنتج",
@@ -322,8 +323,8 @@
     "wallet": "محفظتي",
     "Delete": "حذف الحساب",
     "logout": "تسجيل خروج",
-    "logoutQ": "هل تسجيل خروج؟",
-    "DeleteQ": "هل حذف الحساب؟"
+    "logoutQ": "هل تريد تسجيل خروج؟",
+    "DeleteQ": "هل تريد حذف الحساب؟"
   },
   "Edit Profile": {
     "title": "تعديل ملفك ",

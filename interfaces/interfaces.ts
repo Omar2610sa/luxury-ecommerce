@@ -311,7 +311,29 @@ export interface Order {
     status: string
     total: number
     count: number
+    currency: string
+    shipping_value: string
     shipping_type: 'standard_shipping' | 'express_shipping'
     images: OrderImage[]
+    products?: OrderProduct[]
+
 }
 
+export interface OrderProduct {
+    title: string
+    color: string
+    size: string
+    price: number
+    currency: string
+    quantity: number
+    images: {
+        id: number
+        media: string
+        alt: string | null
+    }[]
+}
+
+export interface OrderDetailsData {
+    order_no: string
+    products: OrderProduct[]
+}

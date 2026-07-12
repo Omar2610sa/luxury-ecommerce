@@ -12,8 +12,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { ChevronDownIcon, Settings2Icon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {  Settings2Icon } from "lucide-react";
 
 type Props = {
   params: Promise<{

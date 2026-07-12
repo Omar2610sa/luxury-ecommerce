@@ -5,6 +5,7 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { Link } from "@/services/navigation";
 import { getTranslations } from 'next-intl/server';
 
 
@@ -20,7 +21,7 @@ export default async function HeaderLinks() {
                 <BreadcrumbSeparator>|</BreadcrumbSeparator>
 
                 <BreadcrumbItem>
-                    <BreadcrumbLink className="text-black hover:text-black/70 cursor-pointer">{t("returnPolicy")}</BreadcrumbLink>
+                    <Link href="/privacy" className="text-black hover:text-black/70 cursor-pointer">{t("returnPolicy")}</Link>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator>|</BreadcrumbSeparator>
                 <BreadcrumbItem>

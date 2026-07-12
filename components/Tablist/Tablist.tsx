@@ -40,7 +40,7 @@ const Tablist = () => {
                         <TabsTrigger
                             key={tabValue}
                             value={tabValue}
-                            className="bg-gray-100 text-md gap-3 py-4 px-6 data-[state=active]:bg-primary data-[state=active]:text-white sm:px-3 text-black"
+                            className="bg-gray-100 text-md gap-3 hover:bg-slate-200 cursor-pointer py-4 px-6 data-[state=active]:bg-primary data-[state=active]:text-white sm:px-3 text-black"
                         >
                             {name}
                         </TabsTrigger>

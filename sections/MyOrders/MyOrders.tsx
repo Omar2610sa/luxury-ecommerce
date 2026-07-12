@@ -72,7 +72,7 @@ export default async function MyOrders({ status }: Props) {
                                         </div>
 
                                         <div className="grid grid-cols-2 gap-3 mt-2">
-                                            <Link href={`/profile/orders/${ele.id}`}>
+                                            <Link href={`/order/${ele.id}`}>
                                                 <Button className="w-full bg-primary text-white rounded-none">{t('detail')}</Button>
                                             </Link>
                                             <Button
