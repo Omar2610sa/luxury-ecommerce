@@ -40,7 +40,7 @@ export default function AddBalance({ title }: { title: string }) {
         validationSchema: schema,
         onSubmit: async (values, { setSubmitting, resetForm }) => {
             try {
-                const response = await apiClient("wallet/add_balance", {
+const response = await apiClient<{ status: string; message?: string }>("wallet/add_balance", {
                     method: "POST",
                     body: { amount: values.amount },
                 })
@@ -63,7 +63,7 @@ export default function AddBalance({ title }: { title: string }) {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
+            <DialogTrigger>
                 <Button
                     variant="outline"
                     className="px-10 py-5 rounded-none font-medium bg-white text-[#926D35] border-white hover:bg-white/90 hover:text-[#926D35]"
