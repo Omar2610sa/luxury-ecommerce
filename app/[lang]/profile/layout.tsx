@@ -1,9 +1,12 @@
+import FadeIn from "@/Animations/Fadding";
 import AccountSettings from "@/components/AccountSettings/AccountSettings";
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Menu } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
+import { cookies } from "next/headers";
+
 
 export default async function Layout({
   children,
@@ -12,13 +15,17 @@ export default async function Layout({
 }) {
   const t = await getTranslations('Profile');
 
-  return (
 
+  const cookieStore = await cookies()
+  const isRtl = cookieStore.get("NEXT_LOCALE")?.value == 'ar'
+  return (
     <div className="container flex flex-col gap-8">
       <BreadCrumb thirdLink={t('title')} />
       <div className="grid md:grid-cols-[0.4fr_1fr] gap-10 items-start ">
         <div className="hidden md:block">
-          <AccountSettings />
+          <FadeIn direction={isRtl ? "left" : "right"} delay={0.1} duration={0.3}>
+            <AccountSettings />
+          </FadeIn>
         </div>
         <div className="md:hidden">
 

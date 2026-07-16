@@ -14,7 +14,7 @@ import {
 import { ChevronDownIcon } from 'lucide-react';
 import Image from 'next/image';
 
-import flagAr from '@/assets/icons/saudia.png';
+import flagAr from '@/assets/icons/Flag_of_Egypt.svg.webp';
 import flagEn from '@/assets/icons/english(3-5).svg';
 
 

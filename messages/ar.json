@@ -7,7 +7,7 @@
       "categories": {
         "label": "تسوق حسب الفئات",
         "items": [
-          "رحال",
+          "رجال",
           "سيدات",
           "اطفال",
           "اكسسوارات"
@@ -163,6 +163,38 @@
     "noCart": "لا يوجد منتجات مضافه الى السلة",
     "noCartDesc": "يبدو أنك لم تُضف أي شيء إلى سلة التسوق الخاصة بك حتى الآن.",
     "currency": "جنيه مصري"
+  },
+  "Wallet": {
+    "title": "محفظتي",
+    "balance": "رصيدي",
+    "currency": "جنيه",
+    "addBalance": "إضافة رصيد",
+    "withdraw": "سحب",
+    "lastTransactions": "آخر المعاملات",
+    "withdrawn": "تم السحب بنجاح",
+    "balanceAdded": "تمت إضافة الرصيد بنجاح",
+    "withdrawalPending": "طلب سحب قيد الانتظار",
+    "withdrawalAccepted": "تم السحب بنجاح",
+    "withdrawalRejected": "تم رفض السحب",
+    "chargePending": "إضافة رصيد قيد الانتظار",
+    "chargeAccepted": "تمت إضافة الرصيد بنجاح",
+    "chargeRejected": "تم رفض إضافة الرصيد",
+    "unknown": "معاملة غير معروفة"
+  },
+  "AddBalance": {
+    "amount": {
+      "label": "المبلغ",
+      "placeholder": "أدخل المبلغ"
+    },
+    "validation": {
+      "amount_required": "المبلغ مطلوب",
+      "amount_number": "يجب أن يكون رقماً",
+      "amount_min": "يجب أن يكون المبلغ على الأقل 1"
+    },
+    "submit": "إضافة رصيد",
+    "submitting": "جاري الإضافة...",
+    "success": "تمت إضافة الرصيد بنجاح",
+    "error": "حدثت مشكلة"
   },
   "Checkout": {
     "title": "الدفع",

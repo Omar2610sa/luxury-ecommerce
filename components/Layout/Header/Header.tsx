@@ -22,6 +22,7 @@ export default async function Header() {
     const token = (await cookies()).get('token_luxary')?.value ?? null
     const isRtl = (await cookies()).get('NEXT_LOCALE')?.value === 'ar' ? true : false 
     const t = await getTranslations('Header');
+   
     const menuItems = [
         {
             label: t('menu.categories.label'),

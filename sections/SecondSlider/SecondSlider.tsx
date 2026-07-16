@@ -1,18 +1,23 @@
 import { secondSlider } from "@/interfaces/interfaces";
 import Image from "next/image";
 import { Link } from '@/services/navigation';
+import FadeIn from "@/Animations/Fadding";
 
 export default function SecondSlider({ secondSlider }: { secondSlider: secondSlider[] }) {
     return (
         <section className='container space-y-10 w-full'>
             <div className="gap-y-10 md:mb-4 md:pb-4 gap-2.5 mt-4 pt-4 lg:mt-8 lg:pt-8 grid md:grid-cols-6 grid-cols-4">
                 {secondSlider.map((item, index) => (
-                    <Link href={`/categories/${item.id}`} key={index} className="flex flex-col items-center gap-3 justify-center mx-auto w-fit">
-                        <div className="relative w-18 h-18 sm:size-30 mx-auto mb-2 hover:scale-110 transition-all duration-300 overflow-hidden rounded-full bg-gray-100">
-                            <Image src={item.image} alt={item.title} fill className="h-full w-full object-cover" />
-                        </div>
-                        <span className="text-md sm:text-lg mx-auto text-center sm:h-10 h-8 line-clamp-2 break-all text-black">{item.title}</span>
-                    </Link>
+                    <FadeIn direction="down"  key={index} delay={index * 0.1} duration={0.3} >
+
+
+                        <Link href={`/categories/${item.id}`}  className="flex flex-col items-center gap-3 justify-center mx-auto w-fit">
+                            <div className="relative w-18 h-18 sm:size-30 mx-auto mb-2 hover:scale-110 transition-all duration-300 overflow-hidden rounded-full bg-gray-100">
+                                <Image src={item.image} alt={item.title} fill className="h-full w-full object-cover" />
+                            </div>
+                            <span className="text-md sm:text-lg mx-auto text-center sm:h-10 h-8 line-clamp-2 break-all text-black">{item.title}</span>
+                        </Link>
+                    </FadeIn>
                 ))}
             </div>
         </section>

@@ -185,7 +185,6 @@ export function SignUp() {
                 <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[80vh]">
                     <form onSubmit={formik.handleSubmit}>
                         <DialogHeader className="mb-3">
-                            <DialogTitle className="text-lg">{t('title')}</DialogTitle>
                             <p className="text-2xl my-3 mx-auto">{t('subtitle')}</p>
                         </DialogHeader>
 

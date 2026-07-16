@@ -337,3 +337,17 @@ export interface OrderDetailsData {
     order_no: string
     products: OrderProduct[]
 }
+
+export interface wallet {
+    balance: string
+    wallet_transactions: {
+        amount: string
+        status: string
+        type: string
+        created_at: string
+    }[]
+}
+
+export interface walletData {
+    data: wallet
+}

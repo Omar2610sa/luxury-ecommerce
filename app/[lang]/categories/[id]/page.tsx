@@ -12,7 +12,10 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import {  Settings2Icon } from "lucide-react";
+import { Settings2Icon } from "lucide-react";
+import { cookies } from "next/headers";
+import FadeIn from "@/Animations/Fadding";
+
 
 type Props = {
   params: Promise<{
@@ -50,6 +53,11 @@ export default async function page({ params, searchParams }: Props) {
 
   const category = categories?.find((cat: { id: number }) => cat.id === Number(id));
 
+  const cookieStore = await cookies()
+
+  const isRtl = cookieStore.get("NEXT_LOCALE")?.value == 'ar'
+
+
   return (
     <div className="container flex flex-col gap-10">
       <BreadCrumb
@@ -58,9 +66,12 @@ export default async function page({ params, searchParams }: Props) {
       />
       <div className="grid md:grid-cols-[0.4fr_1fr] justify-s gap-5 items-center md:items-start">
         <div className="max-w-2xs">
-          <div className="hidden md:block">
-            <CategoryFilter subCategories={category?.sub_categories ?? []} />
-          </div>
+          <FadeIn direction={isRtl ? "left" : "right"} delay={0.1} duration={0.3}>
+
+            <div className="hidden md:block">
+              <CategoryFilter subCategories={category?.sub_categories ?? []} />
+            </div>
+          </FadeIn>
           <div className="md:hidden">
 
             <Collapsible className="rounded-md space-y-3">
@@ -77,10 +88,10 @@ export default async function page({ params, searchParams }: Props) {
           </div>
         </div>
         <Suspense fallback={<ProductsGridSkeleton />} key={JSON.stringify(resolvedSearchParams)}>
-          <CategoryProducts
-            searchParams={resolvedSearchParams}
-            categoryId={category?.id ?? 0}
-          />
+            <CategoryProducts
+              searchParams={resolvedSearchParams}
+              categoryId={category?.id ?? 0}
+            />
         </Suspense>
       </div>
     </div>

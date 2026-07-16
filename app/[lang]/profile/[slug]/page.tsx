@@ -1,11 +1,11 @@
 import NoFav from "@/components/NoFav/NoFav";
 import NoInfo from "@/components/NoInfo/NoInfo";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import Tablist from "@/components/Tablist/Tablist";
-import { CartData, HomeData, Product } from "@/interfaces/interfaces";
+import { CartData, HomeData, Product, walletData } from "@/interfaces/interfaces";
 import ChangePasswordForm from "@/sections/Auth/ChangePass";
 import CartDetails from "@/sections/CartDetails/CartDetails";
 import MyOrders from "@/sections/MyOrders/MyOrders";
+import Wallet from "@/sections/wallet/Wallet";
 import { serverApi } from "@/services/serverApi";
 import { getTranslations } from "next-intl/server";
 
@@ -25,7 +25,15 @@ export default async function page({ params, searchParams }: Props) {
     const status = resolvedSearch?.type;
 
     if (slug === "my-order") {
-        return <MyOrders status={status} />  
+        return <MyOrders status={status} />
+    }
+
+    if (slug === "wallet") {
+        const { data: wallet } = await serverApi<walletData>("wallet")
+
+        return <>
+            <Wallet wallet={wallet} />
+        </>
     }
 
     if (slug === "cart") {

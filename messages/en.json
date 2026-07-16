@@ -226,6 +226,38 @@
       }
     }
   },
+  "Wallet": {
+    "title": "My Wallet",
+    "balance": "My Balance",
+    "currency": "EGP",
+    "addBalance": "Add Balance",
+    "withdraw": "Withdraw",
+    "lastTransactions": "Last Transactions",
+    "withdrawn": "Withdrawn Successfully",
+    "balanceAdded": "Balance Added Successfully",
+    "withdrawalPending": "Withdrawal Pending",
+    "withdrawalAccepted": "Withdrawn Successfully",
+    "withdrawalRejected": "Withdrawal Rejected",
+    "chargePending": "Balance Pending",
+    "chargeAccepted": "Balance Added Successfully",
+    "chargeRejected": "Balance Rejected",
+    "unknown": "Unknown Transaction"
+  },
+  "AddBalance": {
+    "amount": {
+      "label": "Amount",
+      "placeholder": "Enter amount"
+    },
+    "validation": {
+      "amount_required": "Amount is required",
+      "amount_number": "Must be a number",
+      "amount_min": "Amount must be at least 1"
+    },
+    "submit": "Add Balance",
+    "submitting": "Adding...",
+    "success": "Balance added successfully",
+    "error": "Something went wrong"
+  },
   "ShopNow": "Shop Now",
   "Profile": {
     "title": "My Profile",

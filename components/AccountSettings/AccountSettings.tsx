@@ -70,7 +70,7 @@ const handleDeleteAccount = async () => {
         },
         {
             header: t('wallet'),
-            href: "/my-order",
+            href: "/wallet",
             icons: WalletIcon
 
         },

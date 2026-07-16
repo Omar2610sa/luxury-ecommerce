@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import pattern from "@/assets/pattern.png";
 import flash from "@/assets/sssss3 1.png"
 import dress from "@/assets/3ccc473ff409e493f8e367ad49d7bf0e34517e28.jpg"
+import FadeIn from '@/Animations/Fadding';
 
 const COUNTDOWN_SECONDS = 30 * 60;
 
@@ -68,8 +69,10 @@ export default function FlashOffers() {
 
                 {/* Products Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
-                    {flashOffers.map((product) => (
-                        <div key={product.id} className="overflow-hidden ">
+                    {flashOffers.map((product,index) => (
+                        <FadeIn direction="up" delay={index * 0.3} duration={0.3} key={product.id} >
+
+                        <div  className="overflow-hidden ">
                             <div className="relative aspect-[3/4] w-full">
                                 <Image src={product.image} alt={product.name} fill className="object-cover" />
                             </div>
@@ -81,6 +84,7 @@ export default function FlashOffers() {
                                 </p>
                             </div>
                         </div>
+                        </FadeIn>
                     ))}
                 </div>
             </div>
