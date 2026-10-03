@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import { useState } from "react"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { EyeIcon, EyeOffIcon, User2 } from "lucide-react"
 import { SuccessAlert } from "@/components/Alert/SuccessAlert"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
@@ -96,7 +96,12 @@ export function LoginDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger className="">
+                <div className="hidden md:flex">
                 <MainButton text={t('trigger')} />
+                </div>
+                <div className="md:hidden flex justify-center items-center relative size-12 rounded-full bg-primary">
+                    <User2 className="size-5 text-white" />
+                </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md" >
                 <form onSubmit={formik.handleSubmit}>

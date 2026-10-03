@@ -63,7 +63,7 @@ export default async function Header() {
         <>
             <header className="hidden md:flex flex-col border-b shrink-0">
                 {/* Top Nav */}
-                                
+
                 <div className="bg-primary text-muted flex justify-between items-center py-4 px-10">
                     <div className="flex flex-col md:flex-row items-center gap-8 text-sm">
                         <div className="flex items-center gap-2">
@@ -141,12 +141,12 @@ export default async function Header() {
                             <div className="flex gap-6 items-center shrink-0">
                                 {/* Fav */}
                                 <FavouriteIcon />
-                                {/* notifation */}
+                                {/* Cart */}
+                                <CartLink />
+                                {/* Profile */}
                                 <Link href="/profile" className="flex justify-center items-center  size-12 rounded-full bg-primary">
                                     <User2Icon className="size-5 text-white" />
                                 </Link>
-                                {/* notifation */}
-                                <CartLink />
                                 {/* Language */}
                                 <LanguageSwitcher />
                             </div>

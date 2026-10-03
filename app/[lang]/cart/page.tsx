@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: CartPageProps) {
   const t = await getTranslations({ locale: lang, namespace: 'Cart' });
 
   return {
-    title: `${t('title')} | الفخامة`,
+    title: `${t('title')} | Yumeii`,
   };
 }
 

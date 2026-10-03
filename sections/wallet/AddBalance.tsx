@@ -66,7 +66,7 @@ const response = await apiClient<{ status: string; message?: string }>("wallet/a
             <DialogTrigger>
                 <Button
                     variant="outline"
-                    className="px-10 py-5 rounded-none font-medium bg-white text-[#926D35] border-white hover:bg-white/90 hover:text-[#926D35]"
+                    className="px-10 py-5 rounded-none font-medium bg-white text-primary border-white hover:bg-white/90 "
                 >
                     {title}
                 </Button>

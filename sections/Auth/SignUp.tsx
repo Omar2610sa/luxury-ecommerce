@@ -22,7 +22,7 @@ import {
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import { useState, useEffect } from "react"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { EyeIcon, EyeOffIcon, UserPlus2Icon } from "lucide-react"
 import { OtpDialog } from "./SignOtp"
 import { ErrorAlert } from "@/components/Alert/ErrorAlert"
 import { apiClient } from "@/services/useApiClient"
@@ -180,7 +180,12 @@ export function SignUp() {
         <>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger>
-                    <MainButton text={t('trigger')} />
+                    <div className="hidden md:flex">
+                        <MainButton text={t('trigger')} />
+                    </div>
+                    <div className="md:hidden flex justify-center items-center relative size-12 rounded-full bg-primary">
+                        <UserPlus2Icon className="size-5 text-white" />
+                    </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[80vh]">
                     <form onSubmit={formik.handleSubmit}>
@@ -230,7 +235,7 @@ export function SignUp() {
                                     <Select onValueChange={(value) => {
                                         const country = countries.find(c => c.flag === value)
                                         setSelectedPhoneCode(country?.phone_code ?? "")
-                                        formik.setFieldValue("phone_code", country?.phone_code ?? "") 
+                                        formik.setFieldValue("phone_code", country?.phone_code ?? "")
                                     }}
                                     >
                                         <SelectTrigger className="w-[60px] border-none shadow-none rounded-none focus:ring-0 bg-muted px-2">

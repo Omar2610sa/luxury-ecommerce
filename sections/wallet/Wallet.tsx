@@ -31,7 +31,7 @@ export default async function Wallet({ wallet }: { wallet: wallet }) {
             <h3 className="text-2xl font-semibold">{t('title')}</h3>
 
             {/* Balance Card */}
-            <Card className="flex flex-col items-center justify-center gap-5 max-w-sm mx-auto w-full h-52 bg-[#926D35] relative overflow-hidden rounded-none border-0 shadow-md">
+            <Card className="flex flex-col items-center justify-center gap-5 max-w-sm mx-auto w-full h-52 bg-primary relative overflow-hidden rounded-none border-0 shadow-md">
                 {/* Pattern */}
                 <div className="absolute w-45 h-45 rounded-full right-0 -top-25 bg-white/20" />
                 <div className="absolute w-30 h-30 rounded-full -right-10 -top-10 bg-white/40" />
@@ -46,7 +46,7 @@ export default async function Wallet({ wallet }: { wallet: wallet }) {
                     <AddBalance title={t('addBalance')} />
                     <Button
                         variant="outline"
-                        className="px-10 py-5 rounded-none font-medium bg-transparent text-white border-white hover:bg-white/10 hover:text-white"
+                        className="px-10 py-5 rounded-none font-medium bg-transparent text-white border-white hover:bg-white/30 hover:text-white"
                     >
                         {t('withdraw')}
 

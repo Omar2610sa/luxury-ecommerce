@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: FavouritePageProps) {
   const t = await getTranslations({ locale: lang, namespace: 'Favourite' });
 
   return {
-    title: `${t('title')} | الفخامة`,
+    title: `${t('title')} | Yumeii`,
   };
 }
 

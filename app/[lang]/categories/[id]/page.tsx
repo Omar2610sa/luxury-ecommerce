@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props) {
   const t = await getTranslations({ locale: lang, namespace: 'Category' });
 
   return {
-    title: `${t('title')} | الفخامة`,
+    title: `${t('title')} | Yumeii`,
   };
 }
 

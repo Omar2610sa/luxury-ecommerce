@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { createRoot } from 'react-dom/client'
 import SuccessIcon from '@/assets/icons/mdi_checkbox-marked-circle-outline.png'
 import { useState, useEffect } from 'react'
+import { CheckCircle } from 'lucide-react'
 
 type Props = {
     title: string
@@ -25,12 +26,12 @@ function SuccessAlertComponent({ title, onClose }: Props) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent hideCloseButton className="sm:max-w-sm flex flex-col items-center gap-6 py-10">
-                <Image
-                    src={SuccessIcon}
-                    alt="success"
+                <CheckCircle
+                    // src={SuccessIcon}
+                    // alt="success"
                     width={100}
                     height={100}
-                    className="object-contain"
+                    className="object-contain text-green-600"
                 />
                 <p className="text-center text-2xl font-medium">{title}</p>
             </DialogContent>

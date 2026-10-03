@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: ProfilePageProps) {
   const t = await getTranslations({ locale: lang, namespace: 'Profile' });
 
   return {
-    title: `${t('title')} | الفخامة`,
+    title: `${t('title')} | Yumeii`,
   };
 }
 
