@@ -79,7 +79,7 @@ export default async function Header() {
                 </div>
 
                 {/* Second Nav */}
-                <nav className="grid grid-cols-[3fr_1.5fr] items-center justify-between gap-14  py-4 px-4  " >
+                <nav className="grid grid-cols-[3fr_1.2fr] items-center justify-between gap-14  py-2 px-4  " >
 
                     <div className="flex justify-between items-center gap-6">
 
@@ -142,8 +142,8 @@ export default async function Header() {
                                 {/* Fav */}
                                 <FavouriteIcon />
                                 {/* notifation */}
-                                <Link href="/profile" className="flex justify-center items-center  size-12 rounded-full bg-primary/30">
-                                    <User2Icon className="size-4 text-primary" />
+                                <Link href="/profile" className="flex justify-center items-center  size-12 rounded-full bg-primary">
+                                    <User2Icon className="size-5 text-white" />
                                 </Link>
                                 {/* notifation */}
                                 <CartLink />

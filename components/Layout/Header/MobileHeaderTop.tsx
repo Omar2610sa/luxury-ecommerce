@@ -1,7 +1,7 @@
 // components/Layout/Header/MobileTopHeader.tsx
 import Image from "next/image"
 import { Link } from "@/services/navigation"
-import logo from "@/assets/image 44 (2) (1) 2 (1).png"
+import logo from "@/assets/logoo.svg"
 import { LoginDialog } from "@/sections/Auth/LoginDialog"
 import { SignUp } from "@/sections/Auth/SignUp"
 import FavouriteIcon from "@/components/FavoriteLink/FavLink"
@@ -19,7 +19,7 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
             <div className="flex items-center justify-between px-4 py-3 gap-3">
                 {/* Logo */}
                 <Link href="/" className="shrink-0">
-                    <Image src={logo} alt="logo" className="size-12 object-cover" />
+                    <Image src={logo} alt="logo" className="size-20 object-contain" />
                 </Link>
                 <div className="flex items-center gap-3 shrink-0">
 

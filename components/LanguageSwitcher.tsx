@@ -11,7 +11,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import { ChevronDownIcon } from 'lucide-react';
+import { ChevronDownIcon, GlobeIcon } from 'lucide-react';
 import Image from 'next/image';
 
 import flagAr from '@/assets/icons/Flag_of_Egypt.svg.webp';
@@ -48,15 +48,18 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false} >
       <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer ">
-        <Image
+        {/* <Image
           src={currentLanguage?.flag}
           alt="flag"
           className="size-7 ml-2 object-contain rounded-xs"
         />
         <span className='hidden md:block'>
           {currentLanguage?.label}
-        </span>
-        <ChevronDownIcon className="size-3.5" />
+        </span> */}
+        <div className="flex justify-center items-center relative size-12 rounded-full bg-primary">
+          <GlobeIcon className="size-5 text-white" />
+        </div>
+        {/* <ChevronDownIcon className="size-3.5" /> */}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center" className=' mt-2'>
         <DropdownMenuGroup>

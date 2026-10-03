@@ -43,7 +43,7 @@ export default async function ShopCard({ product }: { product: Product }) {
                 />
                 <div className="absolute bottom-2 left-3 z-30 flex gap-1">
                     {product.best_seller && (
-                        <Badge className="bg-gray-800 text-md p-4 rounded-none">
+                        <Badge className="bg-gray-800/80 text-md p-4 rounded-none">
                             <ZapIcon /> {t('popular')}
                         </Badge>
                     )}

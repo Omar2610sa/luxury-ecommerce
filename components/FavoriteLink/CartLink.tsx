@@ -10,8 +10,8 @@ export default function CartLink() {
     const isRtl = Cookies.get('NEXT_LOCALE') == "ar"
 
     return (
-        <Link href="/cart" className="flex justify-center items-center relative size-12 rounded-full bg-primary/30">
-            <ShoppingBasketIcon className="size-4 text-primary" />
+        <Link href="/cart" className="flex justify-center items-center relative size-12 rounded-full bg-primary">
+            <ShoppingBasketIcon className="size-5 text-white" />
             {count > 0 && (
                 <span className={`absolute -top-1 ${isRtl ? "left-1/3" : 'right-1/3'}`}>
                     <span className="absolute size-4 rounded-full bg-red-500 flex justify-center items-center text-white text-xs">
