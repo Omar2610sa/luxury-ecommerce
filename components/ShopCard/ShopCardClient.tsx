@@ -19,7 +19,7 @@ export default function ShopCardClient({ product }: { product: Product }) {
     const t = useTranslations('Shop Card');
 
     return (
-        <Card className="relative h-full max-w-sm md:max-w-xs rounded-none bg-gray-50/50 border-b p-0 group overflow-hidden">
+        <Card className="relative h-full max-w-sm md:max-w-xs rounded-none ring-0 shadow-none   p-0 group overflow-hidden">
 
             {/* Discount Badge */}
             {product.offer_price > 0 && (

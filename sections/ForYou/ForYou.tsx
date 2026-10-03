@@ -2,7 +2,7 @@ import FadeIn from "@/Animations/Fadding";
 import SecondButton from "@/components/Layout/SecondButton";
 import ShopCard from "@/components/ShopCard/ShopCard";
 import type { Product } from "@/interfaces/interfaces";
-import { MoveLeft, MoveRight } from "lucide-react";
+import { ChevronDownIcon, MoveLeft, MoveRight } from "lucide-react";
 import { getTranslations } from 'next-intl/server';
 import { cookies } from "next/headers";
 
@@ -36,7 +36,7 @@ export default async function ForYouSection({ products, title }: { products: Pro
 
             {/* Btn */}
             <FadeIn direction="up" delay={0.2} duration={0.3} className="mx-auto" >
-                <SecondButton text={t('Main')} icon={isRtl ? MoveLeft : MoveRight} />
+                <SecondButton text={t('Main')} icon={ChevronDownIcon} />
             </FadeIn>
         </section>
     )

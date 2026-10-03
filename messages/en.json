@@ -74,11 +74,11 @@
     "account_created": "Account created successfully"
   },
   "Home": {
-    "title": "Welcome to Our Luxury Store",
+    "title": "Welcome to Yumeii Store",
     "subtitle": "Shop our exclusive high-quality products",
     "hero_button": "Shop Now",
     "featured_products": "Featured Products",
-    "new_arrivals": "New Arrivals",
+    "forYou": "Products For You",
     "best_sellers": "Best Sellers",
     "special_offers": "Special Offers",
     "flash_deals": "Flash Deals",
@@ -342,11 +342,11 @@
     "phone": "01123456789",
     "address": "Mansoura (Section 2), First of Mansoura, Dakahlía, Egypt",
     "section": {
-      "title": "Section",
-      "eveningFashion": "Evening Fashion",
-      "leatherDecor": "Leather Decorations",
-      "leatherClothing": "Natural Leather Clothing and Fashion",
-      "leatherProducts": "Natural Leather Products"
+      "title": "Company Information",
+      "contact": "Contact Us",
+      "about": "About Us",
+      "terms": "Terms and Conditions",
+      "privacy": "Privacy Policy"
     },
     "help": {
       "title": "Center & Help",
@@ -440,6 +440,7 @@
   "Shop Card": {
     "discount": "Discount %{value}",
     "popular": "Popular",
+    "bestSeller": "Best Seller",
     "trending": "Most Trending",
     "outOfStock": "Out of Stock"
   },

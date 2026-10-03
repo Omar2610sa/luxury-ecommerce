@@ -39,14 +39,14 @@ export default async function Home({
       <Hero slider={home_website?.slider ?? []} shopNowText={t('hero_button')} />
       <SecondSlider secondSlider={home_website?.main_categories ?? []} />
       <NewEditions
-        products={home_website?.best_seller ?? []}
-        title={t('new_arrivals')}
+        products={home_website?.for_you ?? []}
+        title={t('forYou')}
       />
       {/* <FlashOffers /> */}
       <Banner banner={home_website?.middle_slider ?? ''} />
       <ForYouSection
-        title={t('featured_products')}
-        products={home_website?.for_you ?? []}
+        title={t('best_sellers')}
+        products={home_website?.best_seller ?? []}
       />
       <Banner banner={home_website?.footer_slider ?? ''} />
     </div>

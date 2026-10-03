@@ -41,7 +41,7 @@ export default async function Footer() {
 
     return (
         <footer className="border-t bg-black">
-            <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12">
+            <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12 ">
 
                 {/* Col 1 - Logo & Info */}
                 <FadeIn delay={0.1} direction="up">
@@ -54,39 +54,39 @@ export default async function Footer() {
                             <p className="text-muted "><span className="font-semibold">Phone:</span> {phone ?? t('phone')}</p>
                             <p>
                                 <span className="font-semibold text-muted ">Main address: </span>
-                                <Link href="#" className="text-muted  underline text-xs">{t('address')}</Link>
+                                <Link href="#" className="text-muted   text-xs">{t('address')}</Link>
                             </p>
                         </div>
                     </div>
                 </FadeIn>
 
-                {/* Col 2 - Section */}
-                <FadeIn delay={0.2} direction="up">
 
-                    <div className="flex flex-col gap-3">
-                        <h3 className="font-bold text-muted  text-2xl">{t('section.title')}</h3>
-                        <nav className="flex flex-col gap-4">
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.eveningFashion')}</Link>
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.leatherDecor')}</Link>
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.leatherClothing')}</Link>
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.leatherProducts')}</Link>
-                        </nav>
-                    </div>
-                </FadeIn>
 
-                {/* Col 3 - Center & Help */}
+                {/* Col 2 - Center & Help */}
                 <FadeIn delay={0.3} direction="up">
 
                     <div className="flex flex-col gap-3">
                         <h3 className="font-bold text-muted  text-2xl">{t('help.title')}</h3>
                         <nav className="flex flex-col gap-4">
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('help.home')}</Link>
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('help.faq')}</Link>
-                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('help.howToBuy')}</Link>
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('help.home')}</Link>
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('help.faq')}</Link>
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('help.howToBuy')}</Link>
                         </nav>
                     </div>
                 </FadeIn>
+                {/* Col 3 - Section */}
+                <FadeIn delay={0.2} direction="up">
 
+                    <div className="flex flex-col gap-3">
+                        <h3 className="font-bold text-muted  text-2xl">{t('section.title')}</h3>
+                        <nav className="flex flex-col gap-4 ">
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('section.contact')}</Link>
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('section.about')}</Link>
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('section.terms')}</Link>
+                            <Link href="#" className="hover:text-muted/60 text-muted  text-xl transition-colors">{t('section.privacy')}</Link>
+                        </nav>
+                    </div>
+                </FadeIn>
                 {/* Col 4 - Newsletter & App */}
                 <FadeIn delay={0.4} direction="up">
 
@@ -143,11 +143,11 @@ export default async function Footer() {
                 <div className="container gap-3 flex flex-col md:flex-row md:items-center md:justify-between py-4 text-muted  px-30">
                     <p>{t('rights')}</p>
                     <span className=" md:hidden">
-                        من تطوير وبرمجة <Link href="https://www.linkedin.com/in/omar-salam-064126257/" target="_blank" rel="noopener noreferrer" className="text-muted  hover:underline">عمر معتز</Link>
+                        من تطوير وبرمجة <Link href="https://www.linkedin.com/in/omar-salam-064126257/" target="_blank" rel="noopener noreferrer" className="text-muted  hover:">عمر معتز</Link>
                     </span>
                     <div className="hidden md:flex  items-center gap-4">
-                        <Link href="#" className="text-muted  hover:text-black transition-colors">{t('privacy')}</Link>
-                        <Link href="#" className="text-muted  hover:text-black transition-colors">{t('terms')}</Link>
+                        <Link href="#" className="text-muted  hover:text-muted/60 transition-colors">{t('privacy')}</Link>
+                        <Link href="#" className="text-muted  hover:text-muted/60 transition-colors">{t('terms')}</Link>
                     </div>
                     <div className="md:hidden h-15">
 

@@ -42,7 +42,7 @@ export default function AddShopCard({ productId }: Props) {
     }
     return (
         <Button size="icon"
-            className="rounded-full bg-yellow-200/40 w-10 h-10 text-[#9F6913] "
+            className="rounded-full bg-[#FDEFE4] w-9 h-9 text-primary hover:bg-[#FDEFE4]/90 hover:text-primary/90  hover:scale-110 duration-300"
             onClick={addCart}
             disabled={loading}
         >

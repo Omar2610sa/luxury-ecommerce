@@ -29,10 +29,9 @@ export default function NewEditions({ products, title }: { products: ForYou[], t
             {/* Swiper */}
             <div className="w-full overflow-hidden">
                 <FadeIn direction="up" delay={0.1} duration={0.3} >
-
                     <Swiper
                         modules={[Autoplay]}
-                        spaceBetween={12}
+                        spaceBetween={3}
                         loop={true}
                         autoplay={{ delay: 100, disableOnInteraction: true }}
                         speed={5000}
@@ -47,10 +46,7 @@ export default function NewEditions({ products, title }: { products: ForYou[], t
                     >
                         {products.map((product) => (
                             <SwiperSlide key={product.id} >
-
-
                                 <ShopCardClient product={product as unknown as Product} />
-
                             </SwiperSlide>
                         ))}
                     </Swiper>

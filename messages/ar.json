@@ -74,11 +74,11 @@
     "account_created": "تم إنشاء الحساب بنجاح"
   },
   "Home": {
-    "title": "مرحبا بك في متجرنا الفاخر",
+    "title": "مرحبا بك في متجر Yumeii",
     "subtitle": "تسوق منتجاتنا الحصرية عالية الجودة",
     "hero_button": "تسوق الآن",
     "featured_products": "المنتجات المميزة",
-    "new_arrivals": "المنتجات الجديدة",
+    "forYou": "من أجلك",
     "best_sellers": "الأكثر مبيعاً",
     "special_offers": "عروض خاصة",
     "flash_deals": "عروض فلاش",
@@ -324,11 +324,11 @@
     "phone": "01123456789",
     "address": "المنصورة (القسم 2)، أول المنصورة، الدقهلية، مصر",
     "section": {
-      "title": "الأقسام",
-      "eveningFashion": "أزياء السهرة",
-      "leatherDecor": "الديكورات الجلدية",
-      "leatherClothing": "ملابس وأزياء الجلود الطبيعية",
-      "leatherProducts": "منتجات الجلود الطبيعية"
+      "title": "معلومات الشركة",
+      "contact": "اتصل بنا",
+      "about": "من نحن",
+      "terms": "الشروط والأحكام",
+      "privacy": "سياسة الخصوصية"
     },
     "help": {
       "title": "المركز والمساعدة",
@@ -422,6 +422,7 @@
   "Shop Card": {
     "discount": "خصم %",
     "popular": "شائع",
+    "bestSeller": "الأكثر مبيعًا",
     "trending": "الأكثر شيوعاً",
     "outOfStock": "غير متوفر"
   },

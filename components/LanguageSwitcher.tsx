@@ -56,6 +56,7 @@ export function LanguageSwitcher() {
         <span className='hidden md:block'>
           {currentLanguage?.label}
         </span> */}
+        
         <div className="flex justify-center items-center relative size-12 rounded-full bg-primary">
           <GlobeIcon className="size-5 text-white" />
         </div>

@@ -18,7 +18,7 @@ export default async function ShopCard({ product }: { product: Product }) {
     const t = await getTranslations('Shop Card');
 
     return (
-        <Card className="relative h-full max-w-sm md:max-w-xs rounded-none bg-gray-50/50 border-b p-0 group overflow-hidden">
+        <Card className="relative h-full max-w-sm md:max-w-xs rounded-none ring-0 shadow-none   p-0 group overflow-hidden">
 
             {/* Discount Badge */}
             {product.offer_price > 0 && (
@@ -53,9 +53,9 @@ export default async function ShopCard({ product }: { product: Product }) {
             <Link href={`/product/${product.id}`}>
                 <CardHeader className="gap-3 px-4">
                     <div className="flex justify-between pb-2 shrink-0">
-                        {product.is_trendy && (
+                        {product.best_seller && (
                             <Badge className="bg-yellow-200/40 text-[#9F6913] text-md py-3 px-4 rounded-none">
-                                {t('trending')}
+                                {t('bestSeller')}
                             </Badge>
                         )}
                         {!product.detail.in_stock && (

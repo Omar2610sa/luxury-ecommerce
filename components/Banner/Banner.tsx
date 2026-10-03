@@ -11,7 +11,7 @@ export default function Banner({ banner }: { banner: { image: string, id: number
                 <div className="relative container h-[180px] md:h-[450px] my-6  rounded-2xl">
                     <Image
                         src={banner?.image || ''}
-                    alt="Banner"
+                        alt="Banner"
                         fill
                         className="absolute object-contain  rounded-2xl z-20"
                     />
