@@ -19,7 +19,7 @@ export default function MobileTopHeader({ isLoggedIn }: Props) {
             <div className="flex items-center justify-between px-4 py-3 gap-3">
                 {/* Logo */}
                 <Link href="/" className="shrink-0">
-                    <Image src={logo} alt="logo" className="size-20 object-contain" />
+                    <Image src={logo} alt="logo" className="size-22 object-contain" />
                 </Link>
                 <div className="flex items-center gap-3 shrink-0">
 
