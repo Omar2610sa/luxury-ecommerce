@@ -1,10 +1,10 @@
 import { Link } from "@/services/navigation"
-import Image from "next/image"
-import logo from "@/assets/image 44 (2) (1) 2 (1).png"
+import Image, { type StaticImageData } from "next/image"
+import logo from "@/assets/logoo2.svg"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import googlePlay from "@/assets/icons/Google Play Black.png"
-import ApplePlay from "@/assets/icons/Google Play Black (1).png"
+import googlePlay from "@/assets/icons/google-play.DF2u7CLq.svg"
+import ApplePlay from "@/assets/icons/app-store.zaEe8IGQ.svg"
 import youtube from "@/assets/icons/youtube.png"
 import tiktok from "@/assets/icons/tiktok.png"
 import snapchat from "@/assets/icons/snapchat.png"
@@ -20,7 +20,7 @@ interface SocialLink {
     value: string
 }
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, StaticImageData> = {
     facebook,
     instagram,
     youtube,
@@ -40,7 +40,7 @@ export default async function Footer() {
     const socials = socialLinks?.filter(s => socialMediaKeys.includes(s.key)) ?? []
 
     return (
-        <footer className="border-t">
+        <footer className="border-t bg-black">
             <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-12">
 
                 {/* Col 1 - Logo & Info */}
@@ -48,13 +48,13 @@ export default async function Footer() {
 
                     <div className="flex flex-col gap-4">
                         <Image src={logo} alt="Logo" width={120} height={120} />
-                        <p className="text-primary leading-relaxed">{t('description')}</p>
+                        <p className="text-muted  leading-relaxed">{t('description')}</p>
                         <div className="flex flex-col gap-1 text-sm">
-                            <p className="text-primary"><span className="font-semibold">Email:</span> {t('email')}</p>
-                            <p className="text-primary"><span className="font-semibold">Phone:</span> {phone ?? t('phone')}</p>
+                            <p className="text-muted "><span className="font-semibold">Email:</span> {t('email')}</p>
+                            <p className="text-muted "><span className="font-semibold">Phone:</span> {phone ?? t('phone')}</p>
                             <p>
-                                <span className="font-semibold text-primary">Main address: </span>
-                                <Link href="#" className="text-primary underline text-xs">{t('address')}</Link>
+                                <span className="font-semibold text-muted ">Main address: </span>
+                                <Link href="#" className="text-muted  underline text-xs">{t('address')}</Link>
                             </p>
                         </div>
                     </div>
@@ -64,12 +64,12 @@ export default async function Footer() {
                 <FadeIn delay={0.2} direction="up">
 
                     <div className="flex flex-col gap-3">
-                        <h3 className="font-bold text-primary text-2xl">{t('section.title')}</h3>
+                        <h3 className="font-bold text-muted  text-2xl">{t('section.title')}</h3>
                         <nav className="flex flex-col gap-4">
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('section.eveningFashion')}</Link>
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('section.leatherDecor')}</Link>
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('section.leatherClothing')}</Link>
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('section.leatherProducts')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.eveningFashion')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.leatherDecor')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.leatherClothing')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('section.leatherProducts')}</Link>
                         </nav>
                     </div>
                 </FadeIn>
@@ -78,11 +78,11 @@ export default async function Footer() {
                 <FadeIn delay={0.3} direction="up">
 
                     <div className="flex flex-col gap-3">
-                        <h3 className="font-bold text-primary text-2xl">{t('help.title')}</h3>
+                        <h3 className="font-bold text-muted  text-2xl">{t('help.title')}</h3>
                         <nav className="flex flex-col gap-4">
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('help.home')}</Link>
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('help.faq')}</Link>
-                            <Link href="#" className="hover:text-black text-primary underline transition-colors">{t('help.howToBuy')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('help.home')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('help.faq')}</Link>
+                            <Link href="#" className="hover:text-black text-muted  underline transition-colors">{t('help.howToBuy')}</Link>
                         </nav>
                     </div>
                 </FadeIn>
@@ -92,21 +92,21 @@ export default async function Footer() {
 
                     <div className="flex flex-col gap-5">
                         <div className="flex flex-col gap-4">
-                            <h3 className="font-bold text-primary text-2xl">{t('newsletter.title')}</h3>
+                            <h3 className="font-bold text-muted  text-2xl">{t('newsletter.title')}</h3>
                             <div className="flex gap-2">
                                 <Input
                                     type="email"
                                     placeholder={t('newsletter.placeholder')}
-                                    className="flex-1 border px-3 py-1.5 text-sm outline-none focus:ring-1 focus:ring-primary"
+                                    className="flex-1 border bg-white px-3 py-1.5 text-sm outline-none focus:ring-1 focus:ring-text-muted "
                                 />
-                                <Button className="bg-primary text-white text-sm px-4 py-1.5 hover:bg-primary/90 hover:text-white transition-colors">
+                                <Button className="bg-primary text-white text-sm px-4 py-1.5 hover:bg-text-muted /90 hover:text-white transition-colors">
                                     {t('newsletter.subscribe')}
                                 </Button>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <h3 className="font-bold text-primary text-2xl">{t('downloadApp')}</h3>
+                            <h3 className="font-bold text-muted  text-2xl">{t('downloadApp')}</h3>
                             <div className="flex gap-2">
                                 <a href={androidLink} target="_blank">
                                     <Image src={googlePlay} alt="Google Play" className="w-35  max-w-full" />
@@ -126,9 +126,9 @@ export default async function Footer() {
                                         key={social.id}
                                         href={social.value}
                                         target="_blank"
-                                        className="bg-primary p-3 flex justify-center items-center rounded-full hover:bg-primary/80 duration-300"
+                                        className=" p-3 flex justify-center items-center rounded-full hover:bg-muted/80 duration-300"
                                     >
-                                        <Image src={icon} alt={social.key} width={20} height={20} className="size-4 object-contain" />
+                                        <Image src={icon} alt={social.key} width={20} height={20} className="size-6 object-contain" />
                                     </Link>
                                 )
                             })}
@@ -140,14 +140,14 @@ export default async function Footer() {
 
             {/* Bottom Bar */}
             <div className="border-t text-center py-4">
-                <div className="container gap-3 flex flex-col md:flex-row md:items-center md:justify-between py-4 text-primary px-30">
+                <div className="container gap-3 flex flex-col md:flex-row md:items-center md:justify-between py-4 text-muted  px-30">
                     <p>{t('rights')}</p>
                     <span className=" md:hidden">
-                        من تطوير وبرمجة <Link href="https://www.linkedin.com/in/omar-salam-064126257/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">عمر معتز</Link>
+                        من تطوير وبرمجة <Link href="https://www.linkedin.com/in/omar-salam-064126257/" target="_blank" rel="noopener noreferrer" className="text-muted  hover:underline">عمر معتز</Link>
                     </span>
                     <div className="hidden md:flex  items-center gap-4">
-                        <Link href="#" className="text-primary hover:text-black transition-colors">{t('privacy')}</Link>
-                        <Link href="#" className="text-primary hover:text-black transition-colors">{t('terms')}</Link>
+                        <Link href="#" className="text-muted  hover:text-black transition-colors">{t('privacy')}</Link>
+                        <Link href="#" className="text-muted  hover:text-black transition-colors">{t('terms')}</Link>
                     </div>
                     <div className="md:hidden h-15">
 

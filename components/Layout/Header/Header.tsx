@@ -1,7 +1,7 @@
 import HeaderLinks from "@/components/HeaderLinks/HeaderLinks";
 import { ChevronDownIcon, Mail, Phone, Search, User2Icon } from "lucide-react";
 import Image from "next/image";
-import logo from "@/assets/image 44 (2) (1) 2 (1).png"
+import logo from "@/assets/logoo.svg"
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Link } from "@/services/navigation";
@@ -20,9 +20,9 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function Header() {
     const token = (await cookies()).get('token_luxary')?.value ?? null
-    const isRtl = (await cookies()).get('NEXT_LOCALE')?.value === 'ar' ? true : false 
+    const isRtl = (await cookies()).get('NEXT_LOCALE')?.value === 'ar' ? true : false
     const t = await getTranslations('Header');
-   
+
     const menuItems = [
         {
             label: t('menu.categories.label'),
@@ -63,8 +63,8 @@ export default async function Header() {
         <>
             <header className="hidden md:flex flex-col border-b shrink-0">
                 {/* Top Nav */}
-                <div className="bg-secondary flex justify-between items-center py-4 px-10">
-                    {/* Phone & Email */}
+                                
+                <div className="bg-primary text-muted flex justify-between items-center py-4 px-10">
                     <div className="flex flex-col md:flex-row items-center gap-8 text-sm">
                         <div className="flex items-center gap-2">
                             admin@gmail.com
@@ -79,13 +79,13 @@ export default async function Header() {
                 </div>
 
                 {/* Second Nav */}
-                <nav className="grid grid-cols-[3fr_1.5fr] items-start justify-between gap-15  py-6 px-4  " >
+                <nav className="grid grid-cols-[3fr_1.5fr] items-center justify-between gap-14  py-4 px-4  " >
 
                     <div className="flex justify-between items-center gap-6">
 
                         {/* Logo */}
                         <Link href="/" className="shrink-0">
-                            <Image src={logo} className="size-22 object-cover" alt="logo" />
+                            <Image src={logo} className="size-28 object-contain" alt="logo" />
                         </Link>
 
                         {/* Search + Menu Items */}
@@ -96,7 +96,7 @@ export default async function Header() {
                                 <Search className={`absolute ${isRtl ? "right-3" : "left-3"}  top-1/2 -translate-y-1/2 size-4 text-muted-foreground`} />
                                 <Input
                                     placeholder={t('searchPlaceholder')}
-                                    className="px-9 "
+                                    className="px-7 "
 
                                 />
                             </div>
@@ -138,11 +138,11 @@ export default async function Header() {
                     }
                     {
                         token && (
-                            <div className="flex gap-5 items-center shrink-0">
+                            <div className="flex gap-6 items-center shrink-0">
                                 {/* Fav */}
                                 <FavouriteIcon />
                                 {/* notifation */}
-                                <Link href="/profile" className="flex justify-center items-center  size-10 rounded-full bg-primary/30">
+                                <Link href="/profile" className="flex justify-center items-center  size-12 rounded-full bg-primary/30">
                                     <User2Icon className="size-4 text-primary" />
                                 </Link>
                                 {/* notifation */}

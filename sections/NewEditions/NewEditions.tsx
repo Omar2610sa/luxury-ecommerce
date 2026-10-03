@@ -14,7 +14,7 @@ import FadeIn from "@/Animations/Fadding";
 
 export default function NewEditions({ products, title }: { products: ForYou[], title: string }) {
     const t = useTranslations('View All');
-    const isRtl = Cookies.get('NEXT_LOCALE') == "ar"
+    const isRtl = Cookies.get('NEXT_LOCALE') === "ar"
 
     return (
         <section className="container flex flex-col gap-5 py-10">
@@ -58,9 +58,9 @@ export default function NewEditions({ products, title }: { products: ForYou[], t
             </div>
 
             {/* Btn */}
-            <FadeIn direction="up" delay={0.2} duration={0.3} className="mx-auto" >
+            {/* <FadeIn direction="up" delay={0.2} duration={0.3} className="mx-auto" >
                 <SecondButton text={t('Main')} icon={isRtl ? MoveLeft : MoveRight} />
-            </FadeIn>
+            </FadeIn> */}
         </section>
     )
 }

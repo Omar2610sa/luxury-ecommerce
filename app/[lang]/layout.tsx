@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { ReactNode } from 'react';
 import { Metadata } from "next";
-import logo from "@/assets/logo.svg"
+import logo from "@/assets/logoo2.svg"
 
 
 

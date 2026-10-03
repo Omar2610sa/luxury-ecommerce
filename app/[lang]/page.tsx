@@ -42,7 +42,7 @@ export default async function Home({
         products={home_website?.best_seller ?? []}
         title={t('new_arrivals')}
       />
-      <FlashOffers />
+      {/* <FlashOffers /> */}
       <Banner banner={home_website?.middle_slider ?? ''} />
       <ForYouSection
         title={t('featured_products')}
