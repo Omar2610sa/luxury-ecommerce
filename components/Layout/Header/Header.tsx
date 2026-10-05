@@ -64,7 +64,7 @@ export default async function Header() {
             <header className="hidden md:flex flex-col border-b shrink-0">
                 {/* Top Nav */}
 
-                <div className="bg-primary text-muted flex justify-between items-center py-4 px-10">
+                <div className="bg-third text-primary flex justify-between items-center py-4 px-10">
                     <div className="flex flex-col md:flex-row items-center gap-8 text-sm">
                         <div className="flex items-center gap-2">
                             admin@gmail.com

@@ -1,20 +1,21 @@
 "use client"
-import { ForYou, Product } from "@/interfaces/interfaces";
+import {  Product } from "@/interfaces/interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import SecondButton from "@/components/Layout/SecondButton";
-import { MoveLeft, MoveRight } from "lucide-react";
+// import SecondButton from "@/components/Layout/SecondButton";
+// import { MoveLeft, MoveRight } from "lucide-react";
 import ShopCardClient from "@/components/ShopCard/ShopCardClient";
 import { useTranslations } from 'next-intl';
 import Cookies from "js-cookie"
 import FadeIn from "@/Animations/Fadding";
+import { ForYou } from "../../types";
 
 
 
 export default function NewEditions({ products, title }: { products: ForYou[], title: string }) {
     const t = useTranslations('View All');
-    const isRtl = Cookies.get('NEXT_LOCALE') === "ar"
+    // const isRtl = Cookies.get('NEXT_LOCALE') === "ar"
 
     return (
         <section className="container flex flex-col gap-5 py-10">

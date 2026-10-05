@@ -97,9 +97,9 @@ export function LoginDialog() {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger className="">
                 <div className="hidden md:flex">
-                <MainButton text={t('trigger')} />
+                    <MainButton text={t('trigger')} />
                 </div>
-                <div className="md:hidden flex justify-center items-center relative size-12 rounded-full bg-primary">
+                <div className="md:hidden flex justify-center items-center relative size-10 md:size-12 rounded-full bg-primary">
                     <User2 className="size-5 text-white" />
                 </div>
             </DialogTrigger>

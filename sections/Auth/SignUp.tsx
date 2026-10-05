@@ -183,7 +183,7 @@ export function SignUp() {
                     <div className="hidden md:flex">
                         <MainButton text={t('trigger')} />
                     </div>
-                    <div className="md:hidden flex justify-center items-center relative size-12 rounded-full bg-primary">
+                    <div className="md:hidden flex justify-center items-center relative size-10 md:size-12 rounded-full bg-primary">
                         <UserPlus2Icon className="size-5 text-white" />
                     </div>
                 </DialogTrigger>

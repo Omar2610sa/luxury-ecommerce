@@ -1,7 +1,7 @@
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
 import { Product, ProductData } from "@/interfaces/interfaces";
 import ProductInfo from "@/sections/Product/ProductInfo";
-import ForYouSection from "@/sections/ForYou/ForYou";
+import ForYouSection from "@/features/home/components/ForYou/ForYou";
 import { serverApi } from "@/services/serverApi";
 import { getTranslations } from 'next-intl/server';
 
