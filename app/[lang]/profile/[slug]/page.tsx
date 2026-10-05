@@ -1,7 +1,8 @@
 import NoFav from "@/components/NoFav/NoFav";
 import NoInfo from "@/components/NoInfo/NoInfo";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { CartData, HomeData, Product, walletData } from "@/interfaces/interfaces";
+import { HomeData } from "@/features/home/types";
+import { CartData, Product, walletData } from "@/interfaces/interfaces";
 import ChangePasswordForm from "@/sections/Auth/ChangePass";
 import CartDetails from "@/sections/CartDetails/CartDetails";
 import MyOrders from "@/sections/MyOrders/MyOrders";

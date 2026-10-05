@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, Home, Search, ShoppingCartIcon, SparklesIcon, User2Icon } from "lucide-react"
+import { Heart, Home, Search, ShoppingCartIcon, User2Icon } from "lucide-react"
 import { Link } from "@/services/navigation"
 
 import { usePathname } from "next/navigation"
