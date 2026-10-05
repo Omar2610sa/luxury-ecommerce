@@ -4,6 +4,7 @@ import ProductInfo from "@/sections/Product/ProductInfo";
 import ForYouSection from "@/features/home/components/ForYou/ForYou";
 import { serverApi } from "@/services/serverApi";
 import { getTranslations } from 'next-intl/server';
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{
@@ -29,6 +30,9 @@ export default async function Page({ params }: Props) {
   const { data: product } = await serverApi<{ data: ProductData }>(
     `web_product/${id}`
   );
+  if (!product) {
+  notFound();
+}
 
   return (
     <div className="container flex flex-col gap-10">

@@ -1,14 +1,10 @@
 import NoFav from "@/components/NoFav/NoFav";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { Favorite, Product } from "@/interfaces/interfaces";
-import { serverApi } from "@/services/serverApi";
+import { getFavoriteData } from "@/features/favorite/services/favorite.service";
+import { FavouritePageProps } from "@/features/favorite/types";
+import { Product } from "@/interfaces/interfaces";
 import { getTranslations } from 'next-intl/server';
 
-interface FavouritePageProps {
-  params: Promise<{
-    lang: string;
-  }>;
-}
 
 export async function generateMetadata({ params }: FavouritePageProps) {
   const { lang } = await params;
@@ -24,7 +20,7 @@ export default async function page({
 }: FavouritePageProps) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'Favourite' });
-  const { data: fave } = await serverApi<{ data: Favorite[] }>("get_fave_products");
+  const { data: fave } = await getFavoriteData()
 
   return (
     <div className="container flex flex-col gap-8">
