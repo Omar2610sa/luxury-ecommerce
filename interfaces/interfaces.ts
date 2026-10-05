@@ -15,28 +15,7 @@ export interface CartData {
 
 
 // في interfaces.ts
-export interface SubSubCategory {
-    id: number
-    title: string
-    image: string
-}
 
-export interface SubCategory {
-    id: number
-    title: string
-    image: string
-    sub_sub_categories: SubSubCategory[]
-}
-
-export interface ActiveFilter {
-    key: string;
-    value: string;
-    label: string;
-}
-
-export interface CategoryFilterProps {
-    subCategories: SubCategory[]
-}
 
 
 export interface ProductDetail {
@@ -186,16 +165,7 @@ export interface AddressData {
 }
 
 
-export interface Category {
-    id: number;
-    title: string;
-    sub_categories: SubCategory[];
-}
 
-export interface SubCategory {
-    id: number;
-    title: string;
-}
 
 export interface OrderImage {
     id: number

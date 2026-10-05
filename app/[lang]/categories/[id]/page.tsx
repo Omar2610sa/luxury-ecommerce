@@ -1,12 +1,10 @@
 
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
-import CategoryFilter from "@/components/Filter/Filter";
-import ProductsGridSkeleton from "@/components/ProductsGridSkeleton/ProductsGridSkeleton";
-import CategoryProducts from "@/sections/CategoryProducts/CategoryProducts";
+import CategoryFilter from "@/features/categories/components/Filter/Filter";
+import ProductsGridSkeleton from "@/features/categories/components/ProductsGridSkeleton/ProductsGridSkeleton";
+import CategoryProducts from "@/features/categories/components/CategoryProducts/CategoryProducts";
 import { Suspense } from "react";
 import { getTranslations } from 'next-intl/server';
-import { serverApi } from "@/services/serverApi";
-import { Category } from "@/interfaces/interfaces";
 import {
   Collapsible,
   CollapsibleContent,
@@ -15,20 +13,10 @@ import {
 import { Settings2Icon } from "lucide-react";
 import { cookies } from "next/headers";
 import FadeIn from "@/Animations/Fadding";
+import { Props } from "@/features/categories/types";
+import { getCategoriesData } from "@/features/categories/services/categories.service";
 
 
-type Props = {
-  params: Promise<{
-    lang: string;
-    id: number | undefined;
-  }>;
-  searchParams: Promise<{
-    sub_cat?: string;
-    sub_sub_cat?: string;
-    min_price?: string;
-    max_price?: string;
-  }>;
-};
 
 export async function generateMetadata({ params }: Props) {
   const { lang } = await params;
@@ -43,14 +31,8 @@ export default async function page({ params, searchParams }: Props) {
   const { lang, id } = await params;
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations({ locale: lang, namespace: 'Category' });
-
-  // const { data: categories } = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_BASE}/api/client/get_categories`
-  // ).then((res) => res.json());
-  const { data: categories } = await serverApi<{ data: Category[] }>(`get_categories`);
-
+  const { data: categories } = await getCategoriesData()
   // get_categories
-
   const category = categories?.find((cat: { id: number }) => cat.id === Number(id));
 
   const cookieStore = await cookies()
@@ -88,10 +70,10 @@ export default async function page({ params, searchParams }: Props) {
           </div>
         </div>
         <Suspense fallback={<ProductsGridSkeleton />} key={JSON.stringify(resolvedSearchParams)}>
-            <CategoryProducts
-              searchParams={resolvedSearchParams}
-              categoryId={category?.id ?? 0}
-            />
+          <CategoryProducts
+            searchParams={resolvedSearchParams}
+            categoryId={category?.id ?? 0}
+          />
         </Suspense>
       </div>
     </div>

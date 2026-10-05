@@ -10,8 +10,8 @@ import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ChevronDown, Plus, Minus, X } from "lucide-react"
 import { useState } from "react"
-import { ActiveFilter, CategoryFilterProps } from "@/interfaces/interfaces"
 import { useTranslations } from "next-intl"
+import { ActiveFilter, CategoryFilterProps } from "@/features/categories/types"
 
 export default function CategoryFilter({ subCategories }: CategoryFilterProps) {
     const router = useRouter()
