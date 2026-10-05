@@ -457,7 +457,7 @@
   "MobileHeader": {
     "home": "Home",
     "categories": "Categories",
-    "NewArrival": "New Arrivals",
+    "favourite": "Favourite",
     "cart": "Cart",
     "profile": "My Profile"
   },

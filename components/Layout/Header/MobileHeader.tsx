@@ -1,6 +1,6 @@
 'use client'
 
-import { Home, Search, ShoppingCartIcon, SparklesIcon, User2Icon } from "lucide-react"
+import { Heart, Home, Search, ShoppingCartIcon, SparklesIcon, User2Icon } from "lucide-react"
 import { Link } from "@/services/navigation"
 
 import { usePathname } from "next/navigation"
@@ -20,7 +20,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
     const links = [
         { name: t('home'), icon: Home, href: "/" },
         { name: t('categories'), icon: Search, href: "/categories/14" },
-        { name: t('NewArrival'), icon: SparklesIcon, href: "/brand" },
+        { name: t('favourite'), icon: Heart, href: "/favourite" },
         { name: t('cart'), icon: ShoppingCartIcon, href: "/cart" },
         ...(isLoggedIn
             ? [{ name: t('profile'), icon: User2Icon, href: "/profile" }]
