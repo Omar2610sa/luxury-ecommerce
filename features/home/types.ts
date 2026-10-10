@@ -9,6 +9,7 @@ export interface Slider {
     name: string
     desc: string
     image: string
+    product_details: string
 }
 export interface secondSlider {
     id: number

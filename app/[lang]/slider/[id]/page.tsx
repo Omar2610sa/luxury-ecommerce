@@ -1,26 +1,19 @@
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
 import NoInfo from "@/components/NoInfo/NoInfo";
 import ShopCard from "@/components/ShopCard/ShopCard";
-import { Product, Slider } from "@/interfaces/interfaces";
-import { serverApi } from "@/services/serverApi";
-import { Link } from "@/services/navigation"
-  ;
+import { Product } from "@/interfaces/interfaces";
 import { getTranslations } from 'next-intl/server';
+import { getSliderData } from "@/features/slider/services/sliders.service";
+import { Props } from "@/features/slider/types";
 
-type Props = {
-  params: Promise<{
-    lang: string;
-    id: string;
-  }>;
-};
 
 export default async function page({ params }: Props) {
   const { lang, id } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'SLider' });
-  const { data: slider } = await serverApi<{ data: Slider }>(`slider/${id}`);
+  const { data: slider } = await getSliderData(id);
 
   const products = Array.isArray(slider?.product_details)
-    ? slider!.product_details
+    ? slider?.product_details ?? []
     : slider?.product_details
       ? [slider.product_details]
       : [];
