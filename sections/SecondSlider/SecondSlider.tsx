@@ -1,7 +1,7 @@
-import { secondSlider } from "@/interfaces/interfaces";
 import Image from "next/image";
 import { Link } from '@/services/navigation';
 import FadeIn from "@/Animations/Fadding";
+import { secondSlider } from "@/features/home/types";
 
 export default function SecondSlider({ secondSlider }: { secondSlider: secondSlider[] }) {
     return (
