@@ -1,6 +1,5 @@
 "use client"
 import SecondButton from "@/components/Layout/SecondButton";
-import { Slider } from "@/interfaces/interfaces";
 import Image from "next/image";
 import {
     Carousel,
@@ -13,6 +12,7 @@ import { Link } from "@/services/navigation"
     ;
 import Autoplay from "embla-carousel-autoplay";
 import FadeIn from "@/Animations/Fadding";
+import { Slider } from "../../types";
 
 export default function Hero({ slider, shopNowText = "تسوق الآن" }: { slider: Slider[], shopNowText?: string }) {
     return (
