@@ -1,20 +1,14 @@
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
-import { Product, ProductData } from "@/interfaces/interfaces";
-import ProductInfo from "@/sections/Product/ProductInfo";
+import { Product } from "@/interfaces/interfaces";
+import ProductInfo from "@/features/products/components/ProductInfo/ProductInfo";
 import ForYouSection from "@/features/home/components/ForYou/ForYou";
-import { serverApi } from "@/services/serverApi";
+import { getProductData } from "@/features/products/services/products.service";
+import { ProductPageProps } from "@/features/products/types";
 import { getTranslations } from 'next-intl/server';
 import { notFound } from "next/navigation";
 
-type Props = {
-  params: Promise<{
-    lang: string;
-    id: string;
-  }>;
-};
-
-export async function generateMetadata({ params }: Props) {
-  const { lang, id } = await params;
+export async function generateMetadata({ params }: ProductPageProps) {
+  const { lang} = await params;
   const t = await getTranslations({ locale: lang, namespace: 'Product' });
 
   return {
@@ -23,13 +17,11 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: ProductPageProps) {
   const { lang, id } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'Product' });
 
-  const { data: product } = await serverApi<{ data: ProductData }>(
-    `web_product/${id}`
-  );
+  const { data: product } = await getProductData(id);
   if (!product) {
   notFound();
 }

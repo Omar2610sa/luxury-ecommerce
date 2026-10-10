@@ -1,12 +1,6 @@
 
 
 
-export interface ProductData {
-    title: string
-    product: Product[]
-    recommended: []
-    also_may_like: []
-}
 export interface CartData {
     title: string
     data: Cart
