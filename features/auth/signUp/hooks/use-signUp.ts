@@ -16,7 +16,7 @@ export function useSignUp() {
 
     const formik = useFormik({
         initialValues: {
-            name: "", email: "", phone: "",
+            name: "", email: "", phone_code: "", phone: "",
             country_id: "", state_id: "", city_id: "",
             gender: "", date_of_birth: "", password: "",
         },
