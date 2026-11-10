@@ -1,5 +1,5 @@
 import FadeIn from "@/Animations/Fadding";
-import AccountSettings from "@/components/AccountSettings/AccountSettings";
+import AccountSettings from "@/features/profile/components/AccountSettings";
 import { BreadCrumb } from "@/components/Breadcrumb/BreadCrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Menu } from "lucide-react";

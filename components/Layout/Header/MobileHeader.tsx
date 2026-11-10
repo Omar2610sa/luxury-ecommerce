@@ -19,7 +19,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
 
     const links = [
         { name: t('home'), icon: Home, href: "/" },
-        { name: t('categories'), icon: Search, href: "/categories/14" },
+        { name: t('categories'), icon: Search, href: "/categories/15" },
         { name: t('favourite'), icon: Heart, href: "/favourite" },
         { name: t('cart'), icon: ShoppingCartIcon, href: "/cart" },
         ...(isLoggedIn
@@ -40,7 +40,7 @@ export default function MobileHeader({ isLoggedIn }: Props) {
                                 href={ele.href}
                                 className={cn(
                                     "flex items-center justify-center flex-col gap-1 transition-colors",
-                                    isActive ? "text-primary" : "text-gray-500"
+                                    isActive ? "text-third/50" : "text-gray-500"
                                 )}
                             >
                                 <ele.icon className="size-5" />

@@ -31,7 +31,7 @@ function SuccessAlertComponent({ title, onClose }: Props) {
                     // alt="success"
                     width={100}
                     height={100}
-                    className="object-contain text-green-600"
+                    className="object-contain text-third"
                 />
                 <p className="text-center text-2xl font-medium">{title}</p>
             </DialogContent>

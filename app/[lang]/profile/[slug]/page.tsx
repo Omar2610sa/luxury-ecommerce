@@ -5,7 +5,7 @@ import { HomeData } from "@/features/home/types";
 import { CartData, Product, walletData } from "@/interfaces/interfaces";
 import ChangePasswordForm from "@/sections/Auth/ChangePass";
 import CartDetails from "@/sections/CartDetails/CartDetails";
-import MyOrders from "@/sections/MyOrders/MyOrders";
+import MyOrders from "@/features/orders/components/MyOrders";
 import Wallet from "@/sections/wallet/Wallet";
 import { serverApi } from "@/services/serverApi";
 import { getTranslations } from "next-intl/server";

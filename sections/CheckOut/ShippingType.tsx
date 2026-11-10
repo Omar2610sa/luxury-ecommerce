@@ -50,7 +50,6 @@ export default function ShippingTypes({ onChange }: Props) {
                                 <FieldTitle className="text-lg">{t(labelKey)}</FieldTitle>
 
                                 <FieldDescription>
-                                    {t(desKey)}
 
                                 </FieldDescription>
                             </FieldContent>

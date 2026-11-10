@@ -24,7 +24,6 @@ export const getSignUpSchema = (t: TFn) =>
         city_id: z.string().min(1, t("validation.city.required")),
         gender: z.string().min(1, t("validation.gender.required")),
         date_of_birth: z.string().min(1, t("validation.dob_required")),
-        phone_code: z.string().min(1, t("validation.phone_code.required")),
         password: z
             .string()
             .min(1, t("validation.password.required"))

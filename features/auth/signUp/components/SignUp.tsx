@@ -224,7 +224,7 @@ export function SignUp() {
                             />
                         </FieldGroup>
                         <DialogFooter className="mt-4">
-                            <Button className="w-full cursor-pointer" type="submit" disabled={formik.isSubmitting}>
+                            <Button className="w-full cursor-pointer" type="submit" >
                                 {formik.isSubmitting ? t('submitting') : t('submit')}
                             </Button>
                         </DialogFooter>

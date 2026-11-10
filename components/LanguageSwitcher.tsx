@@ -43,21 +43,10 @@ export function LanguageSwitcher() {
     setIsOpen(false);
   };
 
-
-
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false} >
       <DropdownMenuTrigger className="flex items-center gap-1 cursor-pointer ">
-        {/* <Image
-          src={currentLanguage?.flag}
-          alt="flag"
-          className="size-7 ml-2 object-contain rounded-xs"
-        />
-        <span className='hidden md:block'>
-          {currentLanguage?.label}
-        </span> */}
-        
-        <div className="flex justify-center items-center relative size-10 md:size-12 rounded-full bg-primary">
+        <div className="flex justify-center items-center relative size-10  rounded-full bg-primary">
           <GlobeIcon className="size-5 text-white" />
         </div>
         {/* <ChevronDownIcon className="size-3.5" /> */}

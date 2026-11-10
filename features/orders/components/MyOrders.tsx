@@ -5,7 +5,7 @@ import { Order } from "@/interfaces/interfaces"
 import { serverApi } from "@/services/serverApi"
 import Image from "next/image"
 import { Link } from "@/services/navigation"
-import Tablist from "@/components/Tablist/Tablist"
+import Tablist from "@/features/orders/components/Tablist"
 import { Suspense } from "react"
 import { getTranslations } from "next-intl/server"
 
@@ -31,15 +31,15 @@ export default async function MyOrders({ status }: Props) {
     }
     const { data: order } = await serverApi<{ data: Order[] }>(endpoint)
     return (
-        <div className="container flex flex-col gap-5 bg-[#F6F7FC]">
+        <div className="container flex flex-col gap-5  bg-[#F6F7FC]">
             <h3 className="text-2xl font-semibold text-primary">{t('MyOrders')}</h3>
 
-            <Suspense fallback={null}>
+            <Suspense fallback={null} >
                 <Tablist />
             </Suspense>
             <div key={status ?? 'all'}>
                 {order?.length ? (
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid  md:grid-cols-2 gap-6">
                         {order.map((ele, index) => {
                             const statusInfo = statusConfig[ele.status] ?? { label: ele.status, className: "bg-gray-100 text-gray-700" }
                             const visibleImages = ele.images.slice(0, 3)

@@ -235,7 +235,18 @@
     "shipping_method": "طريقة الشحن",
     "standard_shipping": "شحن قياسي",
     "express_shipping": "شحن سريع",
-    "overnight_shipping": "شحن ليلي"
+    "overnight_shipping": "شحن ليلي",
+    "cash_online_label": "الدفع أونلاين",
+    "cash_wallet_label": "المحفظة الإلكترونية",
+    "cash_on_delivery_label": "الدفع عند الاستلام",
+    "subtotal": "المجموع الفرعي",
+    "products": "منتجات",
+    "shippingFees": "رسوم الشحن",
+    "freeShipping": "شحن مجاني",
+    "couponDiscount": "خصم الكوبون",
+    "total": "الإجمالي",
+    "includingTax": "(شامل الضريبة)",
+    "confirm_order": "تأكيد الطلب"
   },
   "language": {
     "ar": "العربية",

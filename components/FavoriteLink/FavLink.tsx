@@ -10,7 +10,7 @@ export default function FavouriteIcon() {
     const isRtl = Cookies.get('NEXT_LOCALE') == "ar"
 
     return (
-        <Link href="/favourite" className="flex justify-center items-center relative size-12 rounded-full bg-primary">
+        <Link href="/favourite" className="flex justify-center items-center relative size-10 rounded-full bg-primary">
             <Heart className="size-5 text-white" />
             {count > 0 && (
                 <span className={`absolute top-0 ${isRtl ? "left-1/3" : 'right-1/3'}`}>

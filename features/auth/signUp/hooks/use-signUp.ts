@@ -19,7 +19,6 @@ export function useSignUp() {
             name: "", email: "", phone: "",
             country_id: "", state_id: "", city_id: "",
             gender: "", date_of_birth: "", password: "",
-            phone_code: ""
         },
         validate: (values) => {
             const result = signUpSchema.safeParse(values);
