@@ -281,7 +281,8 @@
     "date_of_birth": "تاريخ الميلاد",
     "gender": "الجنس",
     "preferences": "التفضيلات",
-    "notifications": "الإخطارات"
+    "notifications": "الإخطارات",
+    "account" : "الحساب"
   },
   "Favourite": {
     "title": "المفضلة",

@@ -16,8 +16,6 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { getTranslations } from 'next-intl/server';
 
 
-
-
 export default async function Header() {
     const token = (await cookies()).get('token_luxary')?.value ?? null
     const isRtl = (await cookies()).get('NEXT_LOCALE')?.value === 'ar' ? true : false
@@ -101,7 +99,7 @@ export default async function Header() {
                                 />
                             </div>
                             {/* Menu Items */}
-                            {/* <div className="flex items-center justify-between text-sm text-primary">
+                            <div className="flex items-center justify-between text-sm text-primary">
                                 <div className="flex justify-between items-center gap-5">
                                     {menuItems.map((item) => (
                                         <DropdownMenu key={item.label} modal={false}>
@@ -121,7 +119,7 @@ export default async function Header() {
                                         </DropdownMenu>
                                     ))}
                                 </div>
-                            </div> */}
+                            </div>
 
                         </div>
                     </div>

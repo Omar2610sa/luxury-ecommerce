@@ -287,7 +287,9 @@
     "date_of_birth": "Date of Birth",
     "gender": "Gender",
     "preferences": "Preferences",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "account" : "Account"
+
   },
   "Favourite": {
     "title": "Favorites",

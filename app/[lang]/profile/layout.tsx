@@ -33,7 +33,7 @@ export default async function Layout({
             <CollapsibleTrigger >
               <div className="lg:hidden flex items-center gap-2 w-fit text-black p-2 lg:p-6 rounded-full">
                 <Menu className="group-data-panel-open/button:rotate-180" />
-                <span className="text-2xl">الحساب</span>
+                <span className="text-2xl">{t('account')}</span>
               </div>
             </CollapsibleTrigger>
             <CollapsibleContent className="duration-300">
