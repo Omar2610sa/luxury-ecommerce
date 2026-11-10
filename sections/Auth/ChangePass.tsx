@@ -32,7 +32,7 @@ export default function ChangePasswordForm() {
         onSubmit: async (values, { setSubmitting, resetForm }) => {
             try {
                 const response = await apiClient<{ data?: unknown; message?: string }>("reset_password", {
-                    method: "POST",
+                    method: "PATCH",
                     body: {
                         values,
                     }
@@ -56,8 +56,6 @@ export default function ChangePasswordForm() {
 
             <FieldGroup>
                 <div className="flex flex-col gap-5">
-
-
                     {/* New Password */}
                     <Field>
                         <Label htmlFor="password">Password</Label>

@@ -5,7 +5,7 @@ import { FormikProps } from "formik";
 import { SignUpFormValues } from "../schema/signUpSchema";
 
 type Props = {
-    formik: FormikProps<SignUpFormValues>;
+    formik: any
     open?: boolean
 };
 

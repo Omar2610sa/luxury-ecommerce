@@ -101,7 +101,7 @@ export default async function Header() {
                                 />
                             </div>
                             {/* Menu Items */}
-                            <div className="flex items-center justify-between text-sm text-primary">
+                            {/* <div className="flex items-center justify-between text-sm text-primary">
                                 <div className="flex justify-between items-center gap-5">
                                     {menuItems.map((item) => (
                                         <DropdownMenu key={item.label} modal={false}>
@@ -121,7 +121,7 @@ export default async function Header() {
                                         </DropdownMenu>
                                     ))}
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -144,7 +144,7 @@ export default async function Header() {
                                 {/* Cart */}
                                 <CartLink />
                                 {/* Profile */}
-                                <Link href="/profile" className="flex justify-center items-center  size-12 rounded-full bg-primary">
+                                <Link href="/profile" className="flex justify-center items-center  size-10 rounded-full bg-primary">
                                     <User2Icon className="size-5 text-white" />
                                 </Link>
                                 {/* Language */}
