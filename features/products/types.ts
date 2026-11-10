@@ -1,11 +1,11 @@
 import type { Product } from "@/interfaces/interfaces";
 
-export interface ProductPageProps {
-  params: Promise<{
-    lang: string;
-    id: string;
-  }>;
-}
+  export interface ProductPageProps {
+    params: Promise<{
+      lang: string;
+      id: string;
+    }>;
+  }
 
 export interface ProductData {
   title: string;

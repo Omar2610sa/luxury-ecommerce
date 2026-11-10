@@ -32,11 +32,6 @@ export function OtpDialog({ open, onOpenChange }: Props) {
     const phone = Cookies.get('user_phone')
     const phoneCode = Cookies.get('user_phone_code')
     const deviceToken = Cookies.get('guest_token')
-
-
-
-
-
     const handleSubmit = async () => {
         if (otp.length < 4) {
             setError("أدخل كود التحقق كامل")

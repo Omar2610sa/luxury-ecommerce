@@ -5,9 +5,9 @@ import logo from "@/assets/logoo.svg"
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Link } from "@/services/navigation";
-import { LoginDialog } from "@/sections/Auth/LoginDialog";
+import { LoginDialog } from "@/features/auth/login/components/LoginDialog";
 import { cookies } from "next/headers";
-import { SignUp } from "@/sections/Auth/SignUp";
+import { SignUp } from "@/features/auth/signUp/components/SignUp";
 import MobileHeader from "./MobileHeader";
 import MobileTopHeader from "./MobileHeaderTop";
 import FavouriteIcon from "@/components/FavoriteLink/FavLink";

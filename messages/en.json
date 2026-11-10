@@ -172,7 +172,6 @@
     "title": "Checkout",
     "confirm_order": "Confirm Order",
     "choose_payment_method": "Choose payment method",
-    "choose_shipping_address": "Choose shipping address",
     "choose_shipping_method": "Choose shipping method",
     "order_confirmed": "Order confirmed",
     "payment_method": "Payment Method",
@@ -497,7 +496,8 @@
         "female": "Female"
       },
       "dob": {
-        "label": "Date of Birth"
+        "label": "Date of Birth",
+        "placeholder": "Select your date of birth"
       },
       "password": {
         "label": "Password",
@@ -533,6 +533,9 @@
       "password": {
         "min": "Password must be at least 6 characters",
         "required": "Password is required"
+      },
+      "phone_code": {
+        "required": "Country code is required"
       }
     },
     "submitting": "Creating account...",

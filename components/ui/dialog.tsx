@@ -64,10 +64,10 @@ function DialogContent({
         {!hideCloseButton && (
           <DialogPrimitive.Close
             data-slot="dialog-close"
+            className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'}`}
             render={
               <Button
                 variant="outline"
-                className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'}`}
                 size="icon-sm"
               />
             }

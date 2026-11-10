@@ -1,184 +1,31 @@
 "use client"
 import MainButton from "@/components/Layout/MainButton"
 import { Button } from "@/components/ui/button"
-import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogFooter, DialogHeader, DialogTrigger, } from "@/components/ui/dialog"
 import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-import { useFormik } from "formik"
-import * as Yup from "yup"
-import { useState, useEffect } from "react"
-import { EyeIcon, EyeOffIcon, UserPlus2Icon } from "lucide-react"
-import { OtpDialog } from "./SignOtp"
-import { ErrorAlert } from "@/components/Alert/ErrorAlert"
-import { apiClient } from "@/services/useApiClient"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState, } from "react"
+import { OtpDialog } from "../../otp/components/SignOtp"
 import { useTranslations } from "next-intl"
-import { apiClientGeneral } from "@/services/useApiClientGeneral"
-import Cookies from "js-cookie"
-
-
-
-type Country = {
-    id: number
-    name: string
-    flag: string
-    phone_code: string
-}
-
-type City = {
-    id: number
-    name: string
-}
-
-type StateType = {
-    id: number
-    name: string
-}
-
+import { useSignUp } from "../hooks/use-signUp"
+import AuthDialog from "../../components/AuthDialog"
+import AuthField from "../../components/AuthField"
+import { useCountryChange } from "../hooks/use-countryChange"
+import { UserPlus2Icon } from "lucide-react"
+import { useStateChange } from "../hooks/use-state-change"
 
 export function SignUp() {
-    const [showPassword, setShowPassword] = useState(false)
-    const [open, setOpen] = useState(false)
-    const [countries, setCountries] = useState<Country[]>([])
-    const [states, setStates] = useState<StateType[]>([])
-    const [cities, setCities] = useState<City[]>([])
     const [selectedPhoneCode, setSelectedPhoneCode] = useState("")
-    const [otpOpen, setOtpOpen] = useState(false)
     const t = useTranslations('SignUp')
-
-    const signUpSchema = Yup.object({
-        name: Yup.string()
-            .min(3, t('validation.name.min'))
-            .required(t('validation.name.required')),
-        email: Yup.string()
-            .email(t('validation.email.invalid'))
-            .required(t('validation.email.required')),
-        phone: Yup.string()
-            .matches(/^[0-9]{7,15}$/, t('validation.phone.invalid'))
-            .required(t('validation.phone.required')),
-        country_id: Yup.string().required(t('validation.country.required')),
-        state_id: Yup.string().required(t('validation.state.required')),
-        city_id: Yup.string().required(t('validation.city.required')),
-        gender: Yup.string().required(t('validation.gender.required')),
-        date_of_birth: Yup.string().required(t("validation.dob_required")),
-
-        password: Yup.string()
-            .min(6, t('validation.password.min'))
-            .required(t('validation.password.required')),
-    });
-
-    useEffect(() => {
-        if (!open) return
-        apiClientGeneral<{ data?: Country[] }>("countries", { method: "GET" })
-            .then(res => setCountries(res?.data ?? []))
-
-    }, [open])
-
-    const guestToken = Cookies.get('guest_token')
-
-
-    const formik = useFormik({
-        initialValues: {
-            name: "",
-            email: "",
-            phone: "",
-            country_id: "",
-            phone_code: "",
-            date_of_birth: "",
-            city_id: "",
-            state_id: "",
-            gender: "",
-            password: "",
-        },
-        validationSchema: signUpSchema,
-        onSubmit: async (values, { setSubmitting }) => {
-
-            const form = new FormData()
-            form.append("name", values.name)
-            form.append("email", values.email)
-            form.append("phone_code", values.phone_code)
-            form.append("phone", values.phone)
-            form.append("country_id", values.country_id)
-            form.append("state_id", values.state_id)
-            form.append("city_id", values.city_id)
-            form.append("gender", values.gender)
-            form.append("date_of_birth", values.date_of_birth)
-            form.append("password", values.password)
-            form.append("type", 'ios')
-            form.append("device_token", guestToken ?? '')
-
-            try {
-                const response = await apiClient<{ status?: string; message?: string }>("register", {
-                    method: "POST",
-                    body: form as unknown as Record<string, unknown>,
-                })
-
-                if (response?.status === "success") {
-                    Cookies.set("user_phone", values.phone)
-                    Cookies.set("user_phone_code", values.phone_code)
-                    setOpen(false)
-                    setOtpOpen(true)
-                } else {
-                    ErrorAlert(response?.message ?? "حدثت مشكلة")
-                }
-            } catch {
-                ErrorAlert("حدثت مشكلة في الاتصال بالسيرفر")
-            }
-        },
-    })
-
-
-    const handleCountryChange = (value: string | null) => {
-        const countryId = value ?? ""
-        const country = countries.find(c => c.id.toString() === countryId)
-
-        formik.setFieldValue("country_id", countryId)
-        formik.setFieldValue("phone_code", country?.phone_code ?? "")
-        formik.setFieldValue("state_id", "")
-        formik.setFieldValue("city_id", "")
-        setCities([])
-
-        if (!countryId) return
-
-            ; (async () => {
-                const res = await apiClientGeneral<{ data?: StateType[] }>(`get_country_states/${countryId}`, { method: "GET" })
-                setStates(res?.data ?? [])
-            })()
-    }
-
-
-    const handleStateChange = (value: string | null) => {
-        const stateId = value ?? ""
-        formik.setFieldValue("state_id", stateId)
-        formik.setFieldValue("city_id", "")
-        setCities([])
-
-        if (!stateId) return
-
-            ; (async () => {
-                const res = await apiClientGeneral<{ data?: City[] }>(`get_state_cities/${stateId}`, { method: "GET" })
-                setCities(res?.data ?? [])
-            })()
-    }
-
+    const { formik, open, setOpen, otpOpen, setOtpOpen } = useSignUp()
+    const { handleCountryChange, states, cities, setCities, countries } = useCountryChange({ formik, open })
+    const { handleStateChange } = useStateChange({ formik, setCities })
 
     return (
         <>
-            <Dialog open={open} onOpenChange={setOpen}>
+            <Dialog open={open} onOpenChange={setOpen} modal={false}>
                 <DialogTrigger>
                     <div className="hidden md:flex">
                         <MainButton text={t('trigger')} />
@@ -187,46 +34,34 @@ export function SignUp() {
                         <UserPlus2Icon className="size-5 text-white" />
                     </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[80vh]">
+                <AuthDialog title={t('title')} className="sm:max-w-lg scrollbar-thumb-primary overflow-y-scroll max-h-[80vh]">
                     <form onSubmit={formik.handleSubmit}>
                         <DialogHeader className="mb-3">
                             <p className="text-2xl my-3 mx-auto">{t('subtitle')}</p>
                         </DialogHeader>
-
                         <FieldGroup>
-                            {/* Name */}
-                            <Field>
-                                <Label htmlFor="name">{t('fields.name.label')}</Label>
-                                <Input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    placeholder={t('fields.name.placeholder')}
-                                    value={formik.values.name}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.name && formik.errors.name && (
-                                    <p className="text-red-500 text-sm">{formik.errors.name}</p>
-                                )}
-                            </Field>
-
-                            {/* Email */}
-                            <Field>
-                                <Label htmlFor="email">{t('fields.email.label')}</Label>
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    type="text"
-                                    placeholder={t('fields.email.placeholder')}
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.email && formik.errors.email && (
-                                    <p className="text-red-500 text-sm">{formik.errors.email}</p>
-                                )}
-                            </Field>
+                            <AuthField
+                                label={t('fields.name.label')}
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder={t('fields.name.placeholder')}
+                                value={formik.values.name}
+                                handleChange={formik.handleChange}
+                                handleBlur={formik.handleBlur}
+                                error={formik.touched.name ? formik.errors.name : undefined}
+                            />
+                            <AuthField
+                                label={t('fields.email.label')}
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder={t('fields.email.placeholder')}
+                                value={formik.values.email}
+                                handleChange={formik.handleChange}
+                                handleBlur={formik.handleBlur}
+                                error={formik.touched.email ? formik.errors.email : undefined}
+                            />
 
                             {/* Phone */}
                             <Field>
@@ -258,9 +93,7 @@ export function SignUp() {
                                             ))}
                                         </SelectContent>
                                     </Select>
-
                                     <div className="w-px bg-border self-stretch" />
-
                                     <Input
                                         id="phone"
                                         name="phone"
@@ -279,7 +112,6 @@ export function SignUp() {
                                     <p className="text-red-500 text-sm">{formik.errors.country_id}</p>
                                 )}
                             </Field>
-
                             {/* Country */}
                             <Field>
                                 <Label>{t('fields.country.label')}</Label>
@@ -301,8 +133,6 @@ export function SignUp() {
                                     <p className="text-red-500 text-sm">{formik.errors.country_id}</p>
                                 )}
                             </Field>
-
-
                             {/* state */}
                             <Field>
                                 <Label>{t('fields.state.label')}</Label>
@@ -331,7 +161,6 @@ export function SignUp() {
                             {/* city */}
                             <Field>
                                 <Label>{t('fields.city.label')}</Label>
-
                                 <Select
                                     value={formik.values.city_id}
                                     onValueChange={(value) => formik.setFieldValue("city_id", value)}
@@ -371,62 +200,38 @@ export function SignUp() {
                                     <p className="text-red-500 text-sm">{formik.errors.gender}</p>
                                 )}
                             </Field>
-
-                            {/* DOB */}
-                            <Field>
-                                <Label htmlFor="date_of_birth">{t('fields.dob.label')}</Label>
-                                <Input
-                                    id="date_of_birth"
-                                    name="date_of_birth"
-                                    type="date"
-                                    value={formik.values.date_of_birth}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.date_of_birth && formik.errors.date_of_birth && (
-                                    <p className="text-red-500 text-sm">{formik.errors.date_of_birth}</p>
-                                )}
-                            </Field>
-
-                            {/* Password */}
-                            <Field>
-                                <Label htmlFor="password">{t('fields.password.label')}</Label>
-                                <div className="relative">
-                                    <Input
-                                        id="password"
-                                        name="password"
-                                        type={showPassword ? "text" : "password"}
-                                        placeholder={t('fields.password.placeholder')}
-                                        value={formik.values.password}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        className="pl-10"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowPassword(p => !p)}
-                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                                    >
-                                        {showPassword ? <EyeOffIcon className="size-4" /> : <EyeIcon className="size-4" />}
-                                    </button>
-                                </div>
-                                {formik.touched.password && formik.errors.password && (
-                                    <p className="text-red-500 text-sm">{formik.errors.password}</p>
-                                )}
-                            </Field>
+                            <AuthField
+                                label={t('fields.dob.label')}
+                                id="date_of_birth"
+                                name="date_of_birth"
+                                type="date"
+                                value={formik.values.date_of_birth}
+                                placeholder={t('fields.dob.placeholder')}
+                                handleChange={formik.handleChange}
+                                handleBlur={formik.handleBlur}
+                                error={formik.touched.date_of_birth ? formik.errors.date_of_birth : undefined}
+                            />
+                            <AuthField
+                                label={t('fields.password.label')}
+                                id="password"
+                                name="password"
+                                type={"password"}
+                                placeholder={t('fields.password.placeholder')}
+                                value={formik.values.password}
+                                handleChange={formik.handleChange}
+                                handleBlur={formik.handleBlur}
+                                error={formik.touched.password ? formik.errors.password : undefined}
+                            />
                         </FieldGroup>
-
                         <DialogFooter className="mt-4">
                             <Button className="w-full cursor-pointer" type="submit" disabled={formik.isSubmitting}>
                                 {formik.isSubmitting ? t('submitting') : t('submit')}
                             </Button>
                         </DialogFooter>
                     </form>
-                </DialogContent>
+                </AuthDialog>
             </Dialog>
             <OtpDialog open={otpOpen} onOpenChange={setOtpOpen} />
-
         </>
-
     )
 }
